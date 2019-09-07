@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Metadata -->
+  <meta name="description" content="internal social network for organizations">
+  <meta name="author" content="Niyonsenga Eric">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teamwork</title>
+  <link rel="icon" href="../images/icon.png" type="image/x-icon" />
+  <!-- CSS Styles -->
+  <link rel="stylesheet" type="text/css" href="../css/style.css" />
+
+  <!-- Javascript  -->
+  <script type="text/javascript" src="../js/scripts.js"></script>
+</head>
+
+<body>
+  <div class="page-container">
+    <nav class="client-nav">
+      <span class="mob-menu-icon" style="font-size:30px;cursor:pointer" onclick="openNav()">
+        &#9776;
+      </span>
+      <div class="logo"></div>
+      <ul class="topnav">
+        <li class="k"><a class="menulink" href="../index.html">Logout</a>
+
+        <li><a class="menulink" href="about.html">About</a></li>
+        <li><a class="menulink" href="contact.html">Contact</a></li>
+        <li onclick="opendashboard()"><a class="menulink" href="#">Dashboard</a></li>
+
+        <li><a class="menulink active" href="articles.html">Articles </a></li>
+
+      </ul>
+    </nav>
+    <!-- my Side menu slide -->
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a class="menulink-admin1" href="articles.html">Articles</a>
+      <hr class="menu-separtor">
+      <a onclick="opendashboard()" class="menulink" href="#">Dashboard</a>
+      <hr class="menu-separtor">
+      <a class="menulink" href="contact.html">Contact</a>
+      <hr class="menu-separtor">
+      <a class="menulink" href="about.html">About</a>
+      <hr class="menu-separtor">
+      <a class="menulink" href="../index.html">Logout</a>
+      <hr class="menu-separtor">
+    </div>
+
+    <!-- ############################### -->
+
+    <div class="dark-overlay" onclick="closeNav()">
+      <div class="container-row">
+
+        <div class="trend-article">
+          <ul class="contentitem_listing">
+            <input type="text" name="search" placeholder="Search Articles....">
+            <a href="#">
+              <h1>ARTICLES</h1>
+            </a>
+
+            <li>
+              <div class="profile"><img src="../images/woman 4.png"><br>
+                <span class="comment"> <a href="#"><b><span>&#x0040;sindyalandra</a></span></b></span>
+
+                <p><span class="date-published">Published On:<br> 12-05-2019</span></p>
+              </div>
+
+              <h3>
+                <a class="title navigation" href="#">Growth Mindset</a>
+              </h3>
+              <p class="write-article">
+                I can’t do it, I can’t learn this, it's too hard, Come on, I’m just a Junior Developer, <a class="tag"
+                  href="#">WebPack </a>is not
+                my thing, I
+                tried it and failed.
+                Those are the words of a developer drenched and soaked with imposter syndrome.
+                Over time we keep fighting ourselves, trying to run away from our shadows, trying to find shortcuts, yes
+                I did also, I
+                really did :(
+                At a point in my life, I just felt some things were not meant for me, I felt maths was too complex for
+                me, JavaScript
+                was not my thing!!
+              </p>
+
+              <p>
+                <a href="#"><span class="comment_count"><span class="report" title="report article"
+                      onclick="flag()">&#x2691;</span><span onclick="post()"> <img title="comments" alt="view"
+                        class="comment-image" src="../images/comment.png"> 7</span></span></a>
+              </p>
+
+            </li>
+            <li>
+              <div class="profile"><img src="../images//man.png">
+                <span class="comment"><br> <a href="#"><b><span>&#x0040;NiyonsengaEric</a></span></b></span>
+
+                <p><span class="date-published">Published On:<br> 12-04-2019</span></p>
+              </div>
+              <h3>
+                <a class="title navigation" href="#">The Difference Between Yes and No</a>
+              </h3>
+              <p class="write-article">
+                The words <b>“yes”</b> and <b>“no”</b> get used in comparison to each other so often that it feels like
+                they carry equal weight in
+                conversation. In reality, they are not just opposite in meaning, but of entirely different magnitudes in
+                commitment.
+
+                When you say no, you are only saying no to one option. When you say yes, you are saying no to every
+                other option.
+
+                In other words, saying no saves you time in the future. Saying yes costs you time in the future. No is a
+                form of time
+                credit. You retain the ability to spend your future time however you want. Yes is a form of time debt.
+                You have to pay
+                back your commitment at some point.
+
+                No is a decision. Yes is a responsibility.
+              </p>
+
+              <p>
+                <a href="#"><span class="comment_count"> <span class="report2" title="report article"
+                      onclick="flag2()">&#x2691;</span>
+                    <span onclick="post()"> <img title="comments" alt="view" class="comment-image"
+                        src="../images/comment.png"> 26</span></span></a>
+              </p>
+
+            </li>
+
+
+
+
+            <li>
+              <div class="profile"><img src="../images/man 2.png"><br>
+                <span class="comment"> <a href="#"><b><span>&#x0040;ByusaPrince</a></span></b></span>
+
+                <p><span class="date-published">Published On:<br> 10-10-2018</span></p>
+              </div>
+              <h3>
+                <a class="title navigation" href="#">Identity-based habits</a>
+              </h3>
+              <p class="write-article">
+                One of the central ideas in the book is the concept of building <a class="tag" href="#">“identity-based
+                  habits”</a>, which essentially recommends focusing on the type of person you wish to become rather
+                than the outcome you wish to achieve.
+
+                One reader named Roland used the idea to improve his eating habits.
+
+                “I stopped eating unhealthy food via identity change,” he wrote. “I tried many times in the past, but it
+                became easy — natural — only after I had made the conscious decision that I want to be someone who eats
+                healthy. Instead of aiming for I want to stop eating bad food, I tried changing the mindset to I am
+                someone that eats healthy and lives a healthy life. It changes how you approach things.”
+
+              </p>
+
+              <p>
+                <a href="#"><span class="comment_count"> <span class="report3" title="report article"
+                      onclick="flag3()">&#x2691;</span>
+                    <span onclick="post()"> <img title="comments" alt="view" class="comment-image"
+                        src="../images/comment.png"> </span>2</span></a>
+              </p>
+
+            </li>
+            <li class="paging">
+              <div class="pagination">
+                <a href="#">«</a>
+                <a class="active" href="#">1</a>
+                <a href="#" title="Page 2">2</a>
+                <a href="#" title="Page 3">3</a>
+                <a href="#" title="Page 4">4</a>
+                <a href="#" title="Page 5">5</a>
+                <a href="#" title="Page 6">6</a>
+                <a href="#" title="Next Pages">»</a>
+              </div>
+            </li>
+          </ul>
+          <!-- paggination -->
+
+
+          <!-- ################################################################ -->
+
+        </div>
+
+        <div class="my-article">
+          <div class="scrollable">
+            <input type="text" name="search" placeholder="Search Articles....">
+            <a href="#">
+              <h1>MY ARTICLES</h1>
+            </a>
+
+            <div class="tablesroll">
+              <table class="articles-table">
+                <thead>
+                  <tr>
+                    <th>Article Id</th>
+                    <th>Title</th>
+                    <th>Created On</th>
+                    <th>Action</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td onclick="mypost()">#75432</td>
+                    <td onclick="mypost()"><b>Growth Mindset</b></td>
+                    <td onclick="mypost()">11/07/209 06:00 AM</td>
+                    <td title="Delete article" alt="Delete" class="action-item"><span title="Edith article"
+                        onclick="updateArticle()">&#x270E;</span><span
+                        onclick="dialogbox('Are you sure you want to permanently delete this  article ?')">
+                        &#x2718;</span></td>
+                  </tr>
+                  <tr>
+                    <td onclick="mypost()">#71111</td>
+                    <td onclick="mypost()"><b>Birth Day</b></td>
+                    <td onclick="mypost()">11/07/209 06:00 AM</td>
+                    <td title="Delete article" alt="Delete" class="action-item"><span title="Edith article"
+                        onclick="updateArticle()">&#x270E;</span><span
+                        onclick="dialogbox('Are you sure you want to permanently delete this  article ?')">
+                        &#x2718;</span></td>
+                  </tr>
+                  <tr>
+                    <td onclick="mypost()">#68897</td>
+                    <td onclick="mypost()"><b>Life Style</b></td>
+                    <td onclick="mypost()">11/07/209 06:00 AM</td>
+                    <td title="Delete article" alt="Delete" class="action-item"><span title="Edith article"
+                        onclick="updateArticle()">&#x270E;</span><span
+                        onclick="dialogbox('Are you sure you want to permanently delete this  article ?')">
+                        &#x2718;</span></td>
+                  </tr>
+                  <tr>
+                    <td onclick="mypost()">#68896</td>
+                    <td onclick="mypost()"><b>Let Share</b></td>
+                    <td onclick="mypost()">11/07/209 06:00 AM</td>
+                    <td title="Delete article" alt="Delete" class="action-item"><span title="Edith article"
+                        onclick="updateArticle()">&#x270E;</span><span
+                        onclick="dialogbox('Are you sure you want to permanently delete this  article ?')">
+                        &#x2718;</span></td>
+                  </tr>
+                  <tr>
+                    <td onclick="mypost()">#68797</td>
+                    <td onclick="mypost()"><b>Motivation</b></td>
+                    <td onclick="mypost()">11/07/209 06:00 AM</td>
+                    <td title="Delete article" alt="Delete" class="action-item"><span title="Edith article"
+                        onclick="updateArticle()">&#x270E;</span><span
+                        onclick="dialogbox('Are you sure you want to permanently delete this  article ?')">
+                        &#x2718;</span></td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+
+            <div class="add-article">
+              <input type="button" class="custom-btn" value="Write Article" onclick="newArticle()">
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+    <footer class="footer">
+      <p>
+        &copy;
+        <a href="about.html"><b>Teamwork.</b></a>
+        2019 All rights Reserve
+      </p>
+    </footer>
+  </div>
+  <div id="dialogbox" class="modal">
+
+    <!-- Dialog content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close" onclick="closeDialog()">&times;</span>
+        <h2>
+          <div class="logo"></div>
+        </h2>
+      </div>
+      <div class="modal-body">
+        <span class="dialog-content dialog-content-js"></span>
+      </div>
+      <div class="modal-buttons">
+        <input type="button" class="custom-btn" value="No" onclick="closeDialog()" />
+        <input type="button" class="custom-btn delete" value="Yes" onclick="closeDialog()" />
+      </div>
+    </div>
+
+  </div>
+  <div class="comment-form">
+    <div class="comment-article">
+      <div class="modal-header">
+        <span class="close" onclick="closeDialog()">&times;</span>
+        <h2>
+          <div class="logo"></div>
+        </h2>
+      </div>
+      <ul class="contentitem_listing">
+        <li>
+          <div class="profile"><img src="../images/woman 4.png"><br>
+            <span class="comment"> <a href="#"><b><span>@sindyalandra</span></b></a></span>
+
+            <p><span class="date-published">Published On:<br> 12-05-2019</span></p>
+          </div>
+
+          <h3>
+            <a class="title navigation" href="#">Growth Mindset</a>
+          </h3>
+          <p class="write-article">
+            I can’t do it, I can’t learn this, it's too hard, Come on, I’m just a Junior Developer, <a class="tag"
+              href="#">WebPack </a>is not
+            my thing, I
+            tried it and failed.
+            Those are the words of a developer drenched and soaked with imposter syndrome.
+            Over time we keep fighting ourselves, trying to run away from our shadows, trying to find shortcuts, yes
+            I did also, I
+            really did :(
+            At a point in my life, I just felt some things were not meant for me, I felt maths was too complex for
+            me, JavaScript
+            was not my thing!!
+          </p>
+
+          <p>
+            <a href="#"><span class="comment_count"> <span class="report5" title="report article"
+                  onclick="flag5()">&#x2691;</span>
+                <img title="comments" alt="view" class="comment-image" src="../images/comment.png"> 7</span></a>
+          </p>
+
+        </li>
+
+      </ul>
+
+
+      <form>
+        <textarea rows="10" cols="48" placeholder="Your Comment" class=" txtb"  required=""></textarea><br>
+        <input type="submit" value="Comment"class="custom-btn form-input btn-js">
+
+      </form>
+      <div class="list-comment">
+
+        <p><span class="comment"><br> <a href="#"><b><span>&#x0040;LebronJames</a></span><br>
+          on the other <a href="#"> The Fixed Mindset </a>end is the opposite, it refers to the belief that a person’s
+          talents are fixed and generated from birth. This revolves around the idea that once you can’t do something
+          from the onset, it isn’t meant for you. Once you can’t solve that arithmetic, you conclude that maths is not
+          your thing, once you can’t figure out that algorithm, you conclude that programming is hard.
+        </p>
+
+        <p><span class="comment"><br> <a href="#"><b><span>&#x0040;kawahiLeonard</a></span><br>
+          Waooooooooooo nice topic
+        </p>
+
+        <p><span class="comment"><br> <a href="#"><b><span>&#x0040;NiyonsengaRoger</a></span><br>
+          What a motivation you inspire us we real apreciate
+        </p>
+
+        <p><span class="comment"><br> <a href="#"><b><span>&#x0040;JajaBenit</a></span><br>
+
+          <a href="#"><span>&#x0040;MarkZuckerberg</a></span> was not born a geek, <a
+            href="#"><span>&#x0040;SarahDrasner</a></span> was not born a Developer Avocado, <a
+            href="#"><span>&#x0040;IreAderinokun</a></span> was not born a frontend developer, <a
+            href="#"><span>&#x0040;ProsperOtemuyiwa</a></span> was not born on a Senior Level, they all started from
+          somewhere, learning and Improving daily.
+        </p>
+
+        <p><span class="comment"><br> <a href="#"><b><span>&#x0040;Kibaka</a></span><br>
+          i dont believe in Growth mindset maybe you can search for another good topic different from that.
+        </p>
+
+        <p><span class="comment"><br> <a href="#"><b><span>&#x0040;Ruca</a></span><br>
+          yoo my men whats up there!!!
+        </p>
+
+        <p><span class="comment"><br> <a href="#"><b><span>&#x0040;Beyonce05</a></span><br>
+          Now, The Growth Mindset simply means having the mindset that your talents, skills or strength can be developed
+          over time. It revolves around the belief that you can improve intelligence, talents, ability and performance.
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="new-article">
+    <div class="new-article-form">
+
+      <div class="modal-header">
+        <span class="close" onclick="closeDialog()">&times;</span>
+        <h2>
+          <div class="logo"></div>
+        </h2>
+      </div>
+      <form>
+        <p class="input-group">
+          <label for="new_article">Title</label>
+          <input id="new-title" name="new_article" placeholder="Write here the title" required="">
+        </p>
+        <textarea rows="10" cols="48" placeholder="What is in your mind ?" required="" class=" txtb"></textarea><br>
+        <input type="submit" value="POST"  class="custom-btn" id="share-bt">
+
+      </form>
+
+    </div>
+  </div>
+
+
+  <div class="update-article">
+    <div class="new-article-form">
+
+      <div class="modal-header">
+        <span class="close" onclick="closeDialog()">&times;</span>
+        <h2>
+          <div class="logo"></div>
+        </h2>
+      </div>
+      <form>
+        <p class="input-group">
+          <label for="update_title">Title</label>
+          <input id="new-title" name="update_title" required="" placeholder="Write here the title" value="Growth Mindset">
+        </p>
+        <textarea rows="10" cols="48" placeholder="What is in your mind ?" required="" class=" txtb">
+          I can’t do it, I can’t learn this, it's too hard, Come on, I’m just a Junior Developer, WebPack is not my thing, I tried it and failed. Those are the words of a developer drenched and soaked with imposter syndrome. Over time we keep fighting ourselves, trying to run away from our shadows, trying to find shortcuts, yes I did also, I really did :( At a point in my life, I just felt some things were not meant for me, I felt maths was too complex for me, JavaScript was not my thing!!</textarea><br>
+        <input type="submit" value="UPDATE" class="custom-btn" id="share-bt">
+
+      </form>
+
+    </div>
+  </div>
+  <div class="dashboard-auth">
+    <!-- hidden by default -->
+
+    <div class="form-wrapper">
+      <span class="close" onclick="closeDialog()">&times;</span>
+      <div class="auth-area">
+        <h2 class="auth-title">Admin Panel</h2>
+        <form class="auth-form" action="./dashboard.html">
+          <p class="input-group">
+            <label for="login_username">Email</label>
+            <input id="login_username" name="login_username" placeholder="Enter your email" type="email" required="">
+          </p>
+          <p class="input-group">
+            <label for="login_password">Password</label>
+            <input id="login_password" name="login_password" placeholder="Enter your password" type="password"
+              required="" minlength="5">
+          </p>
+          <p class="input-group login-submit">
+            <label for="user-login">
+              <input class="submit-btn" id="user-login" name="login_submit" type="submit" value="LOGIN">
+            </label>
+          </p>
+        </form>
+      </div>
+    </div>
+    <!-- ################################################################ -->
+  </div>
+
+  <div class="mycomment-form">
+    <div class="comment-article">
+      <div class="modal-header">
+        <span class="close" onclick="closeDialog()">&times;</span>
+        <h2>
+          <div class="logo"></div>
+        </h2>
+      </div>
+      <ul class="contentitem_listing">
+        <li>
+          <h3>
+            <a class="title navigation" href="#">Growth Mindset</a>
+          </h3>
+          <p class="write-article">
+            I can’t do it, I can’t learn this, it's too hard, Come on, I’m just a Junior Developer, <a class="tag"
+              href="#">WebPack </a>is not
+            my thing, I
+            tried it and failed.
+            Those are the words of a developer drenched and soaked with imposter syndrome.
+            Over time we keep fighting ourselves, trying to run away from our shadows, trying to find shortcuts, yes
+            I did also, I
+            really did :(
+            At a point in my life, I just felt some things were not meant for me, I felt maths was too complex for
+            me, JavaScript
+            was not my thing!!
+            <p><span class="mypost-date">Published On: 12-05-2019 10:14 AM</span></p>
+          </p>
+
+
+        </li>
+
+      </ul>
+
+      <div class="list-comment">
+
+        <p><span class="comment"><br> <a href="#"><b><span>&#x0040;LebronJames</a></span><br>
+          on the other <a href="#"> The Fixed Mindset </a>end is the opposite, it refers to the belief that a person’s
+          talents are fixed and generated from birth. This revolves around the idea that once you can’t do something
+          from the onset, it isn’t meant for you. Once you can’t solve that arithmetic, you conclude that maths is not
+          your thing, once you can’t figure out that algorithm, you conclude that programming is hard.
+        </p>
+
+        <p><span class="comment"><br> <a href="#"><b><span>&#x0040;kawahiLeonard</a></span><br>
+          Waooooooooooo nice topic
+        </p>
+
+        <p><span class="comment"><br> <a href="#"><b><span>&#x0040;NiyonsengaRoger</a></span><br>
+          What a motivation you inspire us we real apreciate
+        </p>
+        <p><span class="comment"><br> <a href="#"><b><span>&#x0040;Kibaka</a></span><br>
+          i dont believe in Growth mindset maybe you can search for another good topic different from that.
+        </p>
+
+        <p><span class="comment"><br> <a href="#"><b><span>&#x0040;RucaXavier</a></span><br>
+          yoo my men whats up there!!!
+        </p>
+
+        <p><span class="comment"><br> <a href="#"><b><span>&#x0040;Beyonce05</a></span><br>
+          Now, The Growth Mindset simply means having the mindset that your talents, skills or strength can be developed
+          over time. It revolves around the belief that you can improve intelligence, talents, ability and performance.
+        </p>
+
+      </div>
+      <div class="pagination">
+        <a href="#" title="Previous Pages">«</a>
+        <a class="active" href="#">1</a>
+        <a href="#" title="Page 2">2</a>
+        <a href="#" title="Page 3">3</a>
+        <a href="#" title="Page 4">4</a>
+        <a href="#" title="Page 5">5</a>
+        <a href="#" title="Page 6">6</a>
+        <a href="#" title="Next Pages">»</a>
+      </div>
+      <br>
+      <br>
+      <br>
+
+    </div>
+  </div>
+
+
+</body>
+
+</html>
