@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Metadata -->
+  <meta name="description" content="internal social network for organizations" />
+  <meta name="author" content="Niyonsenga Eric" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teamwork</title>
+  <link rel="icon" href="../images/icon.png" type="image/x-icon" />
+  <!-- CSS Styles -->
+  <link rel="stylesheet" type="text/css" href="../css/style.css" />
+
+  <!-- Javascript  -->
+  <script type="text/javascript" src="../js/scripts.js"></script>
+</head>
+
+<body>
+  <div class="page-container">
+    <nav class="client-nav">
+      <span class="mob-menu-icon" style="font-size:30px;cursor:pointer" onclick="openNav()">
+        &#9776;
+      </span>
+      <div class="logo"></div>
+      <h1 class="center-head"> Admin Panel</h1>
+      <ul class="topnav">
+        <li class="k"><a class="menulink" href="../index.html">Logout</a></li>
+
+      </ul>
+    </nav>
+    <!-- my Side menu slide -->
+    <div id="mySidenav" class="sidenav Foradminin">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+        &times;
+      </a>
+      <a class="menulink" onclick="openArticles()" href="#">Manage Articles</a>
+      <hr class="menu-separtor" />
+      <a class="menulink" onclick="openFlags()" href="#">Manage Flags</a>
+      <hr class="menu-separtor" />
+      <a class="menulink" onclick="openUsers()" href="#">Manage Users</a>
+      <hr class="menu-separtor" />
+      <a class="menulink" href="../index.html">Live Web</a>
+      <hr class="menu-separtor" />
+      <a class="menulink" onclick="openAccount()" href="#">My Account</a>
+      <hr class="menu-separtor" />
+      <a class="menulink" href="../index.html">Logout</a>
+      <hr class="menu-separtor" />
+    </div>
+
+    <div class="dark-overlay" onclick="closeNav()">
+      <div id="wrapper">
+        <div class="admin-panel">
+          <nav class="admin-nav-menu">
+            <ul class="nav-admin">
+              <hr class="menu-separtor" />
+              <li onclick="openArticles()">
+                <a class="menulink-admin1" href="#">
+                  Manage Articles
+                </a>
+              </li>
+              <hr class="menu-separtor" />
+              <li onclick="openFlags()">
+                <a class="menulink-admin2" href="#">
+                  Manage Flags
+                </a>
+              </li>
+              <hr class="menu-separtor" />
+              <li onclick="openUsers()">
+                <a class="menulink-admin3" href="#">
+                  Manage Users
+                </a>
+              </li>
+              <hr class="menu-separtor" />
+              <li>
+                <a class="menulink" href="../index.html">
+                  Live Web
+                </a>
+              </li>
+              <hr class="menu-separtor" />
+              <li onclick="openAccount()">
+                <a class="menulink-admin4" href="#">
+                  My Account
+                </a>
+              </li>
+              <hr class="menu-separtor" />
+            </ul>
+          </nav>
+        </div>
+        <div class="container-center">
+
+          <!-- manage all Articles           -->
+
+
+          <div class="all-articles">
+
+            <div class="articles-list">
+
+              <div class="scrollable">
+                <h1>Liste Of Articles </h1>
+                <input type="text" name="search" placeholder="Search Articles....">
+                <div class="table-responsive">
+                  <table class="articles-table">
+                    <thead>
+                      <tr>
+                        <th>Article Id</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Created On</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>#3787</b></td>
+                        <td><b>If I was BillGate</b></td>
+                        <td>Niyonsenga Eric</td>
+                        <td>01-10-2019 09:00 AM</td>
+                        <td class="action-item" title="delete"
+                          onclick="dialogbox('Are you sure you want to permanently delete this  article ?')">
+                          &#x2718;
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>#3786</b></td>
+                        <td><b>Rwanda Nziza</b></td>
+                        <td>Jay-z</td>
+                        <td>22-09-2019 09:00 PM</td>
+                        <td class="action-item" title="delete"
+                          onclick="dialogbox('Are you sure you want to permanently delete this  article ?')">
+                          &#x2718;
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>#3785</b></td>
+                        <td><b>My Dreams</b></td>
+                        <td>Snop Dog</td>
+                        <td>01-08-2019 10:00 AM</td>
+                        <td class="action-item" title="delete"
+                          onclick="dialogbox('Are you sure you want to permanently delete this  article ?')">
+                          &#x2718;
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>#3784</b></td>
+                        <td><b>Our Past</b></td>
+                        <td>Usenga Sandrine</td>
+                        <td>15-07-2019 09:00 AM</td>
+                        <td class="action-item" title="delete"
+                          onclick="dialogbox('Are you sure you want to permanently delete this  article ?')">
+                          &#x2718;
+                        </td>
+                      </tr>
+
+
+                      <tr>
+                        <td><b>#3783</b></td>
+                        <td><b>Sport</b></td>
+                        <td>Lebron James</td>
+                        <td>11/07/209 07:00 8M</td>
+                        <td class="action-item" title="delete"
+                          onclick="dialogbox('Are you sure you want to permanently delete this  article ?')">
+                          &#x2718;
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- manage all flags table display -->
+
+          <div class="all-flags">
+
+            <div class="flags-list">
+
+              <div class="scrollable">
+                <h1>Flaged Liste </h1>
+                <input type="text" name="search" placeholder="Search ....">
+                <div class="table-responsive">
+                  <table class="articles-table">
+                    <thead>
+                      <tr>
+                        <th>Type</th>
+                        <th>Belong</th>
+                        <th>Department</th>
+                        <th>Times Flaged</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Article</td>
+                        <td>Havugimana Benit</td>
+                        <td>IT</td>
+                        <td class="critical"><b>12</b></td>
+                        <td class="action-item" title="delete" onclick="dialogbox('Delete this article ?')">
+                          &#x2718;
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Article</td>
+                        <td>Cyubahiro Alain</td>
+                        <td>Finance</td>
+                        <td><b>4</b></td>
+                        <td class="action-item" title="delete" onclick="dialogbox('Delete this article ?')">
+                          &#x2718;
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Comment</td>
+                        <td>Byusa Prince Dacy</td>
+                        <td>Techinical</td>
+                        <td><b>5</b></td>
+                        <td class="action-item" title="delete" onclick="dialogbox('Delete this comment ?')">
+                          &#x2718;
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Comment</td>
+                        <td>Snop Dog</td>
+                        <td>IT</td>
+                        <td class="critical"><b>25</b></td>
+                        <td class="action-item" title="delete" onclick="dialogbox('Delete this comment ?')">
+                          &#x2718;
+                        </td>
+                      </tr>
+
+
+                      <tr>
+                        <td>Comment</td>
+                        <td>Lebron James</td>
+                        <td>Technical</td>
+                        <td class="critical"><b>18</b></td>
+                        <td class="action-item" title="delete" onclick="dialogbox('Delete this comment ?')">
+                          &#x2718;
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- manage all Articles           -->
+
+          <div class="all-users">
+
+            <div class="users-list">
+
+              <div class="scrollable">
+                <h1>Registered Users </h1>
+                <input type="text" name="search" placeholder="Search User....">
+                <div class="table-responsive">
+                  <table class="articles-table">
+                    <thead>
+                      <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Department</th>
+                        <th>Job Role</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>#1</b></td>
+                        <td>Niyonsenga Eric</td>
+                        <td>niyeric11@gmail.com</td>
+                        <td>IT</td>
+                        <td>HOD</td>
+                        <td class="action-item" title="delete user"
+                          onclick="dialogbox('Are you sure you want to permanently delete this  user ?')">
+                          &#x2718;
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>#3</b></td>
+                        <td>Cyubahiro Alain</td>
+                        <td>cyubahiroalain@outlook.com</td>
+                        <td>Finance</td>
+                        <td>Employees</td>
+                        <td class="action-item" title="delete user"
+                          onclick="dialogbox('Are you sure you want to permanently delete this  user ?')">
+                          &#x2718;
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>#4</b></td>
+                        <td>Byusa Prince Dacy</td>
+                        <td>byusadacy@gmail.com</td>
+                        <td>Techinical</td>
+                        <td>Employees</td>
+                        <td class="action-item" title="delete user"
+                          onclick="dialogbox('Are you sure you want to permanently delete this  user ?')">
+                          &#x2718;
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>#5</b></td>
+                        <td>Snop Dog</td>
+                        <td>dogdog@gmail.com</td>
+                        <td>IT</td>
+                        <td>Employees</td>
+                        <td class="action-item" title="delete"
+                          onclick="dialogbox('Are you sure you want to permanently delete this  user ?')">
+                          &#x2718;
+                        </td>
+                      </tr>
+
+
+                      <tr>
+                        <td><b>#8</b></td>
+                        <td>Lebron James</td>
+                        <td>kingjames@lakers.com</td>
+                        <td>Technical</td>
+                        <td>Employees</td>
+                        <td class="action-item" title="delete"
+                          onclick="dialogbox('Are you sure you want to permanently delete this  user ?')">
+                          &#x2718;
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- manage admin account           -->
+          <div class="AdminForm-wrapper">
+            <div class="auth-area">
+              <h2 class="auth-title">Admin Account</h2>
+              <form class="auth-form">
+                <!-- <form action="test-register.php" class="auth-form">-->
+                <p class="input-group">
+                  <label for="register_username">Name</label>
+                  <input id="register_username" name="register_username" value="Niyonsenga Eric"
+                    placeholder="Enter your name" type="text" required="">
+                </p>
+                <p class="input-group">
+                  <label for="register_email">Email</label>
+                  <input id="register_email" name="register_email" value="niyeric11@gmail.com"
+                    placeholder="Enter your email" type="email" required="">
+                </p>
+                <p class="input-group">
+                  <label for="register_password">Password</label>
+                  <input id="register_password" name="register_password" value="12345six789"
+                    placeholder="Enter your password" type="password" required="" minlength="10">
+                </p>
+                <p class="input-group">
+                  <label for="register_confirm_password">Confirm password</label>
+                  <input id="register_confirm_password" name="register_confirm_password" value="12345six789"
+                    placeholder="Confirm Password" type="password" required="" minlength="10">
+                </p>
+                <p class="input-group register-submit">
+                  <label for="admin-login">
+                    <input class="submit-btn" name="submit_changes" type="submit" value="Update"
+                      onclick="dialogbox('Do you want to save changes ?')">
+                  </label>
+                </p>
+              </form>
+            </div>
+          </div>
+
+
+
+
+
+          <!-- ############################### -->
+
+        </div>
+      </div>
+
+      <footer class="footer">
+        <p>
+          &copy;
+          <a href="about.html"><b>Teamwork.</b></a>
+          2019 All rights Reserve
+        </p>
+      </footer>
+    </div>
+  </div>
+  <div id="dialogbox" class="modal">
+    <!-- Dialog content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close" onclick="closeDialog()">&times;</span>
+        <h2>
+          <div class="logo"></div>
+        </h2>
+      </div>
+      <div class="modal-body">
+        <span class="dialog-content dialog-content-js"></span>
+      </div>
+      <div class="modal-buttons">
+        <input type="button" class="custom-btn" value="No" onclick="closeDialog()" />
+        <input type="button" class="custom-btn delete" value="Yes" onclick="closeDialog()" />
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
