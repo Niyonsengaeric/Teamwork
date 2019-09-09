@@ -636,7 +636,7 @@ th {
   letter-spacing: 2px;
 }
 
-.action-item [title="Edith article"] {
+.action-item [title="Edit article"] {
   color: var(--default-link-text-color);
   font-weight: bold;
 }
