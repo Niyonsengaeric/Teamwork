@@ -1,28 +1,29 @@
 // importing routes
-import express from "express";
-import bodyParser from "body-parser";
-import users from "./routes/users";
+import express from 'express';
+import bodyParser from 'body-parser';
 
-import Cors from "cors";
+import Cors from 'cors';
 
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
+import users from './routes/users';
+
 dotenv.config();
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-//passport Config
+// passport Config
 
-app.use("/api/v1", users);
+app.use('/api/v1', users);
 
 // catch 405
 app.use((req, res, next) => {
-  const error = new Error("Method not allowed");
+  const error = new Error('Method not allowed');
   error.status = 405;
   next(error);
 });
-//catch 500
+// catch 500
 app.use((error, req, res, next) => {
   res
     .status(error.status || 500)
@@ -30,7 +31,7 @@ app.use((error, req, res, next) => {
   next();
 });
 
-const PORT = process.env.PORT;
+const { PORT } = process.env;
 
 app.listen(PORT, () => {
   console.log(`App is Running on port ${PORT}`);
