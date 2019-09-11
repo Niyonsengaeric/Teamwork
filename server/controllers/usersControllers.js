@@ -26,13 +26,7 @@ class usersController {
       (usermail) => usermail.email.toLowerCase() === req.body.email.toLowerCase(),
     );
     if (user.length > 0) {
-      response.response(
-        res,
-        409,
-        'error',
-        'User with that email already registered',
-        true,
-      );
+      response.response(res, 409, 'error', 'User with that email already registered', true);
     } else {
       const {
         firstName,
@@ -55,7 +49,7 @@ class usersController {
         jobRole,
         department,
         address,
-        is_admin: false,
+        isAdmin: false,
       };
       const salt = await bcrypt.genSalt(10);
       addUser.password = await bcrypt.hash(addUser.password, salt);
@@ -67,7 +61,7 @@ class usersController {
         (usermail) => usermail.email.toLowerCase() === req.body.email.toLowerCase(),
       );
       const token = jwt.sign(
-        { id: useremail[0].id, is_admin: useremail[0].is_admin },
+        { id: useremail[0].id, isAdmin: useremail[0].isAdmin },
         process.env.JWT,
       );
       const name = `${firstName.trim()} ${lastName.trim()}`;
@@ -113,7 +107,7 @@ class usersController {
     if (user.length > 0) {
       if (bcrypt.compareSync(password, user[0].password)) {
         const token = jwt.sign(
-          { id: user[0].id, is_admin: user[0].is_admin },
+          { id: user[0].id, isAdmin: user[0].isAdmin },
           process.env.JWT,
         );
         {

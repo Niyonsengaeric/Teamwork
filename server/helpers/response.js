@@ -3,13 +3,13 @@ class Responding {
     if (error) {
       return res.status(statusCode).json({
         status: statusCode,
-        error: data
+        error: data,
       });
     }
     return res.status(statusCode).json({
       status: statusCode,
       message: mess,
-      data: data
+      data,
     });
   }
 }
