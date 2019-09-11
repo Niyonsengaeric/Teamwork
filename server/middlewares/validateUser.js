@@ -1,4 +1,5 @@
-import Joi from "joi";
+import Joi from 'joi';
+
 module.exports = function validateUser(user) {
   const schema = {
     firstName: Joi.string()
@@ -29,7 +30,7 @@ module.exports = function validateUser(user) {
       .required(),
     address: Joi.string()
       .max(15)
-      .required()
+      .required(),
   };
 
   return Joi.validate(user, schema);
