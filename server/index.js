@@ -6,6 +6,7 @@ import Cors from 'cors';
 
 import dotenv from 'dotenv';
 import users from './routes/users';
+import articles from './routes/articles';
 
 dotenv.config();
 const app = express();
@@ -16,6 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // passport Config
 
 app.use('/api/v1', users);
+app.use('/api/v1', articles);
 
 // catch 405
 app.use((req, res, next) => {
