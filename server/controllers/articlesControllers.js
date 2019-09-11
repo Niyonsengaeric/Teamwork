@@ -40,8 +40,41 @@ class articlescontrolllers {
       }
     }
 
-    // return
     return (article);
+  }
+
+  static async editArticle(req, res) {
+    const { error } = validate(req.body);
+    if (error) { return response.response(res, 422, 'error', `${error.details[0].message}`, true); }
+    const { id: userId } = req.user;
+    const { title, article } = req.body;
+    const { id } = req.params;
+
+    const checkexisting = await articles.filter(
+      (regArticles) => regArticles.title === title && regArticles.authorId === userId,
+    );
+
+
+    // check if the user is the owner
+    const findArticleindex = articles.findIndex(
+      (findArticle) => findArticle.articleId === parseInt(id, 10)
+        && findArticle.authorId === userId,
+    );
+
+    if (findArticleindex !== -1) {
+      // check for already updated
+      if (checkexisting.length > 0) {
+        response.response(res, 409, 'error', 'Article arleady updated', true);
+      } else {
+        // update Article
+        articles[findArticleindex].title = title.trim();
+        articles[findArticleindex].article = article.trim();
+        return response.response(res, 200, 'article successfully edited”', articles[findArticleindex], false);
+      }
+    } else { response.response(res, 404, 'error', 'No article Found', true); }
+
+
+    return (articles);
   }
 }
 
