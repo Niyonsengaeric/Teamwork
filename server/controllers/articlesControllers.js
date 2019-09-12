@@ -1,6 +1,8 @@
 import moment from 'moment';
 import validate from '../middlewares/validateArticles';
+import validateComment from '../middlewares/validatecomment';
 import articles from '../models/articlesModels';
+import comments from '../models/commentsModels';
 import users from '../models/usersModels';
 import response from '../helpers/response';
 
@@ -92,6 +94,46 @@ class articlescontrolllers {
     } else {
       return response.response(res, 404, 'error', 'article Not Found  ', true);
     }
+
+    return (articles);
+  }
+
+  static async commentArticle(req, res) {
+    const { error } = validateComment(req.body);
+    if (error) { return response.response(res, 422, 'error', `${error.details[0].message}`, true); }
+
+    // destruct object
+    const { id: userId, isAdmin } = req.user;
+    const { id } = req.params;
+    const { comment } = req.body;
+
+    // limit admin to comment and allow for normal user
+    if (isAdmin) {
+      response.response(res, 401, 'error', 'not allowed for Administrator to comment on  Articles', true);
+    } else {
+      const checkArticle = await articles.findIndex(
+        (findArticle) => findArticle.articleId === parseInt(id, 10),
+      );
+      if (checkArticle !== -1) {
+        const { createdOn, title, article } = articles[checkArticle];
+        const addCommet = {
+          commentId: comments.length + 1,
+          articleId: id,
+          authorId: userId,
+          comment,
+        };
+        comments.push(addCommet);
+        if (addCommet) {
+          const data = {
+            createdOn, title, article, comment,
+          };
+          response.response(res, 201, 'comment Added successfully', data, false);
+        }
+      } else {
+        return response.response(res, 404, 'error', 'article Not Found  ', true);
+      }
+    }
+
 
     return (articles);
   }
