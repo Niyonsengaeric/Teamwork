@@ -14,7 +14,6 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// passport Config
 
 app.use('/api/v1', users);
 app.use('/api/v1', articles);

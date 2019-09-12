@@ -76,6 +76,25 @@ class articlescontrolllers {
 
     return (articles);
   }
+
+  static async deleteArticle(req, res) {
+    const { id: userId } = req.user;
+    const { id } = req.params;
+
+    const findOwnerindex = await articles.findIndex(
+      (findArticle) => findArticle.articleId === parseInt(id, 10)
+        && findArticle.authorId === userId,
+    );
+    if (findOwnerindex !== -1) {
+      // console.log(articles[findOwnerindex]);
+      articles.splice(findOwnerindex, 1);
+      response.response(res, 200, 'article successfully deleted');
+    } else {
+      return response.response(res, 404, 'error', 'article Not Found  ', true);
+    }
+
+    return (articles);
+  }
 }
 
 export default articlescontrolllers;
