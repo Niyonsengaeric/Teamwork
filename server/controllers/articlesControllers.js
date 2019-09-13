@@ -137,6 +137,21 @@ class articlescontrolllers {
 
     return (articles);
   }
+
+  static async getArticles(req, res) {
+    const data = [];
+    let j = 0;
+
+    // get article starting from resent posted article
+
+    for (let i = articles.length - 1; i >= 0; i -= 1) {
+      // add data to new array;
+
+      data[j] = articles[i];
+      j += 1;
+    }
+    return response.response(res, 200, 'success', data, false);
+  }
 }
 
 export default articlescontrolllers;
