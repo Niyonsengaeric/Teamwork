@@ -4,7 +4,7 @@ const comments = [
     commentId: 1,
     articleId: 1,
     authorId: 2,
-    comment: 'yes yes yes',
+    comment: 'interesting ',
   },
   {
     commentId: 2,
