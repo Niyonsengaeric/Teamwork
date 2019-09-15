@@ -162,7 +162,7 @@ class articlescontrolllers {
 
     );
     if (findArticle.length > 0) {
-      const getcomments = comments.filter(
+      const getcomments = await comments.filter(
         (article) => article.articleId === parseInt(id, 10),
       );
       const {
@@ -179,6 +179,20 @@ class articlescontrolllers {
       response.response(res, 200, 'success', data, false);
     } else { return response.response(res, 404, 'error', 'article Not Found  ', true); }
     return (findArticle);
+  }
+
+  static async filterArticle(req, res) {
+    if (req.query.articles) {
+      const { articles: article } = req.query;
+
+      const checktaget = articles.filter((regArticles) => regArticles.article.includes(`${article.trim()}`));
+      if (checktaget.length > 0) {
+        response.response(res, 200, 'success', checktaget, false);
+      } else {
+        return response.response(res, 404, 'error', `${article} don't match with any article`, true);
+      }
+    }
+    return (articles);
   }
 }
 
