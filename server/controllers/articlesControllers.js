@@ -118,10 +118,11 @@ class articlescontrolllers {
         const { createdOn, title, article } = articles[checkArticle];
         const addCommet = {
           commentId: comments.length + 1,
-          articleId: id,
+          articleId: parseInt(id, 10),
           authorId: userId,
           comment,
         };
+
         comments.push(addCommet);
         if (addCommet) {
           const data = {
@@ -151,6 +152,33 @@ class articlescontrolllers {
       j += 1;
     }
     return response.response(res, 200, 'success', data, false);
+  }
+
+  static async specificArticle(req, res) {
+    const { id } = req.params;
+
+    const findArticle = articles.filter(
+      (specfarticles) => specfarticles.articleId === parseInt(id, 10),
+
+    );
+    if (findArticle.length > 0) {
+      const getcomments = comments.filter(
+        (article) => article.articleId === parseInt(id, 10),
+      );
+      const {
+        articleId, createdOn, title, article, authorId,
+      } = findArticle[0];
+      const data = {
+        articleId,
+        createdOn,
+        title,
+        article,
+        authorId,
+        comments: getcomments,
+      };
+      response.response(res, 200, 'success', data, false);
+    } else { return response.response(res, 404, 'error', 'article Not Found  ', true); }
+    return (findArticle);
   }
 }
 
