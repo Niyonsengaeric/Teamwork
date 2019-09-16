@@ -91,8 +91,6 @@ class articlescontrolllers {
       (findArticle) => findArticle.articleId === parseInt(id, 10)
         && findArticle.authorId === userId,
     );
-    console.log(findOwnerindex);
-
     if (isAdmin) {
       const findArticle = await articles.findIndex(
         (findArticles) => findArticles.articleId === parseInt(id, 10),
