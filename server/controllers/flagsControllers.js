@@ -59,5 +59,9 @@ class flagsController {
     } else { return response.response(res, 404, 'error', 'comment Not Found  ', true); }
     return (findcomment);
   }
+
+  static async getFlags(req, res) {
+    return response.response(res, 200, 'success', flags, false);
+  }
 }
 export default flagsController;

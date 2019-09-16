@@ -14,4 +14,5 @@ module.exports = function auth(req, res, next) {
   } catch (ex) {
     return response.response(res, 401, 'error', 'invalid token.', true);
   }
+  return (token);
 };

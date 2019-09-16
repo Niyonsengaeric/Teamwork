@@ -34,7 +34,7 @@ const users = [
     jobRole: 'Employee',
     department: 'FINANCE',
     address: 'UMUSAVE',
-    is_admin: false,
+    isAdmin: false,
   },
 ];
 
