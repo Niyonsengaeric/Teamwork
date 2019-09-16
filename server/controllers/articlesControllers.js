@@ -7,6 +7,7 @@ import users from '../models/usersModels';
 import response from '../helpers/response';
 
 class articlescontrolllers {
+  // create new article
   static async newArticle(req, res) {
     const { error } = validate(req.body);
     if (error) { return response.response(res, 422, 'error', `${error.details[0].message}`, true); }
@@ -45,6 +46,8 @@ class articlescontrolllers {
     return (article);
   }
 
+  // editarticle
+
   static async editArticle(req, res) {
     const { error } = validate(req.body);
     if (error) { return response.response(res, 422, 'error', `${error.details[0].message}`, true); }
@@ -79,6 +82,7 @@ class articlescontrolllers {
     return (articles);
   }
 
+  // delete article
   static async deleteArticle(req, res) {
     const { id: userId } = req.user;
     const { id } = req.params;
@@ -98,6 +102,7 @@ class articlescontrolllers {
     return (articles);
   }
 
+  // comment on article
   static async commentArticle(req, res) {
     const { error } = validateComment(req.body);
     if (error) { return response.response(res, 422, 'error', `${error.details[0].message}`, true); }
@@ -139,6 +144,7 @@ class articlescontrolllers {
     return (articles);
   }
 
+  // display All articles
   static async getArticles(req, res) {
     const data = [];
     let j = 0;
@@ -154,6 +160,7 @@ class articlescontrolllers {
     return response.response(res, 200, 'success', data, false);
   }
 
+  // display specific article
   static async specificArticle(req, res) {
     const { id } = req.params;
 
@@ -181,6 +188,7 @@ class articlescontrolllers {
     return (findArticle);
   }
 
+  // find articles
   static async filterArticle(req, res) {
     if (req.query.articles) {
       const { articles: article } = req.query;
