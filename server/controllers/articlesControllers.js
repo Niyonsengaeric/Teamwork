@@ -84,14 +84,24 @@ class articlescontrolllers {
 
   // delete article
   static async deleteArticle(req, res) {
-    const { id: userId } = req.user;
+    const { id: userId, isAdmin } = req.user;
     const { id } = req.params;
 
     const findOwnerindex = await articles.findIndex(
       (findArticle) => findArticle.articleId === parseInt(id, 10)
         && findArticle.authorId === userId,
     );
-    if (findOwnerindex !== -1) {
+    console.log(findOwnerindex);
+
+    if (isAdmin) {
+      const findArticle = await articles.findIndex(
+        (findArticles) => findArticles.articleId === parseInt(id, 10),
+      );
+      if (findArticle !== -1) {
+        articles.splice(findArticle, 1);
+        response.response(res, 200, 'article successfully deleted');
+      } else { return response.response(res, 404, 'error', 'article Not Found  ', true); }
+    } else if (findOwnerindex !== -1) {
       // console.log(articles[findOwnerindex]);
       articles.splice(findOwnerindex, 1);
       response.response(res, 200, 'article successfully deleted');
@@ -149,11 +159,13 @@ class articlescontrolllers {
     const data = [];
     let j = 0;
 
+    if (articles.length === 0) {
+      return response.response(res, 404, 'error', 'no article Registered yet  ', true);
+    }
     // get article starting from resent posted article
 
     for (let i = articles.length - 1; i >= 0; i -= 1) {
       // add data to new array;
-
       data[j] = articles[i];
       j += 1;
     }

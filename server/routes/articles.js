@@ -18,7 +18,7 @@ router.get('/articles', auth, filterArticle);
 
 // flag articles and comment
 const {
-  flagArticle, flagComment, getFlags,
+  flagArticle, flagComment, getFlags, deleteComment,
 } = flagsController;
 router.post('/articles/flag/:id', auth, flagArticle);
 router.post('/comments/flag/:id', auth, flagComment);
@@ -26,5 +26,6 @@ router.get('/flags', auth, admin, getFlags);
 
 // comment on articles
 router.post('/articles/:id/comments', auth, commentArticle);
+router.delete('/comments/:id', auth, admin, deleteComment);
 
 export default router;

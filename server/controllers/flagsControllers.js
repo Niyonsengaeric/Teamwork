@@ -63,5 +63,17 @@ class flagsController {
   static async getFlags(req, res) {
     return response.response(res, 200, 'success', flags, false);
   }
+
+  static async deleteComment(req, res) {
+    const { id } = req.params;
+    const findComment = await comments.findIndex(
+      (findComments) => findComments.commentId === parseInt(id, 10),
+    );
+    if (findComment !== -1) {
+      comments.splice(findComment, 1);
+      response.response(res, 200, 'comment successfully deleted');
+    } else { return response.response(res, 404, 'error', 'comment Not Found  ', true); }
+    return (findComment);
+  }
 }
 export default flagsController;
