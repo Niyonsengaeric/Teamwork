@@ -1,9 +1,6 @@
 // importing routes
 import express from 'express';
 import bodyParser from 'body-parser';
-
-import Cors from 'cors';
-
 import dotenv from 'dotenv';
 import users from './routes/users';
 import articles from './routes/articles';
@@ -24,17 +21,11 @@ app.use((req, res, next) => {
   error.status = 405;
   next(error);
 });
-// catch 500
-app.use((error, req, res, next) => {
-  res
-    .status(error.status || 500)
-    .send({ status: error.status || 500, error: error.message });
-  next();
-});
 
 const { PORT } = process.env;
 
 app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
   console.log(`App is Running on port ${PORT}`);
 });
 

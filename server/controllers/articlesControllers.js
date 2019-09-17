@@ -35,11 +35,9 @@ class articlescontrolllers {
           article,
         };
         articles.push(addarticle);
-        if (addarticle) {
-          const data = { ...addarticle };
-          delete data.authorId;
-          response.response(res, 201, 'Articles created successfully', data, false);
-        }
+        const data = { ...addarticle };
+        delete data.authorId;
+        response.response(res, 201, 'Articles created successfully', data, false);
       }
     }
 
@@ -137,12 +135,10 @@ class articlescontrolllers {
         };
 
         comments.push(addCommet);
-        if (addCommet) {
-          const data = {
-            createdOn, title, article, comment,
-          };
-          response.response(res, 201, 'comment Added successfully', data, false);
-        }
+        const data = {
+          createdOn, title, article, comment,
+        };
+        response.response(res, 201, 'comment Added successfully', data, false);
       } else {
         return response.response(res, 404, 'error', 'article Not Found  ', true);
       }
@@ -209,7 +205,7 @@ class articlescontrolllers {
       } else {
         return response.response(res, 404, 'error', `${article} don't match with any article`, true);
       }
-    }
+    } else { return response.response(res, 405, 'error', 'please enter the tag', true); }
     return (articles);
   }
 }

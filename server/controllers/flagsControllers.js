@@ -28,7 +28,7 @@ class flagsController {
         reason: motif,
       };
       flags.push(data);
-      response.response(res, 200, 'report send successfully', data, false);
+      response.response(res, 201, 'report send successfully', data, false);
     } else { return response.response(res, 404, 'error', 'article Not Found  ', true); }
     return (findarticle);
   }
@@ -55,7 +55,7 @@ class flagsController {
         reason: motif,
       };
       flags.push(data);
-      response.response(res, 200, 'report send successfully', data, false);
+      response.response(res, 201, 'report send successfully', data, false);
     } else { return response.response(res, 404, 'error', 'comment Not Found  ', true); }
     return (findcomment);
   }
