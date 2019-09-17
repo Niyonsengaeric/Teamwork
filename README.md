@@ -6,6 +6,10 @@ Teamwork is an internal social network for organizations’ employees.
 
 Goal of Application this application is to facilitate more interaction between colleagues and facilitate team bonding.
 
+# Badges.
+
+[![Build Status](https://travis-ci.org/Niyonsengaeric/Teamwork.svg?branch=develop)](https://travis-ci.org/Niyonsengaeric/Teamwork)
+
 ## Required Features.
 
 1. Employees can create their own user account.
@@ -63,9 +67,9 @@ Goal of Application this application is to facilitate more interaction between c
 
 `- POST /auth/signin - Login a user`
 
-`- POST /articles - Create an article `
+`- POST /articles - Create an article`
 
-`- PATCH /articles/<articleId> - Edit an article `
+`- PATCH /articles/<articleId> - Edit an article`
 
 `- DELETE /articles/<articleId> - Employees can delete their articles`
 
@@ -100,7 +104,6 @@ https://www.pivotaltracker.com/n/projects/2396812
 ## How it Works.
 
 OPEN https://niyonsengaeric.github.io/Teamwork/UI/index.html Link and start navigate with different pages.
-
 
 # **Author**
 
