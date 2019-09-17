@@ -52,18 +52,14 @@ class articlescontrolllers {
     const { id: userId } = req.user;
     const { title, article } = req.body;
     const { id } = req.params;
-
     const checkexisting = await articles.filter(
       (regArticles) => regArticles.title === title && regArticles.authorId === userId,
     );
-
-
     // check if the user is the owner
     const findArticleindex = articles.findIndex(
       (findArticle) => findArticle.articleId === parseInt(id, 10)
         && findArticle.authorId === userId,
     );
-
     if (findArticleindex !== -1) {
       // check for already updated
       if (checkexisting.length > 0) {
@@ -84,7 +80,6 @@ class articlescontrolllers {
   static async deleteArticle(req, res) {
     const { id: userId, isAdmin } = req.user;
     const { id } = req.params;
-
     const findOwnerindex = await articles.findIndex(
       (findArticle) => findArticle.articleId === parseInt(id, 10)
         && findArticle.authorId === userId,
@@ -104,14 +99,15 @@ class articlescontrolllers {
     } else {
       return response.response(res, 404, 'error', 'article Not Found  ', true);
     }
-
     return (articles);
   }
 
   // comment on article
   static async commentArticle(req, res) {
     const { error } = validateComment(req.body);
-    if (error) { return response.response(res, 422, 'error', `${error.details[0].message}`, true); }
+    if (error) {
+      return response.response(res, 422, 'error', `${error.details[0].message}`, true);
+    }
 
     // destruct object
     const { id: userId, isAdmin } = req.user;
@@ -133,7 +129,6 @@ class articlescontrolllers {
           authorId: userId,
           comment,
         };
-
         comments.push(addCommet);
         const data = {
           createdOn, title, article, comment,
@@ -143,8 +138,6 @@ class articlescontrolllers {
         return response.response(res, 404, 'error', 'article Not Found  ', true);
       }
     }
-
-
     return (articles);
   }
 
