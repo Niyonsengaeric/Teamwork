@@ -20,6 +20,7 @@ router.get('/articles', auth, filterArticle);
 const {
   flagArticle, flagComment, getFlags, deleteComment,
 } = flagsController;
+
 router.post('/articles/flag/:id', auth, flagArticle);
 router.post('/comments/flag/:id', auth, flagComment);
 router.get('/flags', auth, admin, getFlags);
