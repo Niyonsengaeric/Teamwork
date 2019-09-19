@@ -263,7 +263,7 @@ describe('get Articles (post)', () => {
       });
   });
 
-  it('It should return 401 when a normal user try to view flags', (done) => {
+  it('It should return 403 when a normal user try to view flags', (done) => {
     const Signed = {
       id: 3,
       firstName: 'SARPONG',
@@ -282,7 +282,7 @@ describe('get Articles (post)', () => {
       .get('/api/v1/flags')
       .set('token', Token)
       .end((err, res) => {
-        expect(res.status).to.equal(401);
+        expect(res.status).to.equal(403);
         done();
       });
   });
@@ -337,7 +337,7 @@ describe('get Articles (post)', () => {
       });
   });
 
-  it('It should return 401 when normal user is trying to delete a comment', (done) => {
+  it('It should return 403 when normal user is trying to delete a comment', (done) => {
     const Signed = {
       id: 3,
       firstName: 'SARPONG',
@@ -356,7 +356,7 @@ describe('get Articles (post)', () => {
       .delete('/api/v1/comments/2')
       .set('token', Token)
       .end((err, res) => {
-        expect(res.status).to.equal(401);
+        expect(res.status).to.equal(403);
         done();
       });
   });

@@ -66,7 +66,7 @@ describe('Create a new article (post)', () => {
       });
   });
 
-  it('It should return 401 when Admin account try to create a new article  ', (done) => {
+  it('It should return 403 when Admin account try to create a new article  ', (done) => {
     const Signed = {
       id: 1,
       firstName: 'NIYONSENGA',
@@ -90,7 +90,7 @@ describe('Create a new article (post)', () => {
       .set('token', Token)
       .send(newarticle)
       .end((err, res) => {
-        expect(res.status).to.equal(401);
+        expect(res.status).to.equal(403);
         done();
       });
   });

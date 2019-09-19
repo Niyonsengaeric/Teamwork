@@ -13,7 +13,7 @@ class articlescontrolllers {
     if (error) { return response.response(res, 422, 'error', `${error.details[0].message}`, true); }
     const { title, article } = req.body;
     const { id, isAdmin } = req.user;
-    if (isAdmin) { response.response(res, 401, 'error', 'not allowed for Administrator to create Articles', true); } else {
+    if (isAdmin) { response.response(res, 403, 'error', 'not allowed for Administrator to create Articles', true); } else {
       const getuser = users.find((finduser) => finduser.id === id);
       const { id: authorId, firstName, lastName } = getuser;
 
