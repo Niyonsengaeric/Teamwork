@@ -98,7 +98,7 @@ describe('Create a user account.(POST) ', () => {
       });
   });
 
-  it('should return method not allowed for a wrong method', (done) => {
+  it('should return(404) for a wrong resource request', (done) => {
     const user = {
       firstName: 'CONFIANCE',
       lastName: 'ELYSE',
@@ -115,7 +115,7 @@ describe('Create a user account.(POST) ', () => {
       .delete('/api/v1/auth/signup')
       .send(user)
       .end((err, res) => {
-        expect(res.statusCode).to.equal(405);
+        expect(res.statusCode).to.equal(404);
         done();
       });
   });
