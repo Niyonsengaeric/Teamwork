@@ -52,8 +52,11 @@ class articlescontrolllers {
     const { id: userId } = req.user;
     const { title, article } = req.body;
     const { id } = req.params;
+
+    // find already exist
     const checkexisting = await articles.filter(
-      (regArticles) => regArticles.title === title && regArticles.authorId === userId,
+      (regArticles) => regArticles.title === title
+        && regArticles.authorId === userId && regArticles.article === article,
     );
     // check if the user is the owner
     const findArticleindex = articles.findIndex(
