@@ -91,6 +91,17 @@ a:hover {
 .logo, .btn-wrapper {
   flex: 1;
   cursor: pointer;
+  text-transform: capitalize;
+  font: normal 30px sans-serif;
+  color: var(--default-text-color);
+  font-kerning: normal;
+  font-weight: bold;
+  letter-spacing: 0px;
+  /* */
+}
+
+.modal-header .logo {
+  padding: 10px 10%;
 }
 
 .btn-wrapper {
@@ -150,7 +161,7 @@ a:hover {
 }
 
 .input-group>input:focus, .input-group>label>input:focus, .btn.primary {
-  border: 1px solid var(--default-link-text-color);
+  border: 1px solid var(--color-secondary);
 }
 
 .input-group:focus-within {
@@ -284,12 +295,12 @@ ul li a {
 }
 
 .active {
-  border: 2px solid var(--default-link-text-color);
+  border: 1px solid var(--color-secondary);
   border-radius: var(--default-border-radius);
 }
 
 .menulink-admin1 {
-  border: 3px solid var(--color-primary);
+  border: 1px solid var(--color-secondary);
 }
 
 .active a :hover {
@@ -356,7 +367,7 @@ ul li a {
   width: 55%;
   margin: 0px auto;
   background-color: var(--color-white);
-  border-radius: 10px;
+  border-radius: var(--default-border-radius);
   overflow: hidden;
   transition: width 0.4s ease-in-out;
 }
@@ -482,8 +493,8 @@ textarea:hover {
 
 .contentitem_listing input[type="text"], .scrollable input[type="text"] {
   width: 30%;
-  border: 2px solid #ccc;
-  border-radius: 4px;
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--default-border-radius);
   font-size: 16px;
   background-color: white;
   background-image: url("../images/searchicon.png");
@@ -649,7 +660,7 @@ th {
   background-color: var(--default-link-text-color);
   border: none;
   color: var(--color-white);
-  border-radius: 4px;
+  border-radius: var(--default-border-radius);
   font-size: 16px;
   padding: 12px 10px;
   cursor: pointer;
@@ -691,8 +702,8 @@ th {
   position: relative;
   background-color: var(--color-white);
   margin: 0 auto;
-  border: 1px solid #888;
-  border-radius: 10px;
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--default-border-radius);
   width: 40%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   animation-duration: 0.4s;
@@ -990,6 +1001,22 @@ th {
   list-style-type: circle;
 }
 
+h4 {
+  float: left;
+  height: 12px;
+}
+
+.comment-article .viewmore {
+  font-size: 15px;
+  float: left;
+}
+
+.comment-article h3 {
+  text-align: center;
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
 /* ************************************ */
 
 /* @media screen  responsive version */
@@ -1093,7 +1120,7 @@ th {
   .articles-list {
     width: 100%;
     padding: 20px;
-    border: 2px solid val(--color-primary);
+    border: 1px solid var(--color-secondary);
   }
   .contact-form form, .maps {
     width: 98%;

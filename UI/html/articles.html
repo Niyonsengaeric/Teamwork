@@ -69,7 +69,7 @@
               </div>
 
               <h3>
-                <a class="title navigation" href="#">Growth Mindset</a>
+                <a class="title navigation" href="#" onclick="openArticle()">Growth Mindset</a>
               </h3>
               <p class="write-article">
                 I can’t do it, I can’t learn this, it's too hard, Come on, I’m just a Junior Developer, <a class="tag"
@@ -310,22 +310,69 @@
           </h3>
           <p class="write-article">
             I can’t do it, I can’t learn this, it's too hard, Come on, I’m just a Junior Developer, <a class="tag"
-              href="#">WebPack </a>is not
-            my thing, I
-            tried it and failed.
+              href="#">WebPack </a>is not my thing,tried it and failed.
             Those are the words of a developer drenched and soaked with imposter syndrome.
             Over time we keep fighting ourselves, trying to run away from our shadows, trying to find shortcuts, yes
-            I did also, I
-            really did :(
+            I did also, I really did :(
             At a point in my life, I just felt some things were not meant for me, I felt maths was too complex for
             me, JavaScript
             was not my thing!!
+            <span class="viewmore">
+              <h3>WHAT DOES THE GROWTH MINDSET MEAN?</h3><br>
+              Carol Dweck is the Lewis & Virginia Eaton Professor of Psychology at Stanford University and the author of Mindset:
+              The New Psychology of Success over 30 years ago, Dr Carol Dweck and her colleagues became interested in students’ attitudes about failure. They noticed that some students rebounded while other students seemed really devastated by even the smallest setbacks. After studying this behaviour in a lot of children, Dr Dweck coined the terms<b>"FIXED MINDSET and GROWTH MINDSET"</b> to describe the underlying beliefs people have about learning and intelligence.
+              According to the Harvard Business Review;<br>
+              Tobriefly sum up the findings: Individuals who believe their talents can be developed (through hard work, good
+              strategies, and input from others) have a growth mindset. They tend to achieve more than those with a more fixed
+              mindset (those who believe their talents are innate gifts). This is because they worry less about looking smart and
+              they put more energy into learning.<br>
+              Now, The Growth Mindset simply means having the mindset that your talents, skills or strength can be developed over
+              time. It revolves around the belief that you can improve intelligence, talents, ability and performance.<br><br>
+              <h3>The Fixed Mindset</h3> <br>On the other end is the opposite, it refers to the belief that a person’s talents are
+              fixed and generated from birth. This revolves around the idea that once you can’t do something from the onset, it
+              isn’t meant for you. Once you can’t solve that arithmetic, you conclude that maths is not your thing, once you can’t
+              figure out that algorithm, you conclude that programming is hard.<br>
+              Recent advances in neuroscience have shown us that the brain is far more malleable than we ever knew. Research on
+              brain plasticity has shown how connectivity between neurons can change with experience. With practice, neural
+              networks grow new connections, strengthen existing ones, and builds insulation that speeds transmission of impulses.
+              These neuroscientific discoveries have shown us that we can increase our neural growth by the actions we take, such
+              as using good strategies, consistency, asking questions, practising, and following good nutrition and sleep habits.
+              Mark Zuckerberg was not born a geek, Sarah Drasner was not born a Developer Avocado, Ire Aderinokun was not born a
+              frontend developer, Prosper Otemuyiwa was not born on a Senior Level, they all started from somewhere, learning and
+              Improving daily.<br>
+              This is the Idea we should embrace as developers/designers, It is never easy and accepting this fact is the
+              beginning of you moving forward, but saying <b>“NO I CAN’T”</b> kills it all.
+              <b>DO NOT ENTERTAIN THE IDEA OF HAVING FIXED TALENTS, IT DOES NOT WORK THAT WAY, SKILLS ARE IMPROVED, TALENTS ARE
+                SHARPENED.</b>
+              The fact that you are not getting it perfectly now, does not mean you should quit, it only means you should be
+              consistent and improve with practice and good strategies.
+              The Growth Mindset is not focused on caring about success or achievements, but rather learning. Learning is a
+              process, you just need to keep moving!<br>
+              When learning especially something new, the main goal should not be finishing but rather learning.<br><br>
+              <h3>Advantages of The Growth Mindset<br></h3><br>
+              <b>The Growth Mindset</b> is a very buzzing topic and research has shown how much increase in success it has birthed
+              after its evolution.<br>
+              <b>Here are some of the merits;</b><br><br>
+          
+              - It Improves and builds self-esteem, learning orientation and reduces helplessness<br>
+              - It reduces stress and aggression as well as increasing wellbeing and emotional stability<br>
+              - It promotes adaptability and coping skills and develops better self-regulation<br>
+              - It Strengthens your Confidence and never makes you feel stupid while learning<br>
+              - It lowers your risk of Depression<br><br><br>
+          
+          
+              “The growth mindset does allow people to love what they’re doing — and continue to love it in the face of
+              difficulties.<br>The growth mindset allows people to value what they’re doing regardless of the outcome.” — Dr Dweck
+              Now, this is pretty much it, Plants don’t grow and become fruitful once its seed hit the ground, it takes a lot of
+              weeding, watering, manuring and strategies to make it grow.<br>
+              This is how we operate as humans too, you need to undergo a lot of good strategies and consistency to grow.<br>
+            </span>
           </p>
 
           <p>
             <a href="#"><span class="comment_count"> <span class="report5" title="report article"
                   onclick="flag5()">&#x2691;</span>
-                <img title="comments" alt="view" class="comment-image" src="../images/comment.png"> 7</span></a>
+                <img title="View Comments" alt="view" class="comment-image" src="../images/comment.png" onclick="viewComments()"> 7</span></a>
           </p>
 
         </li>
@@ -333,7 +380,7 @@
       </ul>
 
 
-      <form>
+      <form class="commentArea">
         <textarea rows="10" cols="48" placeholder="Your Comment" class=" txtb"  required=""></textarea><br>
         <input type="submit" value="Comment"class="custom-btn form-input btn-js">
 

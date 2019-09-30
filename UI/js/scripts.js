@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // switch between auth
 const switchbtnauth = () => {
   const authFormElements = document.getElementsByClassName('auth-area');
@@ -195,4 +196,18 @@ const flag5 = () => {
   } else {
     reportflag.style.color = 'red';
   }
+};
+const openArticle = () => {
+  const displayArticle = document.querySelector('.commentArea');
+  const displayComments = document.querySelector('.list-comment');
+  const posts = document.querySelector('.comment-form');
+  displayArticle.style.display = 'none';
+  displayComments.style.display = 'none';
+  posts.style.display = 'block';
+};
+const viewComments = () => {
+  const displayArticle = document.querySelector('.commentArea');
+  const displayComments = document.querySelector('.list-comment');
+  displayArticle.style.display = 'block';
+  displayComments.style.display = 'block';
 };
