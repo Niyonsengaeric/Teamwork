@@ -60,11 +60,6 @@ const updateArticle = () => {
 
   posts.style.display = 'block';
 };
-const opendashboard = () => {
-  // update  article
-  const posts = document.querySelector('.dashboard-auth');
-  posts.style.display = 'block';
-};
 
 // Get the listes
 const openArticles = () => {
