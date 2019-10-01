@@ -64,12 +64,12 @@ class usersController {
         { id: useremail[0].id, isAdmin: useremail[0].isAdmin },
         process.env.JWT,
       );
-
+      const data = { token };
       return response.response(
         res,
         201,
-        'User created successfully',
-        token,
+        'user registered successfully',
+        data,
         false,
       );
     }
@@ -100,7 +100,8 @@ class usersController {
           { id: user[0].id, isAdmin: user[0].isAdmin },
           process.env.JWT,
         );
-        response.response(res, 200, 'success', token, false);
+        const data = { token };
+        response.response(res, 200, 'success', data, false);
       } else {
         return response.response(
           res,

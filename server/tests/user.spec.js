@@ -14,7 +14,7 @@ describe('Create a user account.(POST) ', () => {
       firstName: 'HAVUGIMANA',
       lastName: 'GUSTAVE',
       email: 'gu@gmail.com',
-      password: '12345six',
+      password: '12345sixD@',
       gender: 'MALE',
       jobRole: 'Employee',
       department: 'ELECTRICAL',
@@ -37,7 +37,7 @@ describe('Create a user account.(POST) ', () => {
       firstName: 'NSABIMANA',
       lastName: 'THIERY',
       email: 'tirere@gmail.com',
-      password: '12345six',
+      password: '12345sixD@',
       gender: 'MALE',
       jobRole: 'Employee',
       department: 'IT',
@@ -59,7 +59,7 @@ describe('Create a user account.(POST) ', () => {
       firstName: 'NSABIMANA',
       lastName: 'THIERY',
       email: 'tirere@gmail.com',
-      password: '12345six',
+      password: '12345sixD@',
       gender: 'MALE',
       jobRole: 'Employee',
       department: 'IT',
@@ -159,7 +159,7 @@ describe('Login User(POST )', () => {
   it('it should return 200 if the username match with the password', (done) => {
     const user = {
       email: 'gu@gmail.com',
-      password: '12345six',
+      password: '12345sixD@',
     };
 
     chai
