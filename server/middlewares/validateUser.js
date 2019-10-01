@@ -17,7 +17,8 @@ module.exports = function validateUser(user) {
     password: Joi.string()
       .min(5)
       .max(50)
-      .required(),
+      .required()
+      .regex(/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]/),
 
     gender: Joi.string()
       .max(7)
