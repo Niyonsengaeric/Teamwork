@@ -64,22 +64,12 @@ class usersController {
         { id: useremail[0].id, isAdmin: useremail[0].isAdmin },
         process.env.JWT,
       );
-      const name = `${firstName.trim()} ${lastName.trim()}`;
-      const data = {
-        token,
-        name,
-        gender: gender.trim(),
-        email: email.trim(),
-        password,
-        department: department.trim(),
-        jobRole: jobRole.trim(),
-      };
 
       return response.response(
         res,
         201,
         'User created successfully',
-        data,
+        token,
         false,
       );
     }
@@ -110,22 +100,7 @@ class usersController {
           { id: user[0].id, isAdmin: user[0].isAdmin },
           process.env.JWT,
         );
-        {
-          const {
-            firstName, lastName, email, jobRole, department,
-          } = user[0];
-
-          const name = `${firstName}  ${lastName}`;
-          const responses = {
-            name,
-            email,
-            jobRole,
-            department,
-            token,
-          };
-
-          return response.response(res, 200, 'success', responses, false);
-        }
+        response.response(res, 200, 'success', token, false);
       } else {
         return response.response(
           res,
@@ -144,6 +119,7 @@ class usersController {
         true,
       );
     }
+    return response;
   }
 }
 export default usersController;
