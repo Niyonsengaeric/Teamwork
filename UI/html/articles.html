@@ -23,27 +23,18 @@
         &#9776;
       </span>
       <div class="logo"></div>
+      <h1 class="center-head"> Articles </h1>
       <ul class="topnav">
-        <li class="k"><a class="menulink" href="../index.html">Logout</a>
-
-        <li><a class="menulink" href="about.html">About</a></li>
-        <li><a class="menulink" href="contact.html">Contact</a></li>
-        <li onclick="opendashboard()"><a class="menulink" href="#">Dashboard</a></li>
-
-        <li><a class="menulink active" href="articles.html">Articles </a></li>
+        <li class="k"><a class="menulink" href="../index.html">Logout</a></li>
 
       </ul>
     </nav>
     <!-- my Side menu slide -->
     <div id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <a class="menulink-admin1" href="articles.html">Articles</a>
-      <hr class="menu-separtor">
-      <a onclick="opendashboard()" class="menulink" href="#">Dashboard</a>
-      <hr class="menu-separtor">
-      <a class="menulink" href="contact.html">Contact</a>
-      <hr class="menu-separtor">
-      <a class="menulink" href="about.html">About</a>
+      <a class="menulink" href="#">
+        <h1 class="center-head"> Articles </h1>
+      </a>
       <hr class="menu-separtor">
       <a class="menulink" href="../index.html">Logout</a>
       <hr class="menu-separtor">
@@ -58,7 +49,7 @@
           <ul class="contentitem_listing">
             <input type="text" name="search" placeholder="Search Articles....">
             <a href="#">
-              <h1>ARTICLES</h1>
+              <h1>Trending Articles</h1>
             </a>
 
             <li>
@@ -69,7 +60,7 @@
               </div>
 
               <h3>
-                <a class="title navigation" href="#" onclick="openArticle()">Growth Mindset</a>
+                <a class="title navigation" href="./specificarticle.html">Growth Mindset</a>
               </h3>
               <p class="write-article">
                 I can’t do it, I can’t learn this, it's too hard, Come on, I’m just a Junior Developer, <a class="tag"
@@ -86,9 +77,10 @@
               </p>
 
               <p>
-                <a href="#"><span class="comment_count"><span class="report" title="report article"
-                      onclick="flag()">&#x2691;</span><span onclick="post()"> <img title="comments" alt="view"
-                        class="comment-image" src="../images/comment.png"> 7</span></span></a>
+                <span class="comment_count"><span class="report" title="report article"
+                    onclick="flag()">&#x2691;</span><span onclick="post()"> <a href="./specificarticle.html"> <img
+                        title="comments" alt="view" class="comment-image" src="../images/comment.png">
+                      7</span></span></a>
               </p>
 
             </li>
@@ -99,7 +91,7 @@
                 <p><span class="date-published">Published On:<br> 12-04-2019</span></p>
               </div>
               <h3>
-                <a class="title navigation" href="#">The Difference Between Yes and No</a>
+                <a class="title navigation" href="./specificarticle.html">The Difference Between Yes and No</a>
               </h3>
               <p class="write-article">
                 The words <b>“yes”</b> and <b>“no”</b> get used in comparison to each other so often that it feels like
@@ -120,10 +112,10 @@
               </p>
 
               <p>
-                <a href="#"><span class="comment_count"> <span class="report2" title="report article"
-                      onclick="flag2()">&#x2691;</span>
-                    <span onclick="post()"> <img title="comments" alt="view" class="comment-image"
-                        src="../images/comment.png"> 26</span></span></a>
+                <span class="comment_count"> <span class="report2" title="report article"
+                    onclick="flag2()">&#x2691;</span>
+                  <span onclick="post()"> <a href="./specificarticle.html"><img title="comments" alt="view"
+                        class="comment-image" src="../images/comment.png"> 26</span></span></a>
               </p>
 
             </li>
@@ -138,7 +130,7 @@
                 <p><span class="date-published">Published On:<br> 10-10-2018</span></p>
               </div>
               <h3>
-                <a class="title navigation" href="#">Identity-based habits</a>
+                <a class="title navigation" href="./specificarticle.html">Identity-based habits</a>
               </h3>
               <p class="write-article">
                 One of the central ideas in the book is the concept of building <a class="tag" href="#">“identity-based
@@ -155,10 +147,10 @@
               </p>
 
               <p>
-                <a href="#"><span class="comment_count"> <span class="report3" title="report article"
-                      onclick="flag3()">&#x2691;</span>
-                    <span onclick="post()"> <img title="comments" alt="view" class="comment-image"
-                        src="../images/comment.png"> </span>2</span></a>
+                <span class="comment_count"> <span class="report3" title="report article"
+                    onclick="flag3()">&#x2691;</span>
+                  <span onclick="post()"> <a href="./specificarticle.html"><img title="comments" alt="view"
+                        class="comment-image" src="../images/comment.png"> </span>2</span></a>
               </p>
 
             </li>
@@ -202,47 +194,47 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td onclick="mypost()">#75432</td>
-                    <td onclick="mypost()"><b>Growth Mindset</b></td>
-                    <td onclick="mypost()">11/07/209 06:00 AM</td>
-                    <td title="Delete article" alt="Delete" class="action-item"><span title="Edit article"
-                        onclick="updateArticle()">&#x270E;</span><span
+                    <td><a href="./myarticles.html">#75432</a></td>
+                    <td><a href="./myarticles.html"><b>Growth Mindset</b></a></td>
+                    <td>11/07/209 06:00 AM</td>
+                    <td title="Delete article" alt="Delete" class="action-item"><a href="./updatearticle.html"><span
+                          title="Edit article">&#x270E;</span></a><span
                         onclick="dialogbox('Are you sure you want to permanently delete this  article ?')">
                         &#x2718;</span></td>
                   </tr>
                   <tr>
-                    <td onclick="mypost()">#71111</td>
-                    <td onclick="mypost()"><b>Birth Day</b></td>
-                    <td onclick="mypost()">11/07/209 06:00 AM</td>
-                    <td title="Delete article" alt="Delete" class="action-item"><span title="Edit article"
-                        onclick="updateArticle()">&#x270E;</span><span
+                    <td><a href="./myarticles.html">#71111</a></td>
+                    <td><a href="./myarticles.html"><b>Birth Day</b></a></td>
+                    <td>11/07/209 06:00 AM</td>
+                    <td title="Delete article" alt="Delete" class="action-item"><a href="./updatearticle.html"><span
+                          title="Edit article">&#x270E;</span></a><span
                         onclick="dialogbox('Are you sure you want to permanently delete this  article ?')">
                         &#x2718;</span></td>
                   </tr>
                   <tr>
-                    <td onclick="mypost()">#68897</td>
-                    <td onclick="mypost()"><b>Life Style</b></td>
+                    <td><a href="./myarticles.html">#68897</a></td>
+                    <td><a href="./myarticles.html"><b>Life Style</b></a></td>
                     <td onclick="mypost()">11/07/209 06:00 AM</td>
-                    <td title="Delete article" alt="Delete" class="action-item"><span title="Edit article"
-                        onclick="updateArticle()">&#x270E;</span><span
+                    <td title="Delete article" alt="Delete" class="action-item"><a href="./updatearticle.html"><span
+                          title="Edit article">&#x270E;</span></a><span
                         onclick="dialogbox('Are you sure you want to permanently delete this  article ?')">
                         &#x2718;</span></td>
                   </tr>
                   <tr>
-                    <td onclick="mypost()">#68896</td>
-                    <td onclick="mypost()"><b>Let Share</b></td>
+                    <td><a href="./myarticles.html">#68896</a></td>
+                    <td><a href="./myarticles.html"><b>Let Share</a></b></td>
                     <td onclick="mypost()">11/07/209 06:00 AM</td>
-                    <td title="Delete article" alt="Delete" class="action-item"><span title="Edit article"
-                        onclick="updateArticle()">&#x270E;</span><span
+                    <td title="Delete article" alt="Delete" class="action-item"><a href="./updatearticle.html"><span
+                          title="Edit article">&#x270E;</span></a><span
                         onclick="dialogbox('Are you sure you want to permanently delete this  article ?')">
                         &#x2718;</span></td>
                   </tr>
                   <tr>
-                    <td onclick="mypost()">#68797</td>
-                    <td onclick="mypost()"><b>Motivation</b></td>
+                    <td><a href="./myarticles.html">#68797</a></td>
+                    <td onclick="mypost()"><a href="./myarticles.html"><b>Motivation</b></a></td>
                     <td onclick="mypost()">11/07/209 06:00 AM</td>
-                    <td title="Delete article" alt="Delete" class="action-item"><span title="Edit article"
-                        onclick="updateArticle()">&#x270E;</span><span
+                    <td title="Delete article" alt="Delete" class="action-item"><a href="./updatearticle.html"><span
+                          title="Edit article">&#x270E;</span></a><span
                         onclick="dialogbox('Are you sure you want to permanently delete this  article ?')">
                         &#x2718;</span></td>
                   </tr>
@@ -252,7 +244,7 @@
             </div>
 
             <div class="add-article">
-              <input type="button" class="custom-btn" value="Write Article" onclick="newArticle()">
+              <a href="./newarticle.html"><input type="button" class="custom-btn" value="Write Article"></a>
             </div>
           </div>
 
@@ -289,298 +281,6 @@
     </div>
 
   </div>
-  <div class="comment-form">
-    <div class="comment-article">
-      <div class="modal-header">
-        <span class="close" onclick="closeDialog()">&times;</span>
-        <h2>
-          <div class="logo"></div>
-        </h2>
-      </div>
-      <ul class="contentitem_listing">
-        <li>
-          <div class="profile"><img src="../images/woman 4.png"><br>
-            <span class="comment"> <a href="#"><b><span>@sindyalandra</span></b></a></span>
-
-            <p><span class="date-published">Published On:<br> 12-05-2019</span></p>
-          </div>
-
-          <h3>
-            <a class="title navigation" href="#">Growth Mindset</a>
-          </h3>
-          <p class="write-article">
-            I can’t do it, I can’t learn this, it's too hard, Come on, I’m just a Junior Developer, <a class="tag"
-              href="#">WebPack </a>is not my thing,tried it and failed.
-            Those are the words of a developer drenched and soaked with imposter syndrome.
-            Over time we keep fighting ourselves, trying to run away from our shadows, trying to find shortcuts, yes
-            I did also, I really did :(
-            At a point in my life, I just felt some things were not meant for me, I felt maths was too complex for
-            me, JavaScript
-            was not my thing!!
-            <span class="viewmore">
-              <h3>WHAT DOES THE GROWTH MINDSET MEAN?</h3><br>
-              Carol Dweck is the Lewis & Virginia Eaton Professor of Psychology at Stanford University and the author of Mindset:
-              The New Psychology of Success over 30 years ago, Dr Carol Dweck and her colleagues became interested in students’ attitudes about failure. They noticed that some students rebounded while other students seemed really devastated by even the smallest setbacks. After studying this behaviour in a lot of children, Dr Dweck coined the terms<b>"FIXED MINDSET and GROWTH MINDSET"</b> to describe the underlying beliefs people have about learning and intelligence.
-              According to the Harvard Business Review;<br>
-              Tobriefly sum up the findings: Individuals who believe their talents can be developed (through hard work, good
-              strategies, and input from others) have a growth mindset. They tend to achieve more than those with a more fixed
-              mindset (those who believe their talents are innate gifts). This is because they worry less about looking smart and
-              they put more energy into learning.<br>
-              Now, The Growth Mindset simply means having the mindset that your talents, skills or strength can be developed over
-              time. It revolves around the belief that you can improve intelligence, talents, ability and performance.<br><br>
-              <h3>The Fixed Mindset</h3> <br>On the other end is the opposite, it refers to the belief that a person’s talents are
-              fixed and generated from birth. This revolves around the idea that once you can’t do something from the onset, it
-              isn’t meant for you. Once you can’t solve that arithmetic, you conclude that maths is not your thing, once you can’t
-              figure out that algorithm, you conclude that programming is hard.<br>
-              Recent advances in neuroscience have shown us that the brain is far more malleable than we ever knew. Research on
-              brain plasticity has shown how connectivity between neurons can change with experience. With practice, neural
-              networks grow new connections, strengthen existing ones, and builds insulation that speeds transmission of impulses.
-              These neuroscientific discoveries have shown us that we can increase our neural growth by the actions we take, such
-              as using good strategies, consistency, asking questions, practising, and following good nutrition and sleep habits.
-              Mark Zuckerberg was not born a geek, Sarah Drasner was not born a Developer Avocado, Ire Aderinokun was not born a
-              frontend developer, Prosper Otemuyiwa was not born on a Senior Level, they all started from somewhere, learning and
-              Improving daily.<br>
-              This is the Idea we should embrace as developers/designers, It is never easy and accepting this fact is the
-              beginning of you moving forward, but saying <b>“NO I CAN’T”</b> kills it all.
-              <b>DO NOT ENTERTAIN THE IDEA OF HAVING FIXED TALENTS, IT DOES NOT WORK THAT WAY, SKILLS ARE IMPROVED, TALENTS ARE
-                SHARPENED.</b>
-              The fact that you are not getting it perfectly now, does not mean you should quit, it only means you should be
-              consistent and improve with practice and good strategies.
-              The Growth Mindset is not focused on caring about success or achievements, but rather learning. Learning is a
-              process, you just need to keep moving!<br>
-              When learning especially something new, the main goal should not be finishing but rather learning.<br><br>
-              <h3>Advantages of The Growth Mindset<br></h3><br>
-              <b>The Growth Mindset</b> is a very buzzing topic and research has shown how much increase in success it has birthed
-              after its evolution.<br>
-              <b>Here are some of the merits;</b><br><br>
-          
-              - It Improves and builds self-esteem, learning orientation and reduces helplessness<br>
-              - It reduces stress and aggression as well as increasing wellbeing and emotional stability<br>
-              - It promotes adaptability and coping skills and develops better self-regulation<br>
-              - It Strengthens your Confidence and never makes you feel stupid while learning<br>
-              - It lowers your risk of Depression<br><br><br>
-          
-          
-              “The growth mindset does allow people to love what they’re doing — and continue to love it in the face of
-              difficulties.<br>The growth mindset allows people to value what they’re doing regardless of the outcome.” — Dr Dweck
-              Now, this is pretty much it, Plants don’t grow and become fruitful once its seed hit the ground, it takes a lot of
-              weeding, watering, manuring and strategies to make it grow.<br>
-              This is how we operate as humans too, you need to undergo a lot of good strategies and consistency to grow.<br>
-            </span>
-          </p>
-
-          <p>
-            <a href="#"><span class="comment_count"> <span class="report5" title="report article"
-                  onclick="flag5()">&#x2691;</span>
-                <img title="View Comments" alt="view" class="comment-image" src="../images/comment.png" onclick="viewComments()"> 7</span></a>
-          </p>
-
-        </li>
-
-      </ul>
-
-
-      <form class="commentArea">
-        <textarea rows="10" cols="48" placeholder="Your Comment" class=" txtb"  required=""></textarea><br>
-        <input type="submit" value="Comment"class="custom-btn form-input btn-js">
-
-      </form>
-      <div class="list-comment">
-
-        <p><span class="comment"><br> <a href="#"><b><span>&#x0040;LebronJames</a></span><br>
-          on the other <a href="#"> The Fixed Mindset </a>end is the opposite, it refers to the belief that a person’s
-          talents are fixed and generated from birth. This revolves around the idea that once you can’t do something
-          from the onset, it isn’t meant for you. Once you can’t solve that arithmetic, you conclude that maths is not
-          your thing, once you can’t figure out that algorithm, you conclude that programming is hard.
-        </p>
-
-        <p><span class="comment"><br> <a href="#"><b><span>&#x0040;kawahiLeonard</a></span><br>
-          Waooooooooooo nice topic
-        </p>
-
-        <p><span class="comment"><br> <a href="#"><b><span>&#x0040;NiyonsengaRoger</a></span><br>
-          What a motivation you inspire us we real apreciate
-        </p>
-
-        <p><span class="comment"><br> <a href="#"><b><span>&#x0040;JajaBenit</a></span><br>
-
-          <a href="#"><span>&#x0040;MarkZuckerberg</a></span> was not born a geek, <a
-            href="#"><span>&#x0040;SarahDrasner</a></span> was not born a Developer Avocado, <a
-            href="#"><span>&#x0040;IreAderinokun</a></span> was not born a frontend developer, <a
-            href="#"><span>&#x0040;ProsperOtemuyiwa</a></span> was not born on a Senior Level, they all started from
-          somewhere, learning and Improving daily.
-        </p>
-
-        <p><span class="comment"><br> <a href="#"><b><span>&#x0040;Kibaka</a></span><br>
-          i dont believe in Growth mindset maybe you can search for another good topic different from that.
-        </p>
-
-        <p><span class="comment"><br> <a href="#"><b><span>&#x0040;Ruca</a></span><br>
-          yoo my men whats up there!!!
-        </p>
-
-        <p><span class="comment"><br> <a href="#"><b><span>&#x0040;Beyonce05</a></span><br>
-          Now, The Growth Mindset simply means having the mindset that your talents, skills or strength can be developed
-          over time. It revolves around the belief that you can improve intelligence, talents, ability and performance.
-        </p>
-
-      </div>
-    </div>
-  </div>
-
-  <div class="new-article">
-    <div class="new-article-form">
-
-      <div class="modal-header">
-        <span class="close" onclick="closeDialog()">&times;</span>
-        <h2>
-          <div class="logo"></div>
-        </h2>
-      </div>
-      <form>
-        <p class="input-group">
-          <label for="new_article">Title</label>
-          <input id="new-title" name="new_article" placeholder="Write here the title" required="">
-        </p>
-        <textarea rows="10" cols="48" placeholder="What is in your mind ?" required="" class=" txtb"></textarea><br>
-        <input type="submit" value="POST"  class="custom-btn" id="share-bt">
-
-      </form>
-
-    </div>
-  </div>
-
-
-  <div class="update-article">
-    <div class="new-article-form">
-
-      <div class="modal-header">
-        <span class="close" onclick="closeDialog()">&times;</span>
-        <h2>
-          <div class="logo"></div>
-        </h2>
-      </div>
-      <form>
-        <p class="input-group">
-          <label for="update_title">Title</label>
-          <input id="new-title" name="update_title" required="" placeholder="Write here the title" value="Growth Mindset">
-        </p>
-        <textarea rows="10" cols="48" placeholder="What is in your mind ?" required="" class=" txtb">
-          I can’t do it, I can’t learn this, it's too hard, Come on, I’m just a Junior Developer, WebPack is not my thing, I tried it and failed. Those are the words of a developer drenched and soaked with imposter syndrome. Over time we keep fighting ourselves, trying to run away from our shadows, trying to find shortcuts, yes I did also, I really did :( At a point in my life, I just felt some things were not meant for me, I felt maths was too complex for me, JavaScript was not my thing!!</textarea><br>
-        <input type="submit" value="UPDATE" class="custom-btn" id="share-bt">
-
-      </form>
-
-    </div>
-  </div>
-  <div class="dashboard-auth">
-    <!-- hidden by default -->
-
-    <div class="form-wrapper">
-      <span class="close" onclick="closeDialog()">&times;</span>
-      <div class="auth-area">
-        <h2 class="auth-title">Admin Panel</h2>
-        <form class="auth-form" action="./dashboard.html">
-          <p class="input-group">
-            <label for="login_username">Email</label>
-            <input id="login_username" name="login_username" placeholder="Enter your email" type="email" required="">
-          </p>
-          <p class="input-group">
-            <label for="login_password">Password</label>
-            <input id="login_password" name="login_password" placeholder="Enter your password" type="password"
-              required="" minlength="5">
-          </p>
-          <p class="input-group login-submit">
-            <label for="user-login">
-              <input class="submit-btn" id="user-login" name="login_submit" type="submit" value="LOGIN">
-            </label>
-          </p>
-        </form>
-      </div>
-    </div>
-    <!-- ################################################################ -->
-  </div>
-
-  <div class="mycomment-form">
-    <div class="comment-article">
-      <div class="modal-header">
-        <span class="close" onclick="closeDialog()">&times;</span>
-        <h2>
-          <div class="logo"></div>
-        </h2>
-      </div>
-      <ul class="contentitem_listing">
-        <li>
-          <h3>
-            <a class="title navigation" href="#">Growth Mindset</a>
-          </h3>
-          <p class="write-article">
-            I can’t do it, I can’t learn this, it's too hard, Come on, I’m just a Junior Developer, <a class="tag"
-              href="#">WebPack </a>is not
-            my thing, I
-            tried it and failed.
-            Those are the words of a developer drenched and soaked with imposter syndrome.
-            Over time we keep fighting ourselves, trying to run away from our shadows, trying to find shortcuts, yes
-            I did also, I
-            really did :(
-            At a point in my life, I just felt some things were not meant for me, I felt maths was too complex for
-            me, JavaScript
-            was not my thing!!
-            <p><span class="mypost-date">Published On: 12-05-2019 10:14 AM</span></p>
-          </p>
-
-
-        </li>
-
-      </ul>
-
-      <div class="list-comment">
-
-        <p><span class="comment"><br> <a href="#"><b><span>&#x0040;LebronJames</a></span><br>
-          on the other <a href="#"> The Fixed Mindset </a>end is the opposite, it refers to the belief that a person’s
-          talents are fixed and generated from birth. This revolves around the idea that once you can’t do something
-          from the onset, it isn’t meant for you. Once you can’t solve that arithmetic, you conclude that maths is not
-          your thing, once you can’t figure out that algorithm, you conclude that programming is hard.
-        </p>
-
-        <p><span class="comment"><br> <a href="#"><b><span>&#x0040;kawahiLeonard</a></span><br>
-          Waooooooooooo nice topic
-        </p>
-
-        <p><span class="comment"><br> <a href="#"><b><span>&#x0040;NiyonsengaRoger</a></span><br>
-          What a motivation you inspire us we real apreciate
-        </p>
-        <p><span class="comment"><br> <a href="#"><b><span>&#x0040;Kibaka</a></span><br>
-          i dont believe in Growth mindset maybe you can search for another good topic different from that.
-        </p>
-
-        <p><span class="comment"><br> <a href="#"><b><span>&#x0040;RucaXavier</a></span><br>
-          yoo my men whats up there!!!
-        </p>
-
-        <p><span class="comment"><br> <a href="#"><b><span>&#x0040;Beyonce05</a></span><br>
-          Now, The Growth Mindset simply means having the mindset that your talents, skills or strength can be developed
-          over time. It revolves around the belief that you can improve intelligence, talents, ability and performance.
-        </p>
-
-      </div>
-      <div class="pagination">
-        <a href="#" title="Previous Pages">«</a>
-        <a class="active" href="#">1</a>
-        <a href="#" title="Page 2">2</a>
-        <a href="#" title="Page 3">3</a>
-        <a href="#" title="Page 4">4</a>
-        <a href="#" title="Page 5">5</a>
-        <a href="#" title="Page 6">6</a>
-        <a href="#" title="Next Pages">»</a>
-      </div>
-      <br>
-      <br>
-      <br>
-
-    </div>
-  </div>
-
 
 </body>
 
