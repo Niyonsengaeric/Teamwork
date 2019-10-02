@@ -88,7 +88,7 @@ describe('Flag an Articles (post)', () => {
 describe('Flag a Comment (post)', () => {
   it('It should return 201 when the comment is succesfully flaged ', (done) => {
     const Signed = mockData.user2;
-    const reason = mockData.flagReason;
+    const reason = mockData.flagReason2;
     const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
     chai
       .request(app)

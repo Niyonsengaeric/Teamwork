@@ -41,6 +41,18 @@ const mockDate = {
     address: 'NYARUTARAMA',
     isAdmin: false,
   },
+  guest: {
+    id: 2,
+    firstName: 'BYUSA',
+    lastName: 'PRINCE DACY',
+    email: 'byusa@gmail.com',
+    password: '$2b$10$lcLHDlw0YPQ1nLDbodynveS/yx6K.SamH6TwzalYEHoijm1W0jouu',
+    gender: 'MALE',
+    jobRole: 'Employee',
+    department: 'FINANCE',
+    address: 'UMUSAVE',
+    isAdmin: false,
+  },
   Adminuser: {
     id: 1,
     firstName: 'NIYONSENGA',
@@ -82,6 +94,9 @@ const mockDate = {
   },
   flagReason: {
     reason: 'this article is against human rights',
+  },
+  flagReason2: {
+    reason: 'Abusing',
   },
 
 

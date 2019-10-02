@@ -12,7 +12,7 @@ const flags = [
     flagId: 2,
     type: 'article',
     flagedId: 2,
-    content: "It can’t be like that",
+    content: 'It can’t be like that',
     reason: 'lies',
 
 
