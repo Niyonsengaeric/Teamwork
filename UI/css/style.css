@@ -1007,7 +1007,7 @@ td a {
 
 .Features {
   color: black;
-  font-size: 15px;
+  font-size: 18px;
 }
 
 .contact-form h3 {
@@ -1031,6 +1031,7 @@ td a {
 .Features ul {
   margin: 5px 10%;
   list-style-type: circle;
+  font-size: 20px;
 }
 
 h4 {
