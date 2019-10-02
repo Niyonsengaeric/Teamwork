@@ -27,8 +27,6 @@
 }
 
 body {
-  font: normal 13px/1.5 sans-serif;
-  font-weight: 400;
   color: var(--default-text-color);
   word-wrap: break-word;
   -webkit-font-kerning: normal;
@@ -395,7 +393,7 @@ ul li a {
   margin: 0px auto;
   padding-left: 14%;
   color: var(--color-primary);
-  font-size: 25px;
+  font: normal 25px sans-serif;
 }
 
 .comment-form form input[type="text"], textarea {
@@ -442,6 +440,8 @@ textarea:hover, .comment-form form input[type="text"]:hover, .input-group>input:
 
 .comment-article ul {
   height: 100%;
+  font-weight: 400;
+  font-size: 16px/1.5;
 }
 
 .trend-article ul h1 {
@@ -1049,6 +1049,20 @@ h4 {
   display: none;
 }
 
+.commentArea {
+  width: 80%;
+  margin: 0px auto;
+}
+
+.commentArea textarea {
+  width: 60%;
+}
+
+.commentArea .custom-btn {
+  width: 15%;
+  margin-right: 30%;
+}
+
 /* ************************************ */
 
 /* @media screen  responsive version */
@@ -1131,6 +1145,7 @@ h4 {
     border-bottom-right-radius: 0px;
     overflow: auto;
     top: 10px;
+    padding-bottom: 1%;
   }
   .modal-buttons {
     margin: 0px;
@@ -1144,7 +1159,8 @@ h4 {
     background-color: rgba(0, 0, 0, 0.4);
   }
   .new-article-form .input-group label, #new-title {
-    width: 60%;
+    width: 98%;
+    margin: 0px 0px 0px 10%;
   }
   .admin-panel {
     display: none;
@@ -1161,6 +1177,21 @@ h4 {
   }
   .contact-form {
     width: 100%;
+  }
+  .comment-form form input[type="text"], textarea {
+    width: 80%;
+    margin: 0 auto;
+  }
+  .center-head {
+    display: none;
+  }
+  .commentArea textarea {
+    width: 100%;
+  }
+  .commentArea .custom-btn {
+    float: right;
+    margin: 0px;
+    width: 30%;
   }
 }
 
