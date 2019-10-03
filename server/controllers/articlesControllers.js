@@ -168,7 +168,7 @@ class articlescontrolllers {
         data[j] = articles[i];
         j += 1;
       }
-      return response.response(res, 200, 'Liste of Articles', data, false);
+      return response.response(res, 200, 'List of Articles', data, false);
     } catch (error) {
       return error;
     }

@@ -97,7 +97,7 @@ class flagsController {
 
   static async getFlags(req, res) {
     try {
-      return response.response(res, 200, 'Listes Of flagged items', flags, false);
+      return response.response(res, 200, 'Lists Of flagged items', flags, false);
     } catch (error) {
       return error;
     }

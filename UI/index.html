@@ -6,10 +6,7 @@
   <meta content="Niyonsenga Eric" name="author" />
   <title>Teamwork</title>
   <link rel="icon" href="images/icon.png" type="image/x-icon" />
-  <!-- CSS Styles -->
   <link href="./css/style.css" rel="stylesheet" />
-
-  <!-- Javascript  -->
   <script type="application/javascript" src="js/scripts.js"></script>
 </head>
 
@@ -25,7 +22,6 @@
         <li><a class="menulink " href="./html/about.html">About</a></li>
       </ul>
     </nav>
-    <!-- my Side menu slide -->
     <div id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
         &times;
@@ -36,7 +32,6 @@
       <a class="menulink" href="./html/about.html">About</a>
       <hr class="menu-separtor" />
     </div>
-
     <div class="dark-overlay">
       <div class="form-wrapper">
         <div class="auth-area">
@@ -67,53 +62,49 @@
           <a class="switch-auth-btn" href="#" onclick="switchbtnauth()">
             Create account
           </a>
-        </div>
-        <!-- hidden register -->
-        <div class="auth-area form-hidden">
-          <h2 class="auth-title">Register</h2>
-          <form class="auth-form" action="./html/articles.html">
-            <!-- <form action="test-register.php" class="auth-form">-->
-            <p class="input-group">
-              <label for="register_username">Name</label>
-              <input id="register_username" name="register_username" placeholder="Enter your name" type="text"
-                required="" />
-            </p>
-            <p class="input-group">
-              <label for="register_email">Email</label>
-              <input id="register_email" name="register_email" placeholder="Enter your email" type="email"
-                required="" />
-            </p>
-            <p class="input-group">
-              <label for="register_password">Password</label>
-              <input id="register_password" name="register_password" placeholder="Enter your password" type="password"
-                required="" minlength="5" />
-            </p>
-            <p class="input-group">
-              <label for="register_confirm_password">Confirm password</label>
-              <input id="register_confirm_password" name="register_confirm_password" placeholder="Confirm Password"
-                type="password" required="" minlength="5" />
-            </p>
-            <p class="input-group register-submit">
-              <label for="admin-login">
-                <input class="submit-btn" id="admin-login" name="register_submit" type="submit" value="Register" />
-              </label>
-            </p>
-          </form>
-          <a class="switch-auth-btn" href="#" onclick="switchbtnauth()">
-            Sign in instead
-          </a>
+          <div class="auth-area form-hidden">
+            <h2 class="auth-title">Register</h2>
+            <form class="auth-form" action="./html/articles.html">
+              <p class="input-group">
+                <label for="register_username">Name</label>
+                <input id="register_username" name="register_username" placeholder="Enter your name" type="text"
+                  required="" />
+              </p>
+              <p class="input-group">
+                <label for="register_email">Email</label>
+                <input id="register_email" name="register_email" placeholder="Enter your email" type="email"
+                  required="" />
+              </p>
+              <p class="input-group">
+                <label for="register_password">Password</label>
+                <input id="register_password" name="register_password" placeholder="Enter your password" type="password"
+                  required="" minlength="5" />
+              </p>
+              <p class="input-group">
+                <label for="register_confirm_password">Confirm password</label>
+                <input id="register_confirm_password" name="register_confirm_password" placeholder="Confirm Password"
+                  type="password" required="" minlength="5" />
+              </p>
+              <p class="input-group register-submit">
+                <label for="admin-login">
+                  <input class="submit-btn" id="admin-login" name="register_submit" type="submit" value="Register" />
+                </label>
+              </p>
+            </form>
+            <a class="switch-auth-btn" href="#" onclick="switchbtnauth()">
+              Sign in instead
+            </a>
+          </div>
         </div>
       </div>
+      <footer class="footer">
+        <p>
+          &copy;
+          <a href="./html/about.html"><b>Teamwork.</b></a>
+          2019 All rights Reserve
+        </p>
+      </footer>
     </div>
-
-    <footer class="footer">
-      <p>
-        &copy;
-        <a href="./html/about.html"><b>Teamwork.</b></a>
-        2019 All rights Reserve
-      </p>
-    </footer>
-  </div>
 </body>
 
 </html>

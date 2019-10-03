@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-
-    <!-- Metadata -->
-    <meta name="description" content="internal social network for organizations">
-    <meta name="author" content="Niyonsenga Eric">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teamwork</title>
-    <link rel="icon" href="../images/icon.png" type="image/x-icon" />
-    <!-- CSS Styles -->
-    <link rel="stylesheet" type="text/css" href="../css/style.css" />
-  
-    <!-- Javascript  -->
-    <script type="text/javascript" src="../js/scripts.js"></script>
-  </head>
+<head>
+  <meta name="description" content="internal social network for organizations">
+  <meta name="author" content="Niyonsenga Eric">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teamwork</title>
+  <link rel="icon" href="../images/icon.png" type="image/x-icon" />
+  <link rel="stylesheet" type="text/css" href="../css/style.css" />
+  <script type="text/javascript" src="../js/scripts.js"></script>
+</head>
 
 <body>
   <div class="page-container">
@@ -24,49 +19,50 @@
           &#9776;
         </span>
         <div class="logo"></div>
-        <a class="menulink" href="./articles.html"><h1 class="center-head" > Articles </h1></a>
-        <ul class="topnav">
-          <li class="k"><a class="menulink" href="../index.html">Logout</a></li>
-  
+        <a class="menulink" href="./articles.html">
+          <h1 class="center-head"> Articles </h1>
+        </a>
+        <ul class="topnav userloged">
+          <div class="dropdown">
+            <button class="dropbtn"><img src="../images/man 2.png"></button>
+            <div class="dropdown-content">
+              <a href="../index.html">Logout</a>
+            </div>
+          </div>
         </ul>
       </nav>
-    <!-- my Side menu slide -->
-    <!-- my Side menu slide -->
-    <div id="mySidenav" class="sidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <a class="menulink-admin1" href="articles.html">Articles</a>
-      <hr class="menu-separtor">
-      <a class="menulink" href="../index.html">Logout</a>
-      <hr class="menu-separtor">
-    </div>
-
-    <div class="dark-overlay">
-      <div class="update-article">
-        <div class="new-article-form">
-          <form>
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a class="menulink-admin1" href="articles.html">Articles</a>
+        <hr class="menu-separtor">
+        <a class="menulink" href="../index.html">Logout</a>
+        <hr class="menu-separtor">
+      </div>
+      <div class="dark-overlay">
+        <div class="update-article">
+          <div class="new-article-form">
+            <form>
               <h2>Update Article</h2>
-            <p class="input-group">
-              <label for="update_title">Title</label>
-              <input id="new-title" name="update_title" required="" placeholder="Write here the title" value="Growth Mindset">
-            </p>
-            <textarea rows="14" cols="48" placeholder="What is in your mind ?" required="" class=" txtb">
+              <p class="input-group">
+                <label for="update_title">Title</label>
+                <input id="new-title" name="update_title" required="" placeholder="Write here the title"
+                  value="Growth Mindset">
+              </p>
+              <textarea rows="14" cols="48" placeholder="What is in your mind ?" required="" class=" txtb">
               I can’t do it, I can’t learn this, it's too hard, Come on, I’m just a Junior Developer, WebPack is not my thing, I tried it and failed. Those are the words of a developer drenched and soaked with imposter syndrome. Over time we keep fighting ourselves, trying to run away from our shadows, trying to find shortcuts, yes I did also, I really did :( At a point in my life, I just felt some things were not meant for me, I felt maths was too complex for me, JavaScript was not my thing!!</textarea><br>
-            <input type="submit" value="UPDATE" class="custom-btn" id="share-bt">
-    
-          </form>
-    
+              <input type="submit" value="UPDATE" class="custom-btn" id="share-bt">
+            </form>
+          </div>
         </div>
       </div>
+      <footer class="footer">
+        <p>
+          &copy;
+          <a href="./html/about.html"><b>Teamwork.</b></a>
+          2019 All rights Reserve
+        </p>
+      </footer>
     </div>
-
-    <footer class="footer">
-      <p>
-        &copy;
-        <a href="./html/about.html"><b>Teamwork.</b></a>
-        2019 All rights Reserve
-      </p>
-    </footer>
-  </div>
 </body>
 
 </html>
