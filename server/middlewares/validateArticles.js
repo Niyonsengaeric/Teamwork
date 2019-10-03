@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-function validateArticle(user) {
+const validateArticle = (article) => {
   const schema = {
     title: Joi.string()
       .max(120)
@@ -11,6 +11,6 @@ function validateArticle(user) {
       .required(),
   };
 
-  return Joi.validate(user, schema);
-}
+  return Joi.validate(article, schema);
+};
 export default validateArticle;

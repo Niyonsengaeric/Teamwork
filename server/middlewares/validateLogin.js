@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-function validatelogin(user) {
+const validatelogin = (user) => {
   const schema = {
     email: Joi.string()
       .max(250)
@@ -14,5 +14,5 @@ function validatelogin(user) {
   };
 
   return Joi.validate(user, schema);
-}
+};
 export default validatelogin;

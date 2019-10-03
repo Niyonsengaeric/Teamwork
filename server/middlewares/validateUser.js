@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-module.exports = function validateUser(user) {
+const signupValidator = (user) => {
   const schema = {
     firstName: Joi.string()
       .max(50)
@@ -36,3 +36,4 @@ module.exports = function validateUser(user) {
 
   return Joi.validate(user, schema);
 };
+export default signupValidator;

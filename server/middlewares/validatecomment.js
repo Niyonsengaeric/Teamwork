@@ -1,11 +1,11 @@
 import Joi from 'joi';
 
-function validatelogin(comment) {
+const validatecomment = (comment) => {
   const schema = {
     comment: Joi.string()
       .required(),
   };
 
   return Joi.validate(comment, schema);
-}
-export default validatelogin;
+};
+export default validatecomment;
