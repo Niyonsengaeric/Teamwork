@@ -2,17 +2,13 @@
 <html lang="en">
 
 <head>
-
-  <!-- Metadata -->
   <meta name="description" content="internal social network for organizations">
   <meta name="author" content="Niyonsenga Eric">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Teamwork</title>
   <link rel="icon" href="../images/icon.png" type="image/x-icon" />
-  <!-- CSS Styles -->
   <link rel="stylesheet" type="text/css" href="../css/style.css" />
 
-  <!-- Javascript  -->
   <script type="text/javascript" src="../js/scripts.js"></script>
 </head>
 
@@ -24,12 +20,15 @@
       </span>
       <div class="logo"></div>
       <h1 class="center-head"> Articles </h1>
-      <ul class="topnav">
-        <li class="k"><a class="menulink" href="../index.html">Logout</a></li>
-
+      <ul class="topnav userloged">
+        <div class="dropdown">
+          <button class="dropbtn"><img src="../images/man 2.png"></button>
+          <div class="dropdown-content">
+            <a href="../index.html">Logout</a>
+          </div>
+        </div>
       </ul>
     </nav>
-    <!-- my Side menu slide -->
     <div id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
       <a class="menulink" href="#">
@@ -39,26 +38,19 @@
       <a class="menulink" href="../index.html">Logout</a>
       <hr class="menu-separtor">
     </div>
-
-    <!-- ############################### -->
-
     <div class="dark-overlay" onclick="closeNav()">
       <div class="container-row">
-
         <div class="trend-article">
           <ul class="contentitem_listing">
             <input type="text" name="search" placeholder="Search Articles....">
             <a href="#">
               <h1>Trending Articles</h1>
             </a>
-
             <li>
               <div class="profile"><img src="../images/woman 4.png"><br>
                 <span class="comment"> <a href="#"><b><span>&#x0040;sindyalandra</a></span></b></span>
-
                 <p><span class="date-published">Published On:<br> 12-05-2019</span></p>
               </div>
-
               <h3>
                 <a class="title navigation" href="./specificarticle.html">Growth Mindset</a>
               </h3>
@@ -75,19 +67,16 @@
                 me, JavaScript
                 was not my thing!!
               </p>
-
               <p>
                 <span class="comment_count"><span class="report" title="report article"
                     onclick="flag()">&#x2691;</span><span onclick="post()"> <a href="./specificarticle.html"> <img
                         title="comments" alt="view" class="comment-image" src="../images/comment.png">
                       7</span></span></a>
               </p>
-
             </li>
             <li>
               <div class="profile"><img src="../images//man.png">
                 <span class="comment"><br> <a href="#"><b><span>&#x0040;NiyonsengaEric</a></span></b></span>
-
                 <p><span class="date-published">Published On:<br> 12-04-2019</span></p>
               </div>
               <h3>
@@ -107,10 +96,8 @@
                 credit. You retain the ability to spend your future time however you want. Yes is a form of time debt.
                 You have to pay
                 back your commitment at some point.
-
                 No is a decision. Yes is a responsibility.
               </p>
-
               <p>
                 <span class="comment_count"> <span class="report2" title="report article"
                     onclick="flag2()">&#x2691;</span>
@@ -119,14 +106,9 @@
               </p>
 
             </li>
-
-
-
-
             <li>
               <div class="profile"><img src="../images/man 2.png"><br>
                 <span class="comment"> <a href="#"><b><span>&#x0040;ByusaPrince</a></span></b></span>
-
                 <p><span class="date-published">Published On:<br> 10-10-2018</span></p>
               </div>
               <h3>
@@ -145,14 +127,11 @@
                 someone that eats healthy and lives a healthy life. It changes how you approach things.”
 
               </p>
-
               <p>
-                <span class="comment_count"> <span class="report3" title="report article"
-                    onclick="flag3()">&#x2691;</span>
-                  <span onclick="post()"> <a href="./specificarticle.html"><img title="comments" alt="view"
+                <span class="comment_count"> <span class="report3" title="report article" onclick="flag3()"></span>
+                  <span onclick="post()"> <a href="./myarticles.html"><img title="comments" alt="view"
                         class="comment-image" src="../images/comment.png"> </span>2</span></a>
               </p>
-
             </li>
             <li class="paging">
               <div class="pagination">
@@ -167,20 +146,13 @@
               </div>
             </li>
           </ul>
-          <!-- paggination -->
-
-
-          <!-- ################################################################ -->
-
         </div>
-
         <div class="my-article">
           <div class="scrollable">
             <input type="text" name="search" placeholder="Search Articles....">
             <a href="#">
               <h1>MY ARTICLES</h1>
             </a>
-
             <div class="tablesroll">
               <table class="articles-table">
                 <thead>
@@ -189,7 +161,6 @@
                     <th>Title</th>
                     <th>Created On</th>
                     <th>Action</th>
-
                   </tr>
                 </thead>
                 <tbody>
@@ -238,20 +209,15 @@
                         onclick="dialogbox('Are you sure you want to permanently delete this  article ?')">
                         &#x2718;</span></td>
                   </tr>
-
                 </tbody>
               </table>
             </div>
-
             <div class="add-article">
               <a href="./newarticle.html"><input type="button" class="custom-btn" value="Write Article"></a>
             </div>
           </div>
-
         </div>
-
       </div>
-
     </div>
     <footer class="footer">
       <p>
@@ -262,8 +228,6 @@
     </footer>
   </div>
   <div id="dialogbox" class="modal">
-
-    <!-- Dialog content -->
     <div class="modal-content">
       <div class="modal-header">
         <span class="close" onclick="closeDialog()">&times;</span>
@@ -279,9 +243,22 @@
         <input type="button" class="custom-btn delete" value="Yes" onclick="closeDialog()" />
       </div>
     </div>
-
   </div>
-
+  <div id="flagreason" class="modal">
+    <div class="modal-content flag1">
+      <div class="modal-header">
+        <h1>Flag Article </h1>
+        <span class="close" onclick="closeDialog()">&times;</span>
+      </div>
+      <div class="modal-body">
+        <textarea rows="10" cols="40" placeholder="write your reason" required="" class=" txtb"
+          spellcheck="false"></textarea>
+        <div class="modal-buttons flaging">
+          <input type="button" class="custom-btn delete" value="Post Reason" onclick="closeDialog()" />
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

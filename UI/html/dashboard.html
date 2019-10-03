@@ -2,16 +2,12 @@
 <html lang="en">
 
 <head>
-  <!-- Metadata -->
   <meta name="description" content="internal social network for organizations" />
   <meta name="author" content="Niyonsenga Eric" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Teamwork</title>
   <link rel="icon" href="../images/icon.png" type="image/x-icon" />
-  <!-- CSS Styles -->
   <link rel="stylesheet" type="text/css" href="../css/style.css" />
-
-  <!-- Javascript  -->
   <script type="text/javascript" src="../js/scripts.js"></script>
 </head>
 
@@ -22,31 +18,26 @@
         &#9776;
       </span>
       <div class="logo"></div>
-      <h1 class="center-head"> Admin Panel</h1>
+      <h1 class="center-head admin"> Admin Panel</h1>
       <ul class="topnav">
         <li class="k"><a class="menulink" href="../index.html">Logout</a></li>
-
       </ul>
     </nav>
-    <!-- my Side menu slide -->
     <div id="mySidenav" class="sidenav Foradminin">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
         &times;
       </a>
-      <a class="menulink" onclick="openArticles()" href="#">Manage Articles</a>
+      <a class="menulink" onclick="openArticles()" href="#">Articles list</a>
       <hr class="menu-separtor" />
       <a class="menulink" onclick="openFlags()" href="#">Manage Flags</a>
       <hr class="menu-separtor" />
-      <a class="menulink" onclick="openUsers()" href="#">Manage Users</a>
+      <a class="menulink" onclick="openUsers()" href="#">Users list</a>
       <hr class="menu-separtor" />
       <a class="menulink" href="../index.html">Live Web</a>
-      <hr class="menu-separtor" />
-      <a class="menulink" onclick="openAccount()" href="#">My Account</a>
       <hr class="menu-separtor" />
       <a class="menulink" href="../index.html">Logout</a>
       <hr class="menu-separtor" />
     </div>
-
     <div class="dark-overlay" onclick="closeNav()">
       <div id="wrapper">
         <div class="admin-panel">
@@ -55,7 +46,7 @@
               <hr class="menu-separtor" />
               <li onclick="openArticles()">
                 <a class="menulink-admin1" href="#">
-                  Manage Articles
+                  Articles list
                 </a>
               </li>
               <hr class="menu-separtor" />
@@ -67,7 +58,7 @@
               <hr class="menu-separtor" />
               <li onclick="openUsers()">
                 <a class="menulink-admin3" href="#">
-                  Manage Users
+                  Users list
                 </a>
               </li>
               <hr class="menu-separtor" />
@@ -79,24 +70,16 @@
               <hr class="menu-separtor" />
               <li onclick="openAccount()">
                 <a class="menulink-admin4" href="#">
-                  My Account
                 </a>
               </li>
-              <hr class="menu-separtor" />
             </ul>
           </nav>
         </div>
         <div class="container-center">
-
-          <!-- manage all Articles           -->
-
-
           <div class="all-articles">
-
             <div class="articles-list">
-
               <div class="scrollable">
-                <h1>Liste Of Articles </h1>
+                <h1>list Of Articles </h1>
                 <input type="text" name="search" placeholder="Search Articles....">
                 <div class="table-responsive">
                   <table class="articles-table">
@@ -106,7 +89,6 @@
                         <th>Title</th>
                         <th>Author</th>
                         <th>Created On</th>
-                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -115,52 +97,30 @@
                         <td><b>If I was BillGate</b></td>
                         <td>Niyonsenga Eric</td>
                         <td>01-10-2019 09:00 AM</td>
-                        <td class="action-item" title="delete"
-                          onclick="dialogbox('Are you sure you want to permanently delete this  article ?')">
-                          &#x2718;
-                        </td>
                       </tr>
                       <tr>
                         <td><b>#3786</b></td>
                         <td><b>Rwanda Nziza</b></td>
                         <td>Jay-z</td>
                         <td>22-09-2019 09:00 PM</td>
-                        <td class="action-item" title="delete"
-                          onclick="dialogbox('Are you sure you want to permanently delete this  article ?')">
-                          &#x2718;
-                        </td>
                       </tr>
                       <tr>
                         <td><b>#3785</b></td>
                         <td><b>My Dreams</b></td>
                         <td>Snop Dog</td>
                         <td>01-08-2019 10:00 AM</td>
-                        <td class="action-item" title="delete"
-                          onclick="dialogbox('Are you sure you want to permanently delete this  article ?')">
-                          &#x2718;
-                        </td>
                       </tr>
                       <tr>
                         <td><b>#3784</b></td>
                         <td><b>Our Past</b></td>
                         <td>Usenga Sandrine</td>
                         <td>15-07-2019 09:00 AM</td>
-                        <td class="action-item" title="delete"
-                          onclick="dialogbox('Are you sure you want to permanently delete this  article ?')">
-                          &#x2718;
-                        </td>
                       </tr>
-
-
                       <tr>
                         <td><b>#3783</b></td>
                         <td><b>Sport</b></td>
                         <td>Lebron James</td>
                         <td>11/07/209 07:00 8M</td>
-                        <td class="action-item" title="delete"
-                          onclick="dialogbox('Are you sure you want to permanently delete this  article ?')">
-                          &#x2718;
-                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -168,14 +128,12 @@
               </div>
             </div>
           </div>
-          <!-- manage all flags table display -->
-
           <div class="all-flags">
 
             <div class="flags-list">
 
               <div class="scrollable">
-                <h1>Flaged Liste </h1>
+                <h1>Flaged list </h1>
                 <input type="text" name="search" placeholder="Search ....">
                 <div class="table-responsive">
                   <table class="articles-table">
@@ -184,7 +142,6 @@
                         <th>Type</th>
                         <th>Belong</th>
                         <th>Department</th>
-                        <th>Times Flaged</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -193,7 +150,6 @@
                         <td>Article</td>
                         <td>Havugimana Benit</td>
                         <td>IT</td>
-                        <td class="critical"><b>12</b></td>
                         <td class="action-item" title="delete" onclick="dialogbox('Delete this article ?')">
                           &#x2718;
                         </td>
@@ -202,7 +158,6 @@
                         <td>Article</td>
                         <td>Cyubahiro Alain</td>
                         <td>Finance</td>
-                        <td><b>4</b></td>
                         <td class="action-item" title="delete" onclick="dialogbox('Delete this article ?')">
                           &#x2718;
                         </td>
@@ -211,7 +166,6 @@
                         <td>Comment</td>
                         <td>Byusa Prince Dacy</td>
                         <td>Techinical</td>
-                        <td><b>5</b></td>
                         <td class="action-item" title="delete" onclick="dialogbox('Delete this comment ?')">
                           &#x2718;
                         </td>
@@ -220,7 +174,6 @@
                         <td>Comment</td>
                         <td>Snop Dog</td>
                         <td>IT</td>
-                        <td class="critical"><b>25</b></td>
                         <td class="action-item" title="delete" onclick="dialogbox('Delete this comment ?')">
                           &#x2718;
                         </td>
@@ -231,7 +184,6 @@
                         <td>Comment</td>
                         <td>Lebron James</td>
                         <td>Technical</td>
-                        <td class="critical"><b>18</b></td>
                         <td class="action-item" title="delete" onclick="dialogbox('Delete this comment ?')">
                           &#x2718;
                         </td>
@@ -242,14 +194,8 @@
               </div>
             </div>
           </div>
-
-
-          <!-- manage all Articles           -->
-
           <div class="all-users">
-
             <div class="users-list">
-
               <div class="scrollable">
                 <h1>Registered Users </h1>
                 <input type="text" name="search" placeholder="Search User....">
@@ -262,7 +208,6 @@
                         <th>Email</th>
                         <th>Department</th>
                         <th>Job Role</th>
-                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -272,10 +217,6 @@
                         <td>niyeric11@gmail.com</td>
                         <td>IT</td>
                         <td>HOD</td>
-                        <td class="action-item" title="delete user"
-                          onclick="dialogbox('Are you sure you want to permanently delete this  user ?')">
-                          &#x2718;
-                        </td>
                       </tr>
                       <tr>
                         <td><b>#3</b></td>
@@ -283,10 +224,6 @@
                         <td>cyubahiroalain@outlook.com</td>
                         <td>Finance</td>
                         <td>Employees</td>
-                        <td class="action-item" title="delete user"
-                          onclick="dialogbox('Are you sure you want to permanently delete this  user ?')">
-                          &#x2718;
-                        </td>
                       </tr>
                       <tr>
                         <td><b>#4</b></td>
@@ -294,10 +231,6 @@
                         <td>byusadacy@gmail.com</td>
                         <td>Techinical</td>
                         <td>Employees</td>
-                        <td class="action-item" title="delete user"
-                          onclick="dialogbox('Are you sure you want to permanently delete this  user ?')">
-                          &#x2718;
-                        </td>
                       </tr>
                       <tr>
                         <td><b>#5</b></td>
@@ -305,10 +238,6 @@
                         <td>dogdog@gmail.com</td>
                         <td>IT</td>
                         <td>Employees</td>
-                        <td class="action-item" title="delete"
-                          onclick="dialogbox('Are you sure you want to permanently delete this  user ?')">
-                          &#x2718;
-                        </td>
                       </tr>
 
 
@@ -318,10 +247,6 @@
                         <td>kingjames@lakers.com</td>
                         <td>Technical</td>
                         <td>Employees</td>
-                        <td class="action-item" title="delete"
-                          onclick="dialogbox('Are you sure you want to permanently delete this  user ?')">
-                          &#x2718;
-                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -329,10 +254,6 @@
               </div>
             </div>
           </div>
-
-
-
-          <!-- manage admin account           -->
           <div class="AdminForm-wrapper">
             <div class="auth-area">
               <h2 class="auth-title">Admin Account</h2>
@@ -367,16 +288,8 @@
               </form>
             </div>
           </div>
-
-
-
-
-
-          <!-- ############################### -->
-
         </div>
       </div>
-
       <footer class="footer">
         <p>
           &copy;
