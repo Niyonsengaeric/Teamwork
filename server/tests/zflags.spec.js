@@ -40,17 +40,47 @@ describe('Flag an Articles (post)', () => {
       });
   });
 
+  it('It should return 403 you are try to flag your own article ', (done) => {
+    const Signed = mockData.user4;
+    const reason = mockData.flagReason;
+    const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+    chai
+      .request(app)
+      .post('/api/v1/articles/flag/2')
+      .set('token', Token)
+      .send(reason)
+      .end((err, res) => {
+        expect(res.status).to.equal(403);
+        done();
+      });
+  });
+
   it('It should return 201 when the article is succesfully flaged ', (done) => {
     const Signed = mockData.user2;
     const reason = mockData.flagReason;
     const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
     chai
       .request(app)
-      .post('/api/v1/articles/flag/1')
+      .post('/api/v1/articles/flag/2')
       .set('token', Token)
       .send(reason)
       .end((err, res) => {
         expect(res.status).to.equal(201);
+        done();
+      });
+  });
+
+  it('It should return 409 when the article is arleady flagged with the same reason ', (done) => {
+    const Signed = mockData.user2;
+    const reason = mockData.flagReason;
+    const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+    chai
+      .request(app)
+      .post('/api/v1/articles/flag/2')
+      .set('token', Token)
+      .send(reason)
+      .end((err, res) => {
+        expect(res.status).to.equal(409);
         done();
       });
   });
@@ -97,6 +127,36 @@ describe('Flag a Comment (post)', () => {
       .send(reason)
       .end((err, res) => {
         expect(res.status).to.equal(201);
+        done();
+      });
+  });
+
+  it('It should return 409 when you try to flag the comment with the same raison ', (done) => {
+    const Signed = mockData.user2;
+    const reason = mockData.flagReason2;
+    const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+    chai
+      .request(app)
+      .post('/api/v1/comments/flag/1')
+      .set('token', Token)
+      .send(reason)
+      .end((err, res) => {
+        expect(res.status).to.equal(409);
+        done();
+      });
+  });
+
+  it('It should return 403 when the user try to flag his own comment ', (done) => {
+    const Signed = mockData.user4;
+    const reason = mockData.flagReason;
+    const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+    chai
+      .request(app)
+      .post('/api/v1/comments/flag/2')
+      .set('token', Token)
+      .send(reason)
+      .end((err, res) => {
+        expect(res.status).to.equal(403);
         done();
       });
   });
@@ -170,6 +230,32 @@ describe('get Articles (post)', () => {
       .set('token', Token)
       .end((err, res) => {
         expect(res.status).to.equal(200);
+        done();
+      });
+  });
+
+  it('It should return 403 when admin try to delete non flaged comment', (done) => {
+    const Signed = mockData.Adminuser;
+    const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+    chai
+      .request(app)
+      .delete('/api/v1/comments/3')
+      .set('token', Token)
+      .end((err, res) => {
+        expect(res.status).to.equal(403);
+        done();
+      });
+  });
+
+  it('It should return 403 when admin try to delete non flagged article', (done) => {
+    const Signed = mockData.Adminuser;
+    const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+    chai
+      .request(app)
+      .delete('/api/v1/articles/1')
+      .set('token', Token)
+      .end((err, res) => {
+        expect(res.status).to.equal(403);
         done();
       });
   });

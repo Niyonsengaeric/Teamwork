@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-function validateArticle(flag) {
+const validateArticle = (flag) => {
   const schema = {
     reason: Joi.string()
       .max(120)
@@ -8,5 +8,5 @@ function validateArticle(flag) {
   };
 
   return Joi.validate(flag, schema);
-}
+};
 export default validateArticle;

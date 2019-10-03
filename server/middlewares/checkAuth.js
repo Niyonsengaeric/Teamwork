@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import response from '../helpers/response';
 
-module.exports = function auth(req, res, next) {
+const auth = (req, res, next) => {
   const token = req.header('token');
   if (!token) {
     return response.response(res, 401, 'error', 'Access denied. no token provided.', true);
@@ -15,4 +15,7 @@ module.exports = function auth(req, res, next) {
     return response.response(res, 401, 'error', 'invalid token.', true);
   }
   return (token);
+};
+export default {
+  auth,
 };
