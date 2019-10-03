@@ -25,7 +25,6 @@ app.use('*', (req, res) => {
 const { PORT } = process.env;
 
 app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
   console.log(`App is Running on port ${PORT}`);
 });
 
