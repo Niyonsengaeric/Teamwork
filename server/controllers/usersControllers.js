@@ -43,18 +43,13 @@ class usersController {
         department,
         address,
       } = req.body;
-      // Add to object
-      let admin = 'false';
-      if (req.body.email === process.env.administrator) {
-        admin = 'true';
-      }
       const salt = await bcrypt.genSalt(10);
       const newpassword = await bcrypt.hash(password, salt);
       client.query('INSERT INTO users(first_name, last_name, email, password, gender, job_role, department,address,is_admin)VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9)', [
         firstName,
         lastName,
         email.toLowerCase(), newpassword,
-        gender.toUpperCase(), jobRole, department, address, admin,
+        gender.toUpperCase(), jobRole, department, address, 'false',
       ]);
 
       const useremail = await client.query('SELECT * FROM users WHERE email=$1 ', [
