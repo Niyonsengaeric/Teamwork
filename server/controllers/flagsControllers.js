@@ -50,7 +50,6 @@ class flagsController {
     }
   }
 
-  // flag a comment
   static async flagComment(req, res) {
     try {
       const { id: userId } = req.user;

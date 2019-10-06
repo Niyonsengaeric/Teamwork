@@ -27,6 +27,7 @@ const signupValidator = (user) => {
       .max(15)
       .required(),
     department: Joi.string()
+      .min(2)
       .max(15)
       .required(),
     address: Joi.string()

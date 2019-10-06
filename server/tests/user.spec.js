@@ -7,8 +7,6 @@ import mockData from './mockData';
 chai.use(chaiHttp);
 chai.should();
 
-
-// test for new user
 describe('Create a user account.(POST) ', () => {
   it('New user, it should return 201', (done) => {
     chai
@@ -65,8 +63,6 @@ describe('Create a user account.(POST) ', () => {
       });
   });
 });
-
-// test for loging users
 
 describe('Login User(POST )', () => {
   it('it should return 401 for Invalid user or password', (done) => {

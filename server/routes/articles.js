@@ -16,7 +16,6 @@ router.get('/feeds', authChecker.auth, getArticles);
 router.get('/articles/:id', authChecker.auth, specificArticle);
 router.get('/articles', authChecker.auth, filterArticle);
 
-// flag articles and comment
 const {
   flagArticle, flagComment, getFlags, deleteComment,
 } = flagsController;
@@ -25,7 +24,6 @@ router.post('/articles/flag/:id', authChecker.auth, flagArticle);
 router.post('/comments/flag/:id', authChecker.auth, flagComment);
 router.get('/flags', [authChecker.auth, adminChecker.adminChecker], getFlags);
 
-// comment on articles
 router.post('/articles/:id/comments', authChecker.auth, commentArticle);
 router.delete('/comments/:id', [authChecker.auth, adminChecker.adminChecker], deleteComment);
 
