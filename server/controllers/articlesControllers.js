@@ -47,11 +47,11 @@ class articlescontrolllers {
             'SELECT * FROM articles WHERE title=$1 AND author_id=$2',
             [title, id],
           );
-          const { article_id, created_on } = getarticleinfo.rows[0];
+          const { article_id: articleId, created_on: createdOn } = getarticleinfo.rows[0];
           const data = {
-            article_id, created_on, title, authorName, article,
+            articleId, createdOn, title, authorName, article,
           };
-          response.response(res, 201, 'Articles created successfully', data, false);
+          response.response(res, 201, 'Article created successfully', data, false);
         }
       }
 
