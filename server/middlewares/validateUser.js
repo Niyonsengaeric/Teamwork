@@ -6,12 +6,15 @@ const signupValidator = (user) => {
       .max(50)
       .trim()
       .uppercase()
+      .regex(/^\S*$/)
       .required(),
     lastName: Joi.string()
+      .regex(/^\S*$/)
       .max(50)
       .uppercase()
       .required(),
     email: Joi.string()
+      .regex(/^\S*$/)
       .min(5)
       .max(250)
       .required()
@@ -27,13 +30,16 @@ const signupValidator = (user) => {
       .uppercase()
       .required(),
     jobRole: Joi.string()
+      .regex(/^\S*$/)
       .max(15)
       .required(),
     department: Joi.string()
+      .regex(/^\S*$/)
       .min(2)
       .max(15)
       .required(),
     address: Joi.string()
+      .regex(/^\S*$/)
       .max(15)
       .required(),
   };
