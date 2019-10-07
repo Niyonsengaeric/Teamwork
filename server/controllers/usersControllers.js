@@ -52,11 +52,11 @@ class usersController {
         gender.toUpperCase(), jobRole, department, address, 'false',
       ]);
 
-      const useremail = await client.query('SELECT * FROM users WHERE email=$1 ', [
+      const userinfo = await client.query('SELECT * FROM users WHERE email=$1 ', [
         req.body.email.toLowerCase(),
       ]);
       const token = jwt.sign(
-        { id: useremail.rows[0].id, isAdmin: useremail.rows[0].is_admin },
+        { id: userinfo.rows[0].id, isAdmin: userinfo.rows[0].is_admin },
         process.env.JWT,
       );
       const data = { token };
