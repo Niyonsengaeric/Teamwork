@@ -4,7 +4,6 @@ import { Client } from 'pg';
 import dotenv from 'dotenv';
 import validateUser from '../middlewares/validateUser';
 import validateLogin from '../middlewares/validateLogin';
-import users from '../models/usersModels';
 import response from '../helpers/response';
 
 dotenv.config();
@@ -72,39 +71,29 @@ class usersController {
   }
 
   static async loginUser(req, res) {
-    try {
-      const { password } = req.body;
-      const { error } = validateLogin(req.body);
-      if (error) {
-        return response.response(
-          res,
-          422,
-          'error',
-          `${error.details[0].message}`,
-          true,
-        );
-      }
-
-      const user = await users.filter(
-        (usermail) => usermail.email.toLowerCase() === req.body.email.toLowerCase().trim(),
+    const { password } = req.body;
+    const { error } = validateLogin(req.body);
+    if (error) {
+      return response.response(
+        res,
+        422,
+        'error',
+        `${error.details[0].message}`,
+        true,
       );
-      if (user.length > 0) {
-        if (bcrypt.compareSync(password, user[0].password)) {
-          const token = jwt.sign(
-            { id: user[0].id, isAdmin: user[0].isAdmin },
-            process.env.JWT,
-          );
-          const data = { token };
-          response.response(res, 200, 'Login successfully', data, false);
-        } else {
-          return response.response(
-            res,
-            401,
-            'error',
-            'Invalid user or password',
-            true,
-          );
-        }
+    }
+
+    const userinformations = await client.query('SELECT * FROM users WHERE email=$1', [
+      req.body.email.toLowerCase().trim(),
+    ]);
+    if (userinformations.rows.length > 0) {
+      if (bcrypt.compareSync(password, userinformations.rows[0].password)) {
+        const token = jwt.sign(
+          { id: userinformations.rows[0].id, isAdmin: userinformations.rows[0].is_admin },
+          process.env.JWT,
+        );
+        const data = { token };
+        response.response(res, 200, 'Login successfully', data, false);
       } else {
         return response.response(
           res,
@@ -114,10 +103,16 @@ class usersController {
           true,
         );
       }
-      return response;
-    } catch (error) {
-      return error;
+    } else {
+      return response.response(
+        res,
+        401,
+        'error',
+        'Invalid user or password',
+        true,
+      );
     }
+    return response;
   }
 }
 export default usersController;
