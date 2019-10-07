@@ -5,11 +5,16 @@ const signupValidator = (user) => {
     firstName: Joi.string()
       .max(50)
       .trim()
+      .uppercase()
+      .regex(/^\S*$/)
       .required(),
     lastName: Joi.string()
+      .regex(/^\S*$/)
       .max(50)
+      .uppercase()
       .required(),
     email: Joi.string()
+      .regex(/^\S*$/)
       .min(5)
       .max(250)
       .required()
@@ -21,16 +26,20 @@ const signupValidator = (user) => {
       .regex(/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]/),
 
     gender: Joi.string()
-      .max(7)
+      .valid(['M', 'F', 'MALE', 'FEMALE'])
+      .uppercase()
       .required(),
     jobRole: Joi.string()
+      .regex(/^\S*$/)
       .max(15)
       .required(),
     department: Joi.string()
+      .regex(/^\S*$/)
       .min(2)
       .max(15)
       .required(),
     address: Joi.string()
+      .regex(/^\S*$/)
       .max(15)
       .required(),
   };
