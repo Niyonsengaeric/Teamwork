@@ -72,5 +72,68 @@ const runArticlesTests = () => {
         });
     });
   });
+  describe('Edit articles (patch)', () => {
+    it('It should return 422 when the articles to be edited has an empty required field  ', (done) => {
+      const Signed = mockData.user4;
+      const newarticle = {
+        title: 'FootBall Life',
+      };
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .patch('/api/v1/articles/3')
+        .set('token', Token)
+        .send(newarticle)
+        .end((err, res) => {
+          expect(res.status).to.equal(422);
+          done();
+        });
+    });
+
+    it('It should return 200 if the article succed the update  ', (done) => {
+      const Signed = mockData.user4;
+      const newarticle = mockData.article2;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .patch('/api/v1/articles/3')
+        .set('token', Token)
+        .send(newarticle)
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          done();
+        });
+    });
+
+    it('It should return 409 if the article is already updated  ', (done) => {
+      const Signed = mockData.user4;
+      const newarticle = mockData.article2;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .patch('/api/v1/articles/3')
+        .set('token', Token)
+        .send(newarticle)
+        .end((err, res) => {
+          expect(res.status).to.equal(409);
+          done();
+        });
+    });
+
+    it('It should return 404 when the article is not found  ', (done) => {
+      const Signed = mockData.user4;
+      const newarticle = mockData.article2;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .patch('/api/v1/articles/1')
+        .set('token', Token)
+        .send(newarticle)
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          done();
+        });
+    });
+  });
 };
 module.exports = runArticlesTests;
