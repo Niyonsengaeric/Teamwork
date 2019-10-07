@@ -68,22 +68,29 @@ class articlescontrolllers {
       const { id: userId } = req.user;
       const { title, article } = req.body;
       const { id } = req.params;
+      if (isNaN(id)) {
+        return response.response(res, 400, 'error', 'articleId must be an integer', true);
+      }
 
-      const checkexisting = await articles.filter(
-        (regArticles) => regArticles.title === title
-          && regArticles.authorId === userId && regArticles.article === article,
+      const checkArticleExisting = await client.query(
+        'SELECT * FROM articles WHERE title=$1 AND author_id=$2 AND article=$3',
+        [title, userId, article],
       );
-      const findArticleindex = articles.findIndex(
-        (findArticle) => findArticle.articleId === parseInt(id, 10)
-          && findArticle.authorId === userId,
+      const findArticleindex = await client.query(
+        'SELECT * FROM articles WHERE article_id=$1 AND author_id=$2',
+        [parseInt(id, 10), userId],
       );
-      if (findArticleindex !== -1) {
-        if (checkexisting.length > 0) {
+      if (findArticleindex.rows.length > 0) {
+        if (checkArticleExisting.rows.length > 0) {
           response.response(res, 409, 'error', 'Article arleady updated', true);
         } else {
-          articles[findArticleindex].title = title.trim();
-          articles[findArticleindex].article = article.trim();
-          return response.response(res, 200, 'article successfully edited”', articles[findArticleindex], false);
+          const updateArticle = client.query('UPDATE articles SET title=$1, article=$2 where article_id = $3', [
+            title, article, id,
+          ]);
+          const data = await client.query('SELECT * FROM articles WHERE article_id=$1 AND author_id=$2',
+            [parseInt(id, 10), userId]);
+
+          return response.response(res, 200, 'article successfully edited”', data.rows[0], false);
         }
       } else { response.response(res, 404, 'error', 'No article Found', true); }
 
