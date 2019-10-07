@@ -87,10 +87,18 @@ class articlescontrolllers {
           const updateArticle = client.query('UPDATE articles SET title=$1, article=$2 where article_id = $3', [
             title, article, id,
           ]);
-          const data = await client.query('SELECT * FROM articles WHERE article_id=$1 AND author_id=$2',
+          const editedArticle = await client.query('SELECT * FROM articles WHERE article_id=$1 AND author_id=$2',
             [parseInt(id, 10), userId]);
+          const {
+            article_id: articleId, created_on: createdOn, author_id: authorId,
+            author_name: authorName,
+          } = editedArticle.rows[0];
 
-          return response.response(res, 200, 'article successfully edited”', data.rows[0], false);
+          const data = {
+            articleId, createdOn, title, authorId, authorName, article,
+          };
+
+          return response.response(res, 200, 'article successfully edited”', data, false);
         }
       } else { response.response(res, 404, 'error', 'No article Found', true); }
 
