@@ -1,11 +1,18 @@
 import moment from 'moment';
+import { Client } from 'pg';
 import flags from '../models/flagsModels';
 import validate from '../middlewares/validateArticles';
 import validateComment from '../middlewares/validatecomment';
 import articles from '../models/articlesModels';
 import comments from '../models/commentsModels';
-import users from '../models/usersModels';
 import response from '../helpers/response';
+
+const { DATABASE_URL } = process.env;
+const connectionString = DATABASE_URL;
+const client = new Client({
+  connectionString,
+});
+client.connect();
 
 class articlescontrolllers {
   static async newArticle(req, res) {
@@ -15,28 +22,36 @@ class articlescontrolllers {
       const { title, article } = req.body;
       const { id, isAdmin } = req.user;
       if (isAdmin) { response.response(res, 403, 'error', 'not allowed for Administrator to create Articles', true); } else {
-        const getuser = users.find((finduser) => finduser.id === id);
-        const { id: authorId, firstName, lastName } = getuser;
+        const getuserinfo = await client.query('SELECT * FROM users WHERE id=$1', [
+          id,
+        ]);
+        const { id: author_id, first_name, last_name } = getuserinfo.rows[0];
 
-        const checkexisting = await articles.filter(
-          (regArticles) => regArticles.title === req.body.title && regArticles.authorId === id,
+        const checkArticleExisting = await client.query(
+          'SELECT * FROM articles WHERE title=$1 AND author_id=$2',
+          [title, id],
         );
-        if (checkexisting.length > 0) {
-          response.response(res, 409, 'error', ` Article arleady registered with An ID Of :  ${checkexisting[0].articleId} `, true);
+
+        if (checkArticleExisting.rows.length > 0) {
+          response.response(res, 409, 'error', ` Article arleady registered with An ID Of :  ${checkArticleExisting.rows[0].article_id} `, true);
         } else {
-          const authorName = `${firstName} ${lastName}`;
-          const addarticle = {
-            articleId: articles.length + 1,
-            createdOn: moment().format(),
+          const authorName = `${first_name} ${last_name}`;
+          client.query('INSERT INTO articles(created_on, title, author_id, author_name, article) VALUES($1,$2,$3,$4,$5)', [
+            moment().format(),
             title,
-            authorId,
+            author_id,
             authorName,
             article,
+          ]);
+          const getarticleinfo = await client.query(
+            'SELECT * FROM articles WHERE title=$1 AND author_id=$2',
+            [title, id],
+          );
+          const { article_id: articleId, created_on: createdOn } = getarticleinfo.rows[0];
+          const data = {
+            articleId, createdOn, title, authorName, article,
           };
-          articles.push(addarticle);
-          const data = { ...addarticle };
-          delete data.authorId;
-          response.response(res, 201, 'Articles created successfully', data, false);
+          response.response(res, 201, 'Article created successfully', data, false);
         }
       }
 
