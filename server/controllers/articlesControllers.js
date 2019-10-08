@@ -228,23 +228,30 @@ class articlescontrolllers {
     try {
       const { id } = req.params;
 
-      const findArticle = articles.filter(
-        (specfarticles) => specfarticles.articleId === parseInt(id, 10),
+      if (isNaN(id)) {
+        return response.response(res, 400, 'error', 'Your request parameter must be an integer', true);
+      }
+      const findArticle = await client.query(
+        'SELECT  article_id as "articleId",created_on as "createdOn", title,author_id as "authorId",author_name as "authorName", article FROM articles WHERE article_id=$1',
+        [parseInt(id, 10)],
       );
-      if (findArticle.length > 0) {
-        const getcomments = await comments.filter(
-          (article) => article.articleId === parseInt(id, 10),
+
+      if (findArticle.rows.length > 0) {
+        const articleComments = await client.query(
+          'SELECT comment_id as "commentId",author_id as "authorId",comment FROM comments WHERE article_id=$1',
+          [parseInt(id, 10)],
         );
         const {
-          articleId, createdOn, title, article, authorId,
-        } = findArticle[0];
+          articleId, createdOn, title, article, authorId, authorName,
+        } = findArticle.rows[0];
         const data = {
           articleId,
           createdOn,
           title,
           article,
           authorId,
-          comments: getcomments,
+          authorName,
+          comments: articleComments.rows,
         };
         response.response(res, 200, 'Article successfully retrieved', data, false);
       } else { return response.response(res, 404, 'error', 'Article not Found  ', true); }
