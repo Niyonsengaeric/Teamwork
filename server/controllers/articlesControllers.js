@@ -172,21 +172,24 @@ class articlescontrolllers {
       const { id } = req.params;
       const { comment } = req.body;
 
+      if (isNaN(id)) {
+        return response.response(res, 400, 'error', 'request parameter must be an integer', true);
+      }
+
       if (isAdmin) {
-        response.response(res, 401, 'error', 'not allowed for Administrator to comment on  Articles', true);
+        response.response(res, 403, 'error', 'Not allowed for an administrator to comment on  articles', true);
       } else {
-        const checkArticle = await articles.findIndex(
-          (findArticle) => findArticle.articleId === parseInt(id, 10),
+        const checkArticleinfo = await client.query(
+          'SELECT  created_on as "createdOn", title, article FROM articles WHERE article_id=$1',
+          [parseInt(id, 10)],
         );
-        if (checkArticle !== -1) {
-          const { createdOn, title, article } = articles[checkArticle];
-          const addCommet = {
-            commentId: comments.length + 1,
-            articleId: parseInt(id, 10),
-            authorId: userId,
+        if (checkArticleinfo.rows.length > 0) {
+          const { createdOn, title, article } = checkArticleinfo.rows[0];
+          client.query('INSERT INTO comments(article_id, author_id, comment) VALUES($1,$2,$3)', [
+            parseInt(id, 10),
+            userId,
             comment,
-          };
-          comments.push(addCommet);
+          ]);
           const data = {
             createdOn, title, article, comment,
           };

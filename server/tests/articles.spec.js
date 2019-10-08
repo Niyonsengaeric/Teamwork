@@ -190,5 +190,67 @@ const runArticlesTests = () => {
         });
     });
   });
+  describe('comment on article (post)', () => {
+    it('It should return 422 when the comment has an empty required field  ', (done) => {
+      const Signed = mockData.user4;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .post('/api/v2/articles/1/comments')
+        .set('token', Token)
+        .send()
+        .end((err, res) => {
+          expect(res.status).to.equal(422);
+          done();
+        });
+    });
+
+    it('It should return 201 when the comment is added to an article  ', (done) => {
+      const Signed = mockData.user4;
+      const commentArticle = {
+        comment: 'interesting !!!',
+      };
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .post('/api/v2/articles/1/comments')
+        .set('token', Token)
+        .send(commentArticle)
+        .end((err, res) => {
+          expect(res.status).to.equal(201);
+          done();
+        });
+    });
+
+    it('It should return 404 when a user try to added a comment to a non existing article ', (done) => {
+      const Signed = mockData.user4;
+      const commentArticle = mockData.comment1;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .post('/api/v2/articles/109/comments')
+        .set('token', Token)
+        .send(commentArticle)
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          done();
+        });
+    });
+
+    it('It should return 403 if an admin account try to comment on article  ', (done) => {
+      const Signed = mockData.Adminuser;
+      const commentArticle = mockData.comment1;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .post('/api/v2/articles/1/comments')
+        .set('token', Token)
+        .send(commentArticle)
+        .end((err, res) => {
+          expect(res.status).to.equal(403);
+          done();
+        });
+    });
+  });
 };
 module.exports = runArticlesTests;
