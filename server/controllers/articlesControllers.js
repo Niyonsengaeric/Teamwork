@@ -1,6 +1,5 @@
 import moment from 'moment';
 import { Client } from 'pg';
-import flags from '../models/flagsModels';
 import validate from '../middlewares/validateArticles';
 import validateComment from '../middlewares/validatecomment';
 import articles from '../models/articlesModels';
@@ -114,28 +113,44 @@ class articlescontrolllers {
       const { id: userId, isAdmin } = req.user;
       const { id } = req.params;
 
-      const findOwnerindex = await articles.findIndex(
-        (findArticle) => findArticle.articleId === parseInt(id, 10)
-          && findArticle.authorId === userId,
+      if (isNaN(id)) {
+        return response.response(res, 400, 'error', 'request parameter must be an integer', true);
+      }
+
+      const findArticleOwner = await client.query(
+        'SELECT * FROM articles WHERE article_id=$1 AND author_id=$2',
+        [parseInt(id, 10), userId],
       );
-      const findflag = await flags.findIndex(
-        (findflags) => findflags.flagedId === parseInt(id, 10) && findflags.type === 'article',
+
+      const articleFlaged = await client.query(
+        'SELECT * FROM flags WHERE flaged_id=$1 AND type=$2',
+        [parseInt(id, 10), 'article'],
       );
 
       if (isAdmin) {
-        const findArticle = await articles.findIndex(
-          (findArticles) => findArticles.articleId === parseInt(id, 10),
+        const findArticle = await client.query(
+          'SELECT * FROM articles WHERE article_id=$1',
+          [parseInt(id, 10)],
         );
-        if (findArticle !== -1) {
-          if (findflag === -1) {
+        if (findArticle.rows.length > 0) {
+          if (articleFlaged.rows.length <= 0) {
             return response.response(res, 403, 'error', 'Article not flagged  ', true);
           }
-          articles.splice(findArticle, 1);
-          flags.splice(findflag, 1);
+          client.query('DELETE FROM articles WHERE article_id=$1', [
+            parseInt(id, 10),
+          ]);
+
+          client.query('DELETE FROM flags WHERE flaged_id=$1 AND type=$2', [
+            parseInt(id, 10), 'article',
+          ]);
+
+
           response.response(res, 200, 'article successfully deleted');
         } else { return response.response(res, 404, 'error', 'article Not Found  ', true); }
-      } else if (findOwnerindex !== -1) {
-        articles.splice(findOwnerindex, 1);
+      } else if (findArticleOwner.rows.length > 0) {
+        client.query('DELETE FROM articles WHERE article_id=$1', [
+          parseInt(id, 10),
+        ]);
         response.response(res, 200, 'article successfully deleted');
       } else {
         return response.response(res, 404, 'error', 'article Not Found  ', true);

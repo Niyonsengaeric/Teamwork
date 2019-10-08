@@ -11,8 +11,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-app.use('/api/v1', users);
-app.use('/api/v1', articles);
+app.use('/api/v2', users);
+app.use('/api/v2', articles);
 
 app.use((req, res, next) => {
   const error = new Error('resource not found');
