@@ -177,7 +177,7 @@ class articlescontrolllers {
       }
 
       if (isAdmin) {
-        response.response(res, 403, 'error', 'not allowed for Administrator to comment on  Articles', true);
+        response.response(res, 403, 'error', 'Not allowed for an administrator to comment on  articles', true);
       } else {
         const checkArticleinfo = await client.query(
           'SELECT  created_on as "createdOn", title, article FROM articles WHERE article_id=$1',
