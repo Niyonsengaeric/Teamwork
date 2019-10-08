@@ -153,7 +153,7 @@ class articlescontrolllers {
         ]);
         response.response(res, 200, 'Article successfully deleted');
       } else {
-        return response.response(res, 404, 'error', 'Article Not Found  ', true);
+        return response.response(res, 404, 'error', 'Article not found  ', true);
       }
       return (articles);
     } catch (error) {
@@ -261,7 +261,7 @@ class articlescontrolllers {
 
         const checktaget = articles.filter((regArticles) => regArticles.article.includes(`${article.trim()}`));
         if (checktaget.length > 0) {
-          response.response(res, 200, 'Article Found', checktaget, false);
+          response.response(res, 200, 'Article found', checktaget, false);
         } else {
           return response.response(res, 404, 'error', `${article} don't match with any article`, true);
         }
