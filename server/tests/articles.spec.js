@@ -266,5 +266,32 @@ const runArticlesTests = () => {
         });
     });
   });
+  describe('Display specific article (get)', () => {
+    it('It should return 200 when a specific article is Displays  ', (done) => {
+      const Signed = mockData.user4;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .get('/api/v2/articles/1')
+        .set('token', Token)
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          done();
+        });
+    });
+
+    it('It should return 404 when a specific article is not found  ', (done) => {
+      const Signed = mockData.user4;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .get('/api/v2/articles/1000')
+        .set('token', Token)
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          done();
+        });
+    });
+  });
 };
 module.exports = runArticlesTests;
