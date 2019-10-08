@@ -135,5 +135,60 @@ const runArticlesTests = () => {
         });
     });
   });
+
+  describe('Delete Article (patch)', () => {
+    it('It should return 200 when the article is deleted  ', (done) => {
+      const Signed = mockData.user4;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .delete('/api/v1/articles/3')
+        .set('token', Token)
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          done();
+        });
+    });
+
+    it('It should return 404 the article is not found   ', (done) => {
+      const Signed = mockData.Adminuser;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .delete('/api/v1/articles/200')
+        .set('token', Token)
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          done();
+        });
+    });
+
+    it('It should return 200 when the article is deleted  ', (done) => {
+      const Signed = mockData.Adminuser;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .delete('/api/v1/articles/2')
+        .set('token', Token)
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          done();
+        });
+    });
+
+
+    it('It should return 404 when the article to delete is not found  ', (done) => {
+      const Signed = mockData.user4;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .delete('/api/v1/articles/3')
+        .set('token', Token)
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          done();
+        });
+    });
+  });
 };
 module.exports = runArticlesTests;
