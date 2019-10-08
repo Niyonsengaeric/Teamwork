@@ -252,5 +252,19 @@ const runArticlesTests = () => {
         });
     });
   });
+  describe('Get all Articles (get)', () => {
+    it('It should return 200 when all registered articles Displays  ', (done) => {
+      const Signed = mockData.user4;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .get('/api/v2/feeds')
+        .set('token', Token)
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          done();
+        });
+    });
+  });
 };
 module.exports = runArticlesTests;
