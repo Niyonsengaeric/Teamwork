@@ -16,7 +16,7 @@ const runArticlesTests = () => {
       const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
       chai
         .request(app)
-        .post('/api/v1/articles')
+        .post('/api/v2/articles')
         .set('token', Token)
         .send(newarticle)
         .end((err, res) => {
@@ -33,7 +33,7 @@ const runArticlesTests = () => {
       const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
       chai
         .request(app)
-        .post('/api/v1/articles')
+        .post('/api/v2/articles')
         .set('token', Token)
         .send(newarticle)
         .end((err, res) => {
@@ -48,7 +48,7 @@ const runArticlesTests = () => {
       const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
       chai
         .request(app)
-        .post('/api/v1/articles')
+        .post('/api/v2/articles')
         .set('token', Token)
         .send(newarticle)
         .end((err, res) => {
@@ -63,7 +63,7 @@ const runArticlesTests = () => {
       const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
       chai
         .request(app)
-        .post('/api/v1/articles')
+        .post('/api/v2/articles')
         .set('token', Token)
         .send(newarticle)
         .end((err, res) => {
@@ -81,7 +81,7 @@ const runArticlesTests = () => {
       const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
       chai
         .request(app)
-        .patch('/api/v1/articles/3')
+        .patch('/api/v2/articles/3')
         .set('token', Token)
         .send(newarticle)
         .end((err, res) => {
@@ -96,7 +96,7 @@ const runArticlesTests = () => {
       const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
       chai
         .request(app)
-        .patch('/api/v1/articles/3')
+        .patch('/api/v2/articles/3')
         .set('token', Token)
         .send(newarticle)
         .end((err, res) => {
@@ -111,7 +111,7 @@ const runArticlesTests = () => {
       const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
       chai
         .request(app)
-        .patch('/api/v1/articles/3')
+        .patch('/api/v2/articles/3')
         .set('token', Token)
         .send(newarticle)
         .end((err, res) => {
@@ -126,7 +126,7 @@ const runArticlesTests = () => {
       const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
       chai
         .request(app)
-        .patch('/api/v1/articles/1')
+        .patch('/api/v2/articles/1')
         .set('token', Token)
         .send(newarticle)
         .end((err, res) => {
@@ -142,7 +142,7 @@ const runArticlesTests = () => {
       const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
       chai
         .request(app)
-        .delete('/api/v1/articles/3')
+        .delete('/api/v2/articles/3')
         .set('token', Token)
         .end((err, res) => {
           expect(res.status).to.equal(200);
@@ -155,7 +155,7 @@ const runArticlesTests = () => {
       const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
       chai
         .request(app)
-        .delete('/api/v1/articles/200')
+        .delete('/api/v2/articles/200')
         .set('token', Token)
         .end((err, res) => {
           expect(res.status).to.equal(404);
@@ -168,7 +168,7 @@ const runArticlesTests = () => {
       const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
       chai
         .request(app)
-        .delete('/api/v1/articles/2')
+        .delete('/api/v2/articles/2')
         .set('token', Token)
         .end((err, res) => {
           expect(res.status).to.equal(200);
@@ -182,7 +182,7 @@ const runArticlesTests = () => {
       const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
       chai
         .request(app)
-        .delete('/api/v1/articles/3')
+        .delete('/api/v2/articles/3')
         .set('token', Token)
         .end((err, res) => {
           expect(res.status).to.equal(404);
