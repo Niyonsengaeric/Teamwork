@@ -208,15 +208,17 @@ class articlescontrolllers {
     try {
       const data = [];
       let j = 0;
-
-      if (articles.length === 0) {
-        return response.response(res, 404, 'error', 'no article Registered yet  ', true);
-      }
-      for (let i = articles.length - 1; i >= 0; i -= 1) {
-        data[j] = articles[i];
-        j += 1;
-      }
-      return response.response(res, 200, 'List of Articles', data, false);
+      await client.query('SELECT article_id as "articleId",created_on as "createdOn", title,author_name as "authorName",article FROM articles', (err, result) => {
+        if (result.rows.length <= 0) {
+          return response.response(res, 404, 'error', 'no article registered yet  ', true);
+        }
+        for (let i = result.rows.length - 1; i >= 0; i -= 1) {
+          data[j] = result.rows[i];
+          j += 1;
+        }
+        return response.response(res, 200, 'List of Articles', data, false);
+      });
+      return (data);
     } catch (error) {
       return error;
     }
