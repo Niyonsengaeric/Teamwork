@@ -20,7 +20,7 @@ class articlescontrolllers {
       if (error) { return response.response(res, 422, 'error', `${error.details[0].message}`, true); }
       const { title, article } = req.body;
       const { id, isAdmin } = req.user;
-      if (isAdmin) { response.response(res, 403, 'error', 'not allowed for Administrator to create Articles', true); } else {
+      if (isAdmin) { response.response(res, 403, 'error', 'Not allowed for an administrator to create an articles', true); } else {
         const getuserinfo = await client.query('SELECT * FROM users WHERE id=$1', [
           id,
         ]);
@@ -68,7 +68,7 @@ class articlescontrolllers {
       const { title, article } = req.body;
       const { id } = req.params;
       if (isNaN(id)) {
-        return response.response(res, 400, 'error', 'articleId must be an integer', true);
+        return response.response(res, 400, 'error', 'ArticleId must be an integer', true);
       }
 
       const checkArticleExisting = await client.query(
@@ -97,9 +97,9 @@ class articlescontrolllers {
             articleId, createdOn, title, authorId, authorName, article,
           };
 
-          return response.response(res, 200, 'article successfully edited”', data, false);
+          return response.response(res, 200, 'Article successfully edited”', data, false);
         }
-      } else { response.response(res, 404, 'error', 'No article Found', true); }
+      } else { response.response(res, 404, 'error', 'No article found', true); }
 
 
       return (articles);
@@ -114,7 +114,7 @@ class articlescontrolllers {
       const { id } = req.params;
 
       if (isNaN(id)) {
-        return response.response(res, 400, 'error', 'request parameter must be an integer', true);
+        return response.response(res, 400, 'error', 'You request parameter must be an integer', true);
       }
 
       const findArticleOwner = await client.query(
@@ -145,15 +145,15 @@ class articlescontrolllers {
           ]);
 
 
-          response.response(res, 200, 'article successfully deleted');
-        } else { return response.response(res, 404, 'error', 'article Not Found  ', true); }
+          response.response(res, 200, 'Article successfully deleted');
+        } else { return response.response(res, 404, 'error', 'Article not found  ', true); }
       } else if (findArticleOwner.rows.length > 0) {
         client.query('DELETE FROM articles WHERE article_id=$1', [
           parseInt(id, 10),
         ]);
-        response.response(res, 200, 'article successfully deleted');
+        response.response(res, 200, 'Article successfully deleted');
       } else {
-        return response.response(res, 404, 'error', 'article Not Found  ', true);
+        return response.response(res, 404, 'error', 'Article not found  ', true);
       }
       return (articles);
     } catch (error) {
@@ -173,7 +173,7 @@ class articlescontrolllers {
       const { comment } = req.body;
 
       if (isNaN(id)) {
-        return response.response(res, 400, 'error', 'request parameter must be an integer', true);
+        return response.response(res, 400, 'error', 'Your request parameter must be an integer', true);
       }
 
       if (isAdmin) {
@@ -193,9 +193,9 @@ class articlescontrolllers {
           const data = {
             createdOn, title, article, comment,
           };
-          response.response(res, 201, 'comment Added successfully', data, false);
+          response.response(res, 201, 'Comment added successfully', data, false);
         } else {
-          return response.response(res, 404, 'error', 'article Not Found  ', true);
+          return response.response(res, 404, 'error', 'Article Not Found  ', true);
         }
       }
       return (articles);
@@ -208,15 +208,17 @@ class articlescontrolllers {
     try {
       const data = [];
       let j = 0;
-
-      if (articles.length === 0) {
-        return response.response(res, 404, 'error', 'no article Registered yet  ', true);
-      }
-      for (let i = articles.length - 1; i >= 0; i -= 1) {
-        data[j] = articles[i];
-        j += 1;
-      }
-      return response.response(res, 200, 'List of Articles', data, false);
+      await client.query('SELECT article_id as "articleId",created_on as "createdOn", title,author_name as "authorName",article FROM articles', (err, result) => {
+        if (result.rows.length <= 0) {
+          return response.response(res, 404, 'error', 'No article registered yet  ', true);
+        }
+        for (let i = result.rows.length - 1; i >= 0; i -= 1) {
+          data[j] = result.rows[i];
+          j += 1;
+        }
+        return response.response(res, 200, 'List of articles', data, false);
+      });
+      return (data);
     } catch (error) {
       return error;
     }
@@ -245,7 +247,7 @@ class articlescontrolllers {
           comments: getcomments,
         };
         response.response(res, 200, 'Article successfully retrieved', data, false);
-      } else { return response.response(res, 404, 'error', 'article Not Found  ', true); }
+      } else { return response.response(res, 404, 'error', 'Article not Found  ', true); }
       return (findArticle);
     } catch (error) {
       return error;
@@ -259,11 +261,11 @@ class articlescontrolllers {
 
         const checktaget = articles.filter((regArticles) => regArticles.article.includes(`${article.trim()}`));
         if (checktaget.length > 0) {
-          response.response(res, 200, 'Article Found', checktaget, false);
+          response.response(res, 200, 'Article found', checktaget, false);
         } else {
           return response.response(res, 404, 'error', `${article} don't match with any article`, true);
         }
-      } else { return response.response(res, 405, 'error', 'please enter the tag', true); }
+      } else { return response.response(res, 405, 'error', 'Please enter the tag', true); }
       return (articles);
     } catch (error) {
       return error;

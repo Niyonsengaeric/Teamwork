@@ -62,7 +62,7 @@ class usersController {
       return response.response(
         res,
         201,
-        'user registered successfully',
+        'User registered successfully',
         data,
         false,
       );
