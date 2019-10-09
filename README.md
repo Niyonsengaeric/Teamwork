@@ -79,7 +79,7 @@ Goal of Application this application is to facilitate more interaction between c
 
 `- GET /articles/<articleId> - Employees can view a specific article.`
 
-`- GET /articles?articles=<:desired-category> - Employees can view all articles that belong to a category (tag).`
+`- GET /articles?tag=<:desired-category> - Employees can view all articles that belong to a category (tag).`
 
 `- POST /articles/flag/<articleId> - Employees can flag an article as inappropriate.`
 

@@ -293,5 +293,71 @@ const runArticlesTests = () => {
         });
     });
   });
+  describe('filter article (get)', () => {
+    it('It should return 200 when a desired word matched', (done) => {
+      const Signed = mockData.user4;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .get('/api/v2/articles?tag=mindset')
+        .set('token', Token)
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          done();
+        });
+    });
+
+    it('It should return 400 if there is no tag entered  ', (done) => {
+      const Signed = mockData.user4;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .get('/api/v2/articles?')
+        .set('token', Token)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          done();
+        });
+    });
+
+    it('It should return 404 when a desired word is not matched  with any article ', (done) => {
+      const Signed = mockData.user4;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .get('/api/v2/articles?tag=makdakdkjd')
+        .set('token', Token)
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          done();
+        });
+    });
+
+    it('It should return 200 when the article is deleted  ', (done) => {
+      const Signed = mockData.guest;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .delete('/api/v2/articles/1')
+        .set('token', Token)
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          done();
+        });
+    });
+
+    it('It should return 404 there is no registered articles to be Displayed  ', (done) => {
+      const Signed = mockData.Adminuser;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .get('/api/v2/feeds')
+        .set('token', Token)
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          done();
+        });
+    });
+  });
 };
 module.exports = runArticlesTests;

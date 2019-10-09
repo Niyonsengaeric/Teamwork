@@ -2,8 +2,6 @@ import moment from 'moment';
 import { Client } from 'pg';
 import validate from '../middlewares/validateArticles';
 import validateComment from '../middlewares/validatecomment';
-import articles from '../models/articlesModels';
-import comments from '../models/commentsModels';
 import response from '../helpers/response';
 
 const { DATABASE_URL } = process.env;
@@ -263,17 +261,20 @@ class articlescontrolllers {
 
   static async filterArticle(req, res) {
     try {
-      if (req.query.articles) {
-        const { articles: article } = req.query;
+      if (req.query.tag) {
+        const { tag } = req.query;
 
-        const checktaget = articles.filter((regArticles) => regArticles.article.includes(`${article.trim()}`));
-        if (checktaget.length > 0) {
-          response.response(res, 200, 'Article found', checktaget, false);
+        const checkTag = await client.query(
+          'SELECT article_id as "articleId",created_on as "createdOn",title,author_id as "authorId",author_name as "authorName",article FROM articles WHERE article LIKE $1',
+          [`%${tag}%`],
+        );
+
+        if (checkTag.rows.length > 0) {
+          response.response(res, 200, 'Search details', checkTag.rows, false);
         } else {
-          return response.response(res, 404, 'error', `${article} don't match with any article`, true);
+          return response.response(res, 404, 'error', `${tag} does not match with any article`, true);
         }
-      } else { return response.response(res, 405, 'error', 'Please enter the tag', true); }
-      return (articles);
+      } else { return response.response(res, 400, 'error', 'Please enter the tag', true); }
     } catch (error) {
       return error;
     }
