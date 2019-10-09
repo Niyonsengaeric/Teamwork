@@ -71,6 +71,21 @@ const runFlagsTests = () => {
         });
     });
 
+    it('It should return 400 when the request parameter is not an integer ', (done) => {
+      const Signed = mockData.user2;
+      const reason = mockData.flagReason;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .post('/api/v2/articles/wwe/flag')
+        .set('token', Token)
+        .send(reason)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          done();
+        });
+    });
+
     it('It should return 409 when the article is arleady flagged with the same reason ', (done) => {
       const Signed = mockData.user2;
       const reason = mockData.flagReason;
@@ -146,6 +161,22 @@ const runFlagsTests = () => {
         .send(reason)
         .end((err, res) => {
           expect(res.status).to.equal(201);
+          done();
+        });
+    });
+
+
+    it('It should return 400 when the request parameter is not an integer ', (done) => {
+      const Signed = mockData.user4;
+      const reason = mockData.flagReason2;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .post('/api/v2/comments/wwe/flag')
+        .set('token', Token)
+        .send(reason)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
           done();
         });
     });
