@@ -81,9 +81,9 @@ Goal of Application this application is to facilitate more interaction between c
 
 `- GET /articles?tag=<:desired-category> - Employees can view all articles that belong to a category (tag).`
 
-`- POST /articles/flag/<articleId> - Employees can flag an article as inappropriate.`
+`- POST /articles/<articleId>/flag - Employees can flag an article as inappropriate.`
 
-`- POST /comments/flag/<commentId> - Employees can flag a comment as inappropriate.`
+`- POST /comments/<commentId>/flag - Employees can flag a comment as inappropriate.`
 
 `- GET /flags - Admin can view all flags`
 

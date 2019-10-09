@@ -1,50 +1,72 @@
+import { Client } from 'pg';
 import flags from '../models/flagsModels';
-import articles from '../models/articlesModels';
 import validateArticle from '../middlewares/validateflag';
 import response from '../helpers/response';
 import comments from '../models/commentsModels';
 
 
+const { DATABASE_URL } = process.env;
+const connectionString = DATABASE_URL;
+const client = new Client({
+  connectionString,
+});
+client.connect();
+
+
 class flagsController {
   static async flagArticle(req, res) {
     try {
+      const { id } = req.params;
       const { id: userId } = req.user;
       const { error } = validateArticle(req.body);
       if (error) { return response.response(res, 422, 'error', `${error.details[0].message}`, true); }
-
-      const { id } = req.params;
-      const findowner = await articles.filter(
-        (article) => article.articleId === parseInt(id, 10) && article.authorId === userId,
-      );
-      if (findowner.length > 0) {
-        return response.response(res, 403, 'error', 'you can not flag your own article  ', true);
+      if (isNaN(id)) {
+        return response.response(res, 400, 'error', 'Your request parameter must be an integer', true);
       }
 
-      const findarticle = await articles.filter(
-        (article) => article.articleId === parseInt(id, 10),
+      const findArticleOwner = await client.query(
+        'SELECT * FROM articles WHERE article_id=$1 AND author_id=$2',
+        [parseInt(id, 10), userId],
       );
 
-      if (findarticle.length > 0) {
-        const { article } = findarticle[0];
+      if (findArticleOwner.rows.length > 0) {
+        return response.response(res, 403, 'error', 'You can not flag your own article  ', true);
+      }
+
+      const findarticleinfo = await client.query(
+        'SELECT * FROM articles WHERE article_id=$1',
+        [parseInt(id, 10)],
+      );
+
+      if (findarticleinfo.rows.length > 0) {
+        const { article } = findarticleinfo.rows[0];
         const { reason: motif } = req.body;
 
-        const arledyFlaged = await flags.filter(
-          (flag) => flag.flagedId === parseInt(id, 10) && flag.reason === motif,
+        const alreadyFlaged = await client.query(
+          'SELECT * FROM flags WHERE flaged_id=$1 AND reason=$2',
+          [parseInt(id, 10), motif],
         );
-        if (arledyFlaged.length > 0) {
-          return response.response(res, 409, 'error', 'article arleady flagged with the same reason  ', true);
+
+        if (alreadyFlaged.rows.length > 0) {
+          return response.response(res, 409, 'error', 'Article arleady flagged with the same reason  ', true);
         }
+
+        client.query('INSERT INTO flags(type, flaged_id, content, reason) VALUES($1,$2,$3,$4)', [
+          'article',
+          parseInt(id, 10),
+          article,
+          motif,
+        ]);
+
         const data = {
-          flagId: flags.length + 1,
           type: 'article',
-          flagedId: parseInt(id, 10),
           content: article,
           reason: motif,
         };
-        flags.push(data);
-        response.response(res, 201, 'report send successfully', data, false);
-      } else { return response.response(res, 404, 'error', 'article Not Found  ', true); }
-      return (findarticle);
+
+        response.response(res, 201, 'Report send successfully', data, false);
+      } else { return response.response(res, 404, 'error', 'Article Not Found  ', true); }
+      return (findarticleinfo);
     } catch (error) {
       return error;
     }
@@ -52,43 +74,54 @@ class flagsController {
 
   static async flagComment(req, res) {
     try {
+      const { id } = req.params;
       const { id: userId } = req.user;
       const { error } = validateArticle(req.body);
       if (error) { return response.response(res, 422, 'error', `${error.details[0].message}`, true); }
 
-      const { id } = req.params;
 
-      const findowner = await comments.filter(
-        (comment) => comment.commentId === parseInt(id, 10) && comment.authorId === userId,
-      );
-      if (findowner.length > 0) {
-        return response.response(res, 403, 'error', 'you can not flag your comment  ', true);
+      if (isNaN(id)) {
+        return response.response(res, 400, 'error', 'Request parameter must be an integer', true);
       }
-
-      const findcomment = await comments.filter(
-        (comment) => comment.commentId === parseInt(id, 10),
+      const findCommentOwner = await client.query(
+        'SELECT * FROM comments WHERE comment_id=$1 AND author_id=$2',
+        [parseInt(id, 10), userId],
+      );
+      if (findCommentOwner.rows.length > 0) {
+        return response.response(res, 403, 'error', 'You can not flag your own article  ', true);
+      }
+      const findcommentinfo = await client.query(
+        'SELECT * FROM comments WHERE comment_id=$1',
+        [parseInt(id, 10)],
       );
 
-      if (findcomment.length > 0) {
-        const { comment } = findcomment[0];
+      if (findcommentinfo.rows.length > 0) {
+        const { comment } = findcommentinfo.rows[0];
         const { reason: motif } = req.body;
-        const arledyFlaged = await flags.filter(
-          (flag) => flag.flagedId === parseInt(id, 10) && flag.reason === motif,
+
+        const alreadyFlaged = await client.query(
+          'SELECT * FROM flags WHERE flaged_id=$1 AND reason=$2',
+          [parseInt(id, 10), motif],
         );
-        if (arledyFlaged.length > 0) {
+
+        if (alreadyFlaged.rows.length > 0) {
           return response.response(res, 409, 'error', 'Comment arleady flagged with the same reason  ', true);
         }
+        client.query('INSERT INTO flags(type, flaged_id, content, reason) VALUES($1,$2,$3,$4)', [
+          'comment',
+          parseInt(id, 10),
+          comment,
+          motif,
+        ]);
         const data = {
-          flagId: flags.length + 1,
           type: 'comment',
-          flagedId: parseInt(id, 10),
           content: comment,
           reason: motif,
         };
         flags.push(data);
-        response.response(res, 201, 'report send successfully', data, false);
-      } else { return response.response(res, 404, 'error', 'comment Not Found  ', true); }
-      return (findcomment);
+        response.response(res, 201, 'Report send successfully', data, false);
+      } else { return response.response(res, 404, 'error', 'Comment Not Found  ', true); }
+      return (findcommentinfo);
     } catch (error) {
       return error;
     }

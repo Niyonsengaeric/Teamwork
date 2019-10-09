@@ -20,8 +20,8 @@ const {
   flagArticle, flagComment, getFlags, deleteComment,
 } = flagsController;
 
-router.post('/articles/flag/:id', authChecker.auth, flagArticle);
-router.post('/comments/flag/:id', authChecker.auth, flagComment);
+router.post('/articles/:id/flag', authChecker.auth, flagArticle);
+router.post('/comments/:id/flag', authChecker.auth, flagComment);
 router.get('/flags', [authChecker.auth, adminChecker.adminChecker], getFlags);
 
 router.post('/articles/:id/comments', authChecker.auth, commentArticle);
