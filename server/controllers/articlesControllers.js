@@ -2,7 +2,6 @@ import moment from 'moment';
 import { Client } from 'pg';
 import validate from '../middlewares/validateArticles';
 import validateComment from '../middlewares/validatecomment';
-// import articles from '../models/articlesModels';
 import response from '../helpers/response';
 
 const { DATABASE_URL } = process.env;
