@@ -100,7 +100,7 @@ class articlescontrolllers {
       } else { response.response(res, 404, 'error', 'No article found', true); }
 
 
-      return (articles);
+      return (checkArticleExisting);
     } catch (error) {
       return error;
     }
@@ -124,7 +124,6 @@ class articlescontrolllers {
         'SELECT * FROM flags WHERE flaged_id=$1 AND type=$2',
         [parseInt(id, 10), 'article'],
       );
-
       if (isAdmin) {
         const findArticle = await client.query(
           'SELECT * FROM articles WHERE article_id=$1',
@@ -153,7 +152,6 @@ class articlescontrolllers {
       } else {
         return response.response(res, 404, 'error', 'Article not found  ', true);
       }
-      return (articles);
     } catch (error) {
       return error;
     }
@@ -196,7 +194,6 @@ class articlescontrolllers {
           return response.response(res, 404, 'error', 'Article Not Found  ', true);
         }
       }
-      return (articles);
     } catch (error) {
       return error;
     }
