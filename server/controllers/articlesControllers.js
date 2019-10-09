@@ -273,7 +273,7 @@ class articlescontrolllers {
         if (checkTag.rows.length > 0) {
           response.response(res, 200, 'Search details', checkTag.rows, false);
         } else {
-          return response.response(res, 404, 'error', `${tag} don't match with any article`, true);
+          return response.response(res, 404, 'error', `${tag} does not match with any article`, true);
         }
       } else { return response.response(res, 400, 'error', 'Please enter the tag', true); }
     } catch (error) {
