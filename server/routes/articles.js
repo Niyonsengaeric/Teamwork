@@ -3,14 +3,15 @@ import authChecker from '../middlewares/checkAuth';
 import articlesController from '../controllers/articlesControllers';
 import flagsController from '../controllers/flagsControllers';
 import adminChecker from '../middlewares/checkAdmin';
+import validateArticle from '../middlewares/validateArticles';
 
 const {
   newArticle, editArticle, deleteArticle, commentArticle,
   getArticles, specificArticle, filterArticle,
 } = articlesController;
 const router = express.Router();
-router.post('/articles', authChecker.auth, newArticle);
-router.patch('/articles/:id', authChecker.auth, editArticle);
+router.post('/articles', authChecker.auth, validateArticle, newArticle);
+router.patch('/articles/:id', authChecker.auth, validateArticle, editArticle);
 router.delete('/articles/:id', authChecker.auth, deleteArticle);
 router.get('/feeds', authChecker.auth, getArticles);
 router.get('/articles/:id', authChecker.auth, specificArticle);
