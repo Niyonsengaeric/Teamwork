@@ -128,11 +128,7 @@ class flagsController {
   }
 
   static async getFlags(req, res) {
-    try {
-      return response.response(res, 200, 'Lists Of flagged items', flags, false);
-    } catch (error) {
-      return error;
-    }
+    client.query('SELECT flag_id as "flagId",type, flaged_id as "itemId",content, reason FROM flags', (err, result) => response.response(res, 200, 'List Of flagged items', result.rows, false));
   }
 
   static async deleteComment(req, res) {

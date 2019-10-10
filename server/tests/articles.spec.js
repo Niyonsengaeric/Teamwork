@@ -104,6 +104,20 @@ const runArticlesTests = () => {
           done();
         });
     });
+    it('It should return 400 when the request parameter is not an integer  ', (done) => {
+      const Signed = mockData.user4;
+      const newarticle = mockData.article2;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .patch('/api/v2/articles/wwe')
+        .set('token', Token)
+        .send(newarticle)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          done();
+        });
+    });
 
     it('It should return 409 if the article is already updated  ', (done) => {
       const Signed = mockData.user4;
@@ -146,6 +160,18 @@ const runArticlesTests = () => {
         .set('token', Token)
         .end((err, res) => {
           expect(res.status).to.equal(200);
+          done();
+        });
+    });
+    it('It should return 400 when the request parameter is not an integer  ', (done) => {
+      const Signed = mockData.user4;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .delete('/api/v2/articles/wwe')
+        .set('token', Token)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
           done();
         });
     });
@@ -221,6 +247,22 @@ const runArticlesTests = () => {
           done();
         });
     });
+    it('It should return 400 when the request parameter is not an integer  ', (done) => {
+      const Signed = mockData.user4;
+      const commentArticle = {
+        comment: 'interesting !!!',
+      };
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .post('/api/v2/articles/wwe/comments')
+        .set('token', Token)
+        .send(commentArticle)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          done();
+        });
+    });
 
     it('It should return 404 when a user try to added a comment to a non existing article ', (done) => {
       const Signed = mockData.user4;
@@ -276,6 +318,18 @@ const runArticlesTests = () => {
         .set('token', Token)
         .end((err, res) => {
           expect(res.status).to.equal(200);
+          done();
+        });
+    });
+    it('It should return 400 when the request parameter is not an integer ', (done) => {
+      const Signed = mockData.user4;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .get('/api/v2/articles/wwe')
+        .set('token', Token)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
           done();
         });
     });
