@@ -8,7 +8,7 @@ Goal of Application this application is to facilitate more interaction between c
 
 # Badges.
 
-[![Build Status](https://travis-ci.org/Niyonsengaeric/Teamwork.svg?branch=develop)](https://coveralls.io/github/Niyonsengaeric/Teamwork?branch=develop) [![Maintainability](https://api.codeclimate.com/v1/badges/ce7ee7f40189a9a1d3ca/maintainability)](https://codeclimate.com/github/Niyonsengaeric/Teamwork/maintainability)
+[![Build Status](https://travis-ci.org/Niyonsengaeric/Teamwork.svg?branch=develop)](https://travis-ci.org/Niyonsengaeric/Teamwork) [![Coverage Status](https://coveralls.io/repos/github/Niyonsengaeric/Teamwork/badge.svg?branch=develop)](https://coveralls.io/github/Niyonsengaeric/Teamwork?branch=develop) [![Maintainability](https://api.codeclimate.com/v1/badges/ce7ee7f40189a9a1d3ca/maintainability)](https://codeclimate.com/github/Niyonsengaeric/Teamwork/maintainability)
 
 ## Required Features.
 
