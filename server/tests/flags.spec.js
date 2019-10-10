@@ -240,7 +240,7 @@ const runFlagsTests = () => {
     });
   });
 
-  describe('Get all flags (post)', () => {
+  describe('Get all flags ', () => {
     it('It should return 200 when all article are succesfully Displayed // for admin only', (done) => {
       const Signed = mockData.Adminuser;
       const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
@@ -263,6 +263,111 @@ const runFlagsTests = () => {
         .set('token', Token)
         .end((err, res) => {
           expect(res.status).to.equal(403);
+          done();
+        });
+    });
+  });
+  describe('Delete a flaged comment ', () => {
+    it('It should return 201 when the comment is added to an article  ', (done) => {
+      const Signed = mockData.user4;
+      const commentArticle = {
+        comment: 'interesting !!!',
+      };
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .post('/api/v2/articles/4/comments')
+        .set('token', Token)
+        .send(commentArticle)
+        .end((err, res) => {
+          expect(res.status).to.equal(201);
+          done();
+        });
+    });
+
+    it('It should return 200 when a flagged comment is deleted', (done) => {
+      const Signed = mockData.Adminuser;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .delete('/api/v2/comments/4')
+        .set('token', Token)
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          done();
+        });
+    });
+
+    it('It should return 400 when a flagged comment is deleted', (done) => {
+      const Signed = mockData.Adminuser;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .delete('/api/v2/comments/wwe')
+        .set('token', Token)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          done();
+        });
+    });
+
+    it('It should return 403 when admin try to delete non flaged comment', (done) => {
+      const Signed = mockData.Adminuser;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .delete('/api/v2/comments/5')
+        .set('token', Token)
+        .end((err, res) => {
+          expect(res.status).to.equal(403);
+          done();
+        });
+    });
+
+    it('It should return 404 when flagged comment is not found', (done) => {
+      const Signed = mockData.Adminuser;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .delete('/api/v2/comments/29345')
+        .set('token', Token)
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          done();
+        });
+    });
+
+    it('It should return 403 when normal user is trying to delete a comment', (done) => {
+      const Signed = mockData.user4;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .delete('/api/v2/comments/2')
+        .set('token', Token)
+        .end((err, res) => {
+          expect(res.status).to.equal(403);
+          done();
+        });
+    });
+
+    it('It should return 401 for when no token provided', (done) => {
+      chai
+        .request(app)
+        .delete('/api/v2/comments/2')
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          done();
+        });
+    });
+
+    it('It should return 401 for invalid token', (done) => {
+      const Token = 'token';
+      chai
+        .request(app)
+        .delete('/api/v2/comments/2')
+        .set('token', Token)
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
           done();
         });
     });

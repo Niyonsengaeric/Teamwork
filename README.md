@@ -101,9 +101,13 @@ https://niyonsengaeric.github.io/Teamwork/UI/index.html
 
 https://www.pivotaltracker.com/n/projects/2396812
 
-### 3.API DOCUMENTATON.
+### 3.API V1 DOCUMENTATON.
 
 https://documenter.getpostman.com/view/8164226/SVmySxmV
+
+### 4.API V2 DOCUMENTATON.
+
+https://documenter.getpostman.com/view/8164226/SVtSWpU6
 
 ## How it Works.
 

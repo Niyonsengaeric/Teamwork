@@ -83,7 +83,7 @@ const mockDate = {
   },
   article1: {
     title: 'Bana Bato',
-    article: 'Muze tujye gusenga,nimuze',
+    article: 'GOD is good all the time',
   },
   article2: {
     title: 'FootBall Life',

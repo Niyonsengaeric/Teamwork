@@ -134,21 +134,30 @@ class flagsController {
   static async deleteComment(req, res) {
     try {
       const { id } = req.params;
-      const findComment = await comments.findIndex(
-        (findComments) => findComments.commentId === parseInt(id, 10),
+      if (isNaN(id)) {
+        return response.response(res, 400, 'error', 'You request parameter must be an integer', true);
+      }
+      const commentFlaged = await client.query(
+        'SELECT * FROM flags WHERE flaged_id=$1 AND type=$2',
+        [parseInt(id, 10), 'comment'],
       );
-      const findflag = await flags.findIndex(
-        (findflags) => findflags.flagedId === parseInt(id, 10) && findflags.type === 'comment',
+      const findComment = await client.query(
+        'SELECT * FROM comments WHERE comment_id=$1',
+        [parseInt(id, 10)],
       );
 
-      if (findComment !== -1) {
-        if (findflag === -1) {
-          return response.response(res, 403, 'error', 'comment not flagged  ', true);
+      if (findComment.rows.length > 0) {
+        if (commentFlaged.rows.length <= 0) {
+          return response.response(res, 403, 'error', 'Comment not flagged  ', true);
         }
-        comments.splice(findComment, 1);
-        flags.splice(findflag, 1);
-        response.response(res, 200, 'comment successfully deleted');
-      } else { return response.response(res, 404, 'error', 'comment Not Found  ', true); }
+        client.query('DELETE FROM comments WHERE comment_id=$1', [
+          parseInt(id, 10),
+        ]);
+        client.query('DELETE FROM flags WHERE flaged_id=$1 AND type=$2', [
+          parseInt(id, 10), 'comment',
+        ]);
+        response.response(res, 200, 'Comment successfully deleted');
+      } else { return response.response(res, 404, 'error', 'Comment Not Found  ', true); }
       return (findComment);
     } catch (error) {
       return error;
