@@ -1,6 +1,5 @@
 import moment from 'moment';
 import { Client } from 'pg';
-import validateComment from '../middlewares/validatecomment';
 import response from '../helpers/response';
 
 const { DATABASE_URL } = process.env;
@@ -154,11 +153,6 @@ class articlescontrolllers {
 
   static async commentArticle(req, res) {
     try {
-      const { error } = validateComment(req.body);
-      if (error) {
-        return response.response(res, 422, 'error', `${error.details[0].message}`, true);
-      }
-
       const { id: userId, isAdmin } = req.user;
       const { id } = req.params;
       const { comment } = req.body;

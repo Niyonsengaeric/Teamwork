@@ -1,9 +1,5 @@
 import { Client } from 'pg';
-import flags from '../models/flagsModels';
-import validateArticle from '../middlewares/validateflag';
 import response from '../helpers/response';
-import comments from '../models/commentsModels';
-
 
 const { DATABASE_URL } = process.env;
 const connectionString = DATABASE_URL;
@@ -18,8 +14,6 @@ class flagsController {
     try {
       const { id } = req.params;
       const { id: userId } = req.user;
-      const { error } = validateArticle(req.body);
-      if (error) { return response.response(res, 422, 'error', `${error.details[0].message}`, true); }
       if (isNaN(id)) {
         return response.response(res, 400, 'error', 'Your request parameter must be an integer', true);
       }
@@ -76,9 +70,6 @@ class flagsController {
     try {
       const { id } = req.params;
       const { id: userId } = req.user;
-      const { error } = validateArticle(req.body);
-      if (error) { return response.response(res, 422, 'error', `${error.details[0].message}`, true); }
-
 
       if (isNaN(id)) {
         return response.response(res, 400, 'error', 'Request parameter must be an integer', true);
