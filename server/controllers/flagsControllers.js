@@ -118,7 +118,6 @@ class flagsController {
           content: comment,
           reason: motif,
         };
-        flags.push(data);
         response.response(res, 201, 'Report send successfully', data, false);
       } else { return response.response(res, 404, 'error', 'Comment Not Found  ', true); }
       return (findcommentinfo);
