@@ -1,7 +1,5 @@
 import moment from 'moment';
 import { Client } from 'pg';
-import validate from '../middlewares/validateArticles';
-import validateComment from '../middlewares/validatecomment';
 import response from '../helpers/response';
 
 const { DATABASE_URL } = process.env;
@@ -14,8 +12,6 @@ client.connect();
 class articlescontrolllers {
   static async newArticle(req, res) {
     try {
-      const { error } = validate(req.body);
-      if (error) { return response.response(res, 422, 'error', `${error.details[0].message}`, true); }
       const { title, article } = req.body;
       const { id, isAdmin } = req.user;
       if (isAdmin) { response.response(res, 403, 'error', 'Not allowed for an administrator to create an articles', true); } else {
@@ -60,8 +56,6 @@ class articlescontrolllers {
 
   static async editArticle(req, res) {
     try {
-      const { error } = validate(req.body);
-      if (error) { return response.response(res, 422, 'error', `${error.details[0].message}`, true); }
       const { id: userId } = req.user;
       const { title, article } = req.body;
       const { id } = req.params;
@@ -159,11 +153,6 @@ class articlescontrolllers {
 
   static async commentArticle(req, res) {
     try {
-      const { error } = validateComment(req.body);
-      if (error) {
-        return response.response(res, 422, 'error', `${error.details[0].message}`, true);
-      }
-
       const { id: userId, isAdmin } = req.user;
       const { id } = req.params;
       const { comment } = req.body;
@@ -263,7 +252,7 @@ class articlescontrolllers {
 
         const checkTag = await client.query(
           'SELECT article_id as "articleId",created_on as "createdOn",title,author_id as "authorId",author_name as "authorName",article FROM articles WHERE article LIKE $1',
-          [`%${tag}%`],
+          [`%${tag.trim()}%`],
         );
 
         if (checkTag.rows.length > 0) {

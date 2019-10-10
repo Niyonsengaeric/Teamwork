@@ -1,6 +1,7 @@
 import Joi from 'joi';
+import response from '../helpers/response';
 
-const validateArticle = (article) => {
+const validateArticle = (req, res, next) => {
   const schema = {
     title: Joi.string()
       .min(5)
@@ -11,7 +12,9 @@ const validateArticle = (article) => {
       .max(1024)
       .required(),
   };
-
-  return Joi.validate(article, schema);
+  const { error } = Joi.validate(req.body, schema);
+  if (error) { return response.response(res, 422, 'error', `${error.details[0].message}`, true); }
+  next();
 };
+
 export default validateArticle;

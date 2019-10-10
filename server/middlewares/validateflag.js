@@ -1,13 +1,15 @@
 import Joi from 'joi';
+import response from '../helpers/response';
 
-const validateArticle = (flag) => {
+const validateFlag = (req, res, next) => {
   const schema = {
     reason: Joi.string()
       .min(5)
       .max(120)
       .required(),
   };
-
-  return Joi.validate(flag, schema);
+  const { error } = Joi.validate(req.body, schema);
+  if (error) { return response.response(res, 422, 'error', `${error.details[0].message}`, true); }
+  next();
 };
-export default validateArticle;
+export default validateFlag;

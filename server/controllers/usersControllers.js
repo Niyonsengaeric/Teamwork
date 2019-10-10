@@ -16,18 +16,6 @@ client.connect();
 
 class usersController {
   static async regUser(req, res) {
-    const { error } = validateUser(req.body);
-
-    if (error) {
-      return response.response(
-        res,
-        422,
-        'error',
-        `${error.details[0].message}`,
-        true,
-      );
-    }
-
     const user = await client.query('SELECT * FROM users WHERE email=$1 ', [req.body.email.toLowerCase()]);
     if (user.rows.length > 0) {
       response.response(res, 409, 'error', 'User with that email already registered', true);
@@ -72,17 +60,6 @@ class usersController {
 
   static async loginUser(req, res) {
     const { password } = req.body;
-    const { error } = validateLogin(req.body);
-    if (error) {
-      return response.response(
-        res,
-        422,
-        'error',
-        `${error.details[0].message}`,
-        true,
-      );
-    }
-
     const userinformations = await client.query('SELECT * FROM users WHERE email=$1', [
       req.body.email.toLowerCase().trim(),
     ]);
