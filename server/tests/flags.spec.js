@@ -129,6 +129,19 @@ const runFlagsTests = () => {
           done();
         });
     });
+
+    it('It should return 403 when the article is not flagged   ', (done) => {
+      const Signed = mockData.Adminuser;
+      const Token = jwt.sign(Signed, process.env.JWT, { expiresIn: '24h' });
+      chai
+        .request(app)
+        .delete('/api/v2/articles/5')
+        .set('token', Token)
+        .end((err, res) => {
+          expect(res.status).to.equal(403);
+          done();
+        });
+    });
   });
 
   describe('Flag a Comment (post)', () => {
