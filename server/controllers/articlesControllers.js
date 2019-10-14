@@ -11,47 +11,43 @@ client.connect();
 
 class articlescontrolllers {
   static async newArticle(req, res) {
-    try {
-      const { title, article } = req.body;
-      const { id, isAdmin } = req.user;
-      if (isAdmin) { response.response(res, 403, 'error', 'Not allowed for an administrator to create an articles', true); } else {
-        const getuserinfo = await client.query('SELECT * FROM users WHERE id=$1', [
-          id,
-        ]);
-        const { id: author_id, first_name, last_name } = getuserinfo.rows[0];
+    const { title, article } = req.body;
+    const { id, isAdmin } = req.user;
+    if (isAdmin) { response.response(res, 403, 'error', 'Not allowed for an administrator to create an articles', true); } else {
+      const getuserinfo = await client.query('SELECT * FROM users WHERE id=$1', [
+        id,
+      ]);
+      const { id: author_id, first_name, last_name } = getuserinfo.rows[0];
 
-        const checkArticleExisting = await client.query(
+      const checkArticleExisting = await client.query(
+        'SELECT * FROM articles WHERE title=$1 AND author_id=$2',
+        [title, id],
+      );
+
+      if (checkArticleExisting.rows.length > 0) {
+        response.response(res, 409, 'error', ` Article arleady registered with An ID Of :  ${checkArticleExisting.rows[0].article_id} `, true);
+      } else {
+        const authorName = `${first_name} ${last_name}`;
+        client.query('INSERT INTO articles(created_on, title, author_id, author_name, article) VALUES($1,$2,$3,$4,$5)', [
+          moment().format(),
+          title,
+          author_id,
+          authorName,
+          article,
+        ]);
+        const getarticleinfo = await client.query(
           'SELECT * FROM articles WHERE title=$1 AND author_id=$2',
           [title, id],
         );
-
-        if (checkArticleExisting.rows.length > 0) {
-          response.response(res, 409, 'error', ` Article arleady registered with An ID Of :  ${checkArticleExisting.rows[0].article_id} `, true);
-        } else {
-          const authorName = `${first_name} ${last_name}`;
-          client.query('INSERT INTO articles(created_on, title, author_id, author_name, article) VALUES($1,$2,$3,$4,$5)', [
-            moment().format(),
-            title,
-            author_id,
-            authorName,
-            article,
-          ]);
-          const getarticleinfo = await client.query(
-            'SELECT * FROM articles WHERE title=$1 AND author_id=$2',
-            [title, id],
-          );
-          const { article_id: articleId, created_on: createdOn } = getarticleinfo.rows[0];
-          const data = {
-            articleId, createdOn, title, authorName, article,
-          };
-          response.response(res, 201, 'Article created successfully', data, false);
-        }
+        const { article_id: articleId, created_on: createdOn } = getarticleinfo.rows[0];
+        const data = {
+          articleId, createdOn, title, authorName, article,
+        };
+        response.response(res, 201, 'Article created successfully', data, false);
       }
-
-      return (article);
-    } catch (error) {
-      return error;
     }
+
+    return (article);
   }
 
   static async editArticle(req, res) {
@@ -59,9 +55,6 @@ class articlescontrolllers {
       const { id: userId } = req.user;
       const { title, article } = req.body;
       const { id } = req.params;
-      if (isNaN(id)) {
-        return response.response(res, 400, 'error', 'ArticleId must be an integer', true);
-      }
 
       const checkArticleExisting = await client.query(
         'SELECT * FROM articles WHERE title=$1 AND author_id=$2 AND article=$3',
@@ -96,7 +89,7 @@ class articlescontrolllers {
 
       return (checkArticleExisting);
     } catch (error) {
-      return error;
+      return response.response(res, 400, 'error', 'Please check your request parameter  ', true);
     }
   }
 
@@ -104,10 +97,6 @@ class articlescontrolllers {
     try {
       const { id: userId, isAdmin } = req.user;
       const { id } = req.params;
-
-      if (isNaN(id)) {
-        return response.response(res, 400, 'error', 'You request parameter must be an integer', true);
-      }
 
       const findArticleOwner = await client.query(
         'SELECT * FROM articles WHERE article_id=$1 AND author_id=$2',
@@ -147,7 +136,7 @@ class articlescontrolllers {
         return response.response(res, 404, 'error', 'Article not found  ', true);
       }
     } catch (error) {
-      return error;
+      return response.response(res, 400, 'error', 'Please check your request parameter ', true);
     }
   }
 
@@ -157,9 +146,6 @@ class articlescontrolllers {
       const { id } = req.params;
       const { comment } = req.body;
 
-      if (isNaN(id)) {
-        return response.response(res, 400, 'error', 'Your request parameter must be an integer', true);
-      }
 
       if (isAdmin) {
         response.response(res, 403, 'error', 'Not allowed for an administrator to comment on  articles', true);
@@ -184,37 +170,29 @@ class articlescontrolllers {
         }
       }
     } catch (error) {
-      return error;
+      return response.response(res, 400, 'error', 'Please check your request parameter ', true);
     }
   }
 
   static async getArticles(req, res) {
-    try {
-      const data = [];
-      let j = 0;
-      await client.query('SELECT article_id as "articleId",created_on as "createdOn", title,author_name as "authorName",article FROM articles', (err, result) => {
-        if (result.rows.length <= 0) {
-          return response.response(res, 404, 'error', 'No article registered yet  ', true);
-        }
-        for (let i = result.rows.length - 1; i >= 0; i -= 1) {
-          data[j] = result.rows[i];
-          j += 1;
-        }
-        return response.response(res, 200, 'List of articles', data, false);
-      });
-      return (data);
-    } catch (error) {
-      return error;
-    }
+    const data = [];
+    let j = 0;
+    await client.query('SELECT article_id as "articleId",created_on as "createdOn", title,author_name as "authorName",article FROM articles', (err, result) => {
+      if (result.rows.length <= 0) {
+        return response.response(res, 404, 'error', 'No article registered yet  ', true);
+      }
+      for (let i = result.rows.length - 1; i >= 0; i -= 1) {
+        data[j] = result.rows[i];
+        j += 1;
+      }
+      return response.response(res, 200, 'List of articles', data, false);
+    });
+    return (data);
   }
 
   static async specificArticle(req, res) {
     try {
       const { id } = req.params;
-
-      if (isNaN(id)) {
-        return response.response(res, 400, 'error', 'Your request parameter must be an integer', true);
-      }
       const findArticle = await client.query(
         'SELECT  article_id as "articleId",created_on as "createdOn", title,author_id as "authorId",author_name as "authorName", article FROM articles WHERE article_id=$1',
         [parseInt(id, 10)],
@@ -241,29 +219,25 @@ class articlescontrolllers {
       } else { return response.response(res, 404, 'error', 'Article not Found  ', true); }
       return (findArticle);
     } catch (error) {
-      return error;
+      return response.response(res, 400, 'error', 'Please check your request parameter ', true);
     }
   }
 
   static async filterArticle(req, res) {
-    try {
-      if (req.query.tag) {
-        const { tag } = req.query;
+    if (req.query.tag) {
+      const { tag } = req.query;
 
-        const checkTag = await client.query(
-          'SELECT article_id as "articleId",created_on as "createdOn",title,author_id as "authorId",author_name as "authorName",article FROM articles WHERE article LIKE $1',
-          [`%${tag.trim()}%`],
-        );
+      const checkTag = await client.query(
+        'SELECT article_id as "articleId",created_on as "createdOn",title,author_id as "authorId",author_name as "authorName",article FROM articles WHERE article LIKE $1',
+        [`%${tag.trim()}%`],
+      );
 
-        if (checkTag.rows.length > 0) {
-          response.response(res, 200, 'Search details', checkTag.rows, false);
-        } else {
-          return response.response(res, 404, 'error', `${tag} does not match with any article`, true);
-        }
-      } else { return response.response(res, 400, 'error', 'Please enter the tag', true); }
-    } catch (error) {
-      return error;
-    }
+      if (checkTag.rows.length > 0) {
+        response.response(res, 200, 'Search details', checkTag.rows, false);
+      } else {
+        return response.response(res, 404, 'error', `${tag} does not match with any article`, true);
+      }
+    } else { return response.response(res, 400, 'error', 'Please enter the tag', true); }
   }
 }
 

@@ -14,9 +14,6 @@ class flagsController {
     try {
       const { id } = req.params;
       const { id: userId } = req.user;
-      if (isNaN(id)) {
-        return response.response(res, 400, 'error', 'Your request parameter must be an integer', true);
-      }
 
       const findArticleOwner = await client.query(
         'SELECT * FROM articles WHERE article_id=$1 AND author_id=$2',
@@ -62,7 +59,7 @@ class flagsController {
       } else { return response.response(res, 404, 'error', 'Article Not Found  ', true); }
       return (findarticleinfo);
     } catch (error) {
-      return error;
+      return response.response(res, 400, 'error', 'Please check your request parameter ', true);
     }
   }
 
@@ -70,10 +67,6 @@ class flagsController {
     try {
       const { id } = req.params;
       const { id: userId } = req.user;
-
-      if (isNaN(id)) {
-        return response.response(res, 400, 'error', 'Request parameter must be an integer', true);
-      }
       const findCommentOwner = await client.query(
         'SELECT * FROM comments WHERE comment_id=$1 AND author_id=$2',
         [parseInt(id, 10), userId],
@@ -113,7 +106,7 @@ class flagsController {
       } else { return response.response(res, 404, 'error', 'Comment Not Found  ', true); }
       return (findcommentinfo);
     } catch (error) {
-      return error;
+      return response.response(res, 400, 'error', 'Please check your request parameter ', true);
     }
   }
 
@@ -124,9 +117,6 @@ class flagsController {
   static async deleteComment(req, res) {
     try {
       const { id } = req.params;
-      if (isNaN(id)) {
-        return response.response(res, 400, 'error', 'You request parameter must be an integer', true);
-      }
       const commentFlaged = await client.query(
         'SELECT * FROM flags WHERE flaged_id=$1 AND type=$2',
         [parseInt(id, 10), 'comment'],
@@ -150,7 +140,7 @@ class flagsController {
       } else { return response.response(res, 404, 'error', 'Comment Not Found  ', true); }
       return (findComment);
     } catch (error) {
-      return error;
+      return response.response(res, 400, 'error', 'Please check your request parameter ', true);
     }
   }
 }
